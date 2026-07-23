@@ -17,7 +17,28 @@ import Anthropic from "@anthropic-ai/sdk";
 
 export type Provider = "gemini" | "anthropic";
 
-const GEMINI_MODEL = process.env.LUCID_GEMINI_MODEL ?? "gemini-2.0-flash";
+/**
+ * Gemini model fallback chain, tried in order.
+ *
+ * Two hard-won reasons this is a list rather than one name:
+ *
+ * 1. The free-tier daily cap is `GenerateRequestsPerDayPerProjectPerModel` —
+ *    scoped PER MODEL. When one model's daily budget is gone, another still
+ *    has its own, so falling through keeps a demo alive instead of dying on a
+ *    429 at the worst possible moment.
+ * 2. Pinned model names get retired from the free tier and then return 429
+ *    with `limit: 0`, which looks like a quota problem but is actually a dead
+ *    model. Keeping several names spreads that risk.
+ *
+ * Override with a comma-separated LUCID_GEMINI_MODEL.
+ */
+const GEMINI_MODELS = (
+  process.env.LUCID_GEMINI_MODEL ??
+  "gemini-3.1-flash-lite,gemini-flash-latest,gemini-3.6-flash,gemini-2.5-flash"
+)
+  .split(",")
+  .map((m) => m.trim())
+  .filter(Boolean);
 const ANTHROPIC_MODEL = process.env.LUCID_PERSONA_MODEL ?? "claude-opus-4-8";
 
 export interface Turn {
@@ -72,27 +93,82 @@ async function completeGemini(
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new LlmUnavailableError(NO_CREDENTIALS_HINT);
 
+  // Walk the fallback chain; a per-model quota wall is not a failure.
+  let lastError: unknown = null;
+  for (const model of GEMINI_MODELS) {
+    try {
+      return await callGeminiModel(key, model, system, messages, maxTokens);
+    } catch (err) {
+      const status = (err as { status?: number }).status;
+      // 429 = this model's quota is gone; 404/400 = model unavailable here.
+      if (status === 429 || status === 404 || status === 400) {
+        console.warn(`[llm] gemini model "${model}" unavailable (${status}); trying next`);
+        lastError = err;
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError ??
+    new LlmUnavailableError("No Gemini model in the fallback chain is available.");
+}
+
+async function callGeminiModel(
+  key: string,
+  model: string,
+  system: string,
+  messages: Turn[],
+  maxTokens: number,
+): Promise<string> {
   const url =
     `https://generativelanguage.googleapis.com/v1beta/models/` +
-    `${encodeURIComponent(GEMINI_MODEL)}:generateContent`;
+    `${encodeURIComponent(model)}:generateContent`;
 
-  const res = await fetch(url, {
+  // Gemini calls the system prompt "system_instruction" and uses "model"
+  // where Anthropic uses "assistant".
+  const payload = {
+    system_instruction: { parts: [{ text: system }] },
+    contents: (messages.length
+      ? messages
+      : [{ role: "user" as const, content: "Begin." }]
+    ).map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    })),
+    generationConfig: {
+      /*
+       * Two defences against truncation, both learned the hard way:
+       *
+       * 1. Gemini 3.x models spend part of the OUTPUT budget on internal
+       *    reasoning, so a 400-token cap left too little for the reply and cut
+       *    a persona question off mid-sentence. Reasoning buys nothing here —
+       *    these generations are short and heavily constrained by the prompt —
+       *    so it is switched off.
+       * 2. A floor on the cap, because response length is governed by the
+       *    prompt ("max 2 sentences"), not by this number. Raising it prevents
+       *    truncation without producing longer answers.
+       */
+      maxOutputTokens: Math.max(maxTokens, 800),
+      thinkingConfig: { thinkingBudget: 0 },
+    },
+  };
+
+  let res = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json", "x-goog-api-key": key },
-    body: JSON.stringify({
-      // Gemini calls the system prompt "system_instruction" and uses "model"
-      // where Anthropic uses "assistant".
-      system_instruction: { parts: [{ text: system }] },
-      contents: (messages.length
-        ? messages
-        : [{ role: "user" as const, content: "Begin." }]
-      ).map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }],
-      })),
-      generationConfig: { maxOutputTokens: maxTokens },
-    }),
+    body: JSON.stringify(payload),
   });
+
+  // Not every model accepts thinkingConfig; retry once without it rather than
+  // failing the request.
+  if (res.status === 400) {
+    const { thinkingConfig: _drop, ...generationConfig } = payload.generationConfig;
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({ ...payload, generationConfig }),
+    });
+  }
 
   const data = (await res.json()) as GeminiResponse;
 

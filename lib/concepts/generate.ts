@@ -102,16 +102,25 @@ export async function getOrCreateConcept(topic: string): Promise<GeneratedConcep
   if (cached) return { map: cached, source: "cache" };
 
   // 3. Generate.
+  // A full concept map (5-8 nodes + phrasings + facts + why-questions +
+  // misconceptions) is a big JSON object. A 2000-token budget truncated it
+  // mid-object, which surfaced as an opaque parse error.
   const raw = await complete(
     SYSTEM,
     [{ role: "user", content: `Topic: ${topic}` }],
-    2000,
+    6000,
   );
 
   let parsed: unknown;
   try {
     parsed = JSON.parse(stripFence(raw));
   } catch {
+    // Log both ends: a truncated response is obvious from the tail.
+    console.error(
+      `[concepts] JSON parse failed for "${topic}" (${raw.length} chars)\n` +
+        `  head: ${raw.slice(0, 200)}\n` +
+        `  tail: ${raw.slice(-200)}`,
+    );
     throw new Error("concept_generation_invalid_json");
   }
 
