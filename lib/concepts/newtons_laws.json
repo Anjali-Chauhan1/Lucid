@@ -1,0 +1,37 @@
+{
+  "id": "newtons_laws",
+  "concept": "Newton's Laws of Motion",
+  "subject": "Physics",
+  "nodes": [
+    { "id": "first_law_inertia", "text": "an object stays at rest or keeps moving at constant velocity unless a net force acts on it, a property called inertia", "weight": 0.22 },
+    { "id": "second_law_fma", "text": "the acceleration of an object depends on the net force and its mass, expressed as force equals mass times acceleration", "weight": 0.24 },
+    { "id": "mass_resistance", "text": "a larger mass needs a larger force to reach the same acceleration because mass resists changes in motion", "weight": 0.14 },
+    { "id": "third_law_pairs", "text": "for every action there is an equal and opposite reaction, so forces always come in pairs", "weight": 0.22 },
+    { "id": "pairs_on_different_objects", "text": "the action and reaction forces act on two different objects, which is why they do not cancel out", "weight": 0.12 },
+    { "id": "net_force", "text": "it is the net (unbalanced) force that changes an object's motion", "weight": 0.06 }
+  ],
+  "textbookPhrasings": [
+    "Newton's first law states that a body continues to be in a state of rest or of uniform motion in a straight line unless acted upon by an external unbalanced force.",
+    "Newton's second law states that the rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force.",
+    "Newton's third law states that to every action there is an equal and opposite reaction."
+  ],
+  "referenceFacts": [
+    "An object at rest stays at rest unless a net force acts on it",
+    "Force equals mass times acceleration",
+    "A larger mass requires a larger force for the same acceleration",
+    "For every action there is an equal and opposite reaction",
+    "Action and reaction forces act on different objects",
+    "A net unbalanced force is needed to change an object's motion"
+  ],
+  "whyQuestions": [
+    { "q": "Why do you lurch forward when a moving bus suddenly brakes?", "expectedIdea": "your body's inertia keeps it moving forward even though the bus has stopped" },
+    { "q": "Why is it harder to push a loaded cart than an empty one to the same speed?", "expectedIdea": "the loaded cart has more mass, so it needs more force for the same acceleration" },
+    { "q": "Why does a rocket move upward when it pushes gas downward?", "expectedIdea": "the gas pushed down exerts an equal and opposite reaction force pushing the rocket up" }
+  ],
+  "misconceptions": [
+    "A moving object will eventually stop on its own even with no force acting",
+    "Heavier objects always fall faster than lighter ones",
+    "If two objects push on each other, the bigger one pushes harder",
+    "A constant force is needed to keep an object moving at constant speed"
+  ]
+}

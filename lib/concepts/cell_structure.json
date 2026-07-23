@@ -1,0 +1,39 @@
+{
+  "id": "cell_structure",
+  "concept": "Cell Structure",
+  "subject": "Biology",
+  "nodes": [
+    { "id": "cell_basic_unit", "text": "the cell is the basic structural and functional unit of all living things", "weight": 0.18 },
+    { "id": "membrane", "text": "the cell membrane surrounds the cell and controls what materials move in and out", "weight": 0.16 },
+    { "id": "nucleus", "text": "the nucleus contains the DNA and controls the cell's activities", "weight": 0.18 },
+    { "id": "cytoplasm", "text": "the cytoplasm is the jelly-like fluid where the organelles sit and reactions happen", "weight": 0.12 },
+    { "id": "mitochondria", "text": "mitochondria release energy through respiration and are called the powerhouse of the cell", "weight": 0.14 },
+    { "id": "plant_extras", "text": "plant cells also have a rigid cell wall, chloroplasts for photosynthesis, and a large vacuole", "weight": 0.14 },
+    { "id": "prokaryote_vs_eukaryote", "text": "eukaryotic cells keep their DNA inside a nucleus while prokaryotic cells have no true nucleus", "weight": 0.08 }
+  ],
+  "textbookPhrasings": [
+    "The cell is the basic structural and functional unit of life, and all living organisms are composed of cells.",
+    "The nucleus is the control centre of the cell and contains the genetic material.",
+    "Plant cells differ from animal cells in having a cell wall, chloroplasts and a large central vacuole."
+  ],
+  "referenceFacts": [
+    "The cell is the basic unit of life",
+    "The cell membrane controls what enters and leaves the cell",
+    "The nucleus contains DNA and controls the cell",
+    "Mitochondria release energy through respiration",
+    "Plant cells have a cell wall and chloroplasts",
+    "The cytoplasm holds the organelles",
+    "Eukaryotic cells have a nucleus while prokaryotic cells do not"
+  ],
+  "whyQuestions": [
+    { "q": "Why do plant cells have a cell wall but animal cells do not?", "expectedIdea": "the rigid cell wall gives plant cells support and shape since they have no skeleton" },
+    { "q": "Why is the nucleus often called the control centre of the cell?", "expectedIdea": "it holds the DNA, the instructions that direct the cell's activities" },
+    { "q": "Why can a cell die if its membrane is badly damaged?", "expectedIdea": "the membrane controls what goes in and out, so damage lets harmful substances in and essentials leak out" }
+  ],
+  "misconceptions": [
+    "Only animals are made of cells, not plants",
+    "The cell wall and cell membrane are the same thing",
+    "All cells have a nucleus",
+    "The cytoplasm is empty space inside the cell"
+  ]
+}

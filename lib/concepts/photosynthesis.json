@@ -1,0 +1,39 @@
+{
+  "id": "photosynthesis",
+  "concept": "Photosynthesis",
+  "subject": "Biology",
+  "nodes": [
+    { "id": "light_role", "text": "light provides the energy that drives the reaction", "weight": 0.18 },
+    { "id": "chlorophyll", "text": "chlorophyll, the green pigment in leaves, absorbs the light energy", "weight": 0.15 },
+    { "id": "co2_intake", "text": "the plant takes in carbon dioxide from the air through tiny pores called stomata", "weight": 0.15 },
+    { "id": "water_uptake", "text": "water is absorbed from the soil by the roots and carried to the leaves", "weight": 0.12 },
+    { "id": "glucose_output", "text": "carbon dioxide and water are converted into glucose, a sugar that stores chemical energy as the plant's food", "weight": 0.2 },
+    { "id": "oxygen_byproduct", "text": "oxygen is released into the air as a byproduct", "weight": 0.12 },
+    { "id": "location_chloroplast", "text": "the reaction takes place inside chloroplasts in the leaf cells", "weight": 0.08 }
+  ],
+  "textbookPhrasings": [
+    "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesise food from carbon dioxide and water.",
+    "In the presence of chlorophyll and sunlight, carbon dioxide and water are converted into glucose and oxygen.",
+    "Photosynthesis is a physiological process in which light energy is converted into chemical energy stored in glucose."
+  ],
+  "referenceFacts": [
+    "Plants absorb carbon dioxide from the air",
+    "Oxygen is released as a byproduct of photosynthesis",
+    "Chlorophyll absorbs light energy",
+    "Glucose is produced and stores chemical energy",
+    "Water is absorbed by the roots from the soil",
+    "Photosynthesis occurs in the chloroplasts of leaf cells",
+    "Light energy is converted into chemical energy"
+  ],
+  "whyQuestions": [
+    { "q": "Why can't photosynthesis happen in the dark?", "expectedIdea": "light supplies the energy that powers the reaction, so without light there is no energy source" },
+    { "q": "Why do plants need chlorophyll specifically, and not just any colour?", "expectedIdea": "chlorophyll is the pigment that actually absorbs light energy and passes it into the reaction" },
+    { "q": "Why is photosynthesis important for animals like us?", "expectedIdea": "it releases the oxygen we breathe and creates the food energy at the base of the food chain" }
+  ],
+  "misconceptions": [
+    "Plants get their food from the soil",
+    "Plants breathe in oxygen and breathe out carbon dioxide during photosynthesis",
+    "Chlorophyll is the food that plants make",
+    "Photosynthesis happens in the roots"
+  ]
+}

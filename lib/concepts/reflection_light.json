@@ -1,0 +1,38 @@
+{
+  "id": "reflection_light",
+  "concept": "Reflection of Light",
+  "subject": "Physics",
+  "nodes": [
+    { "id": "bounce", "text": "reflection is when light bounces off a surface instead of passing through it", "weight": 0.18 },
+    { "id": "normal", "text": "the normal is an imaginary line drawn perpendicular to the surface at the point where the light hits", "weight": 0.14 },
+    { "id": "law_equal_angles", "text": "the angle of incidence equals the angle of reflection, both measured from the normal", "weight": 0.24 },
+    { "id": "same_plane", "text": "the incident ray, the reflected ray, and the normal all lie in the same plane", "weight": 0.12 },
+    { "id": "specular_vs_diffuse", "text": "smooth surfaces give clear specular reflection while rough surfaces scatter light in a diffuse reflection", "weight": 0.18 },
+    { "id": "image_formation", "text": "reflection from a smooth mirror is what lets us see an image of ourselves", "weight": 0.14 }
+  ],
+  "textbookPhrasings": [
+    "The angle of incidence is equal to the angle of reflection, and the incident ray, the reflected ray and the normal to the surface all lie in the same plane.",
+    "Reflection of light is the phenomenon of bouncing back of light into the same medium after striking a surface.",
+    "A ray of light striking a surface is called the incident ray and the ray that bounces back is called the reflected ray."
+  ],
+  "referenceFacts": [
+    "Reflection is light bouncing off a surface",
+    "The angle of incidence equals the angle of reflection",
+    "Angles are measured from the normal to the surface",
+    "The incident ray, reflected ray, and normal lie in the same plane",
+    "Smooth surfaces produce specular reflection",
+    "Rough surfaces produce diffuse reflection by scattering light",
+    "A mirror forms an image by reflecting light"
+  ],
+  "whyQuestions": [
+    { "q": "Why can you see a clear image in a mirror but not on a painted wall?", "expectedIdea": "the smooth mirror reflects light in one direction (specular) while the rough wall scatters it (diffuse)" },
+    { "q": "Why do we measure the angles from the normal rather than from the surface itself?", "expectedIdea": "the normal gives a consistent reference line, and the law of reflection is defined relative to it" },
+    { "q": "Why does a rough surface look bright but form no image?", "expectedIdea": "it scatters light in many directions, so light still reaches you but no ordered image is formed" }
+  ],
+  "misconceptions": [
+    "Only mirrors reflect light",
+    "The angle of incidence and reflection are measured from the surface",
+    "Rough surfaces do not reflect light at all",
+    "Light is absorbed and destroyed when it hits a surface"
+  ]
+}

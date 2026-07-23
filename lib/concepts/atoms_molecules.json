@@ -1,0 +1,38 @@
+{
+  "id": "atoms_molecules",
+  "concept": "Atoms and Molecules",
+  "subject": "Chemistry",
+  "nodes": [
+    { "id": "atom_smallest", "text": "an atom is the smallest particle of an element that keeps the properties of that element", "weight": 0.18 },
+    { "id": "subatomic", "text": "atoms are made of protons and neutrons in a central nucleus with electrons moving around it", "weight": 0.2 },
+    { "id": "charges", "text": "protons carry positive charge, electrons carry negative charge, and neutrons are neutral", "weight": 0.14 },
+    { "id": "molecule_bond", "text": "a molecule forms when two or more atoms join together by chemical bonds", "weight": 0.18 },
+    { "id": "compound_vs_element", "text": "a molecule of a compound contains atoms of different elements, like water having hydrogen and oxygen", "weight": 0.16 },
+    { "id": "neutral_atom", "text": "a neutral atom has equal numbers of protons and electrons so the charges balance", "weight": 0.14 }
+  ],
+  "textbookPhrasings": [
+    "An atom is the smallest particle of an element that can take part in a chemical reaction.",
+    "A molecule is the smallest particle of an element or a compound that is capable of independent existence and shows all the properties of that substance.",
+    "Atoms consist of a nucleus containing protons and neutrons, surrounded by electrons revolving in orbits."
+  ],
+  "referenceFacts": [
+    "An atom is the smallest particle of an element",
+    "The nucleus contains protons and neutrons",
+    "Electrons move around the nucleus",
+    "Protons have a positive charge and electrons have a negative charge",
+    "A molecule is formed when two or more atoms bond together",
+    "A compound contains atoms of different elements",
+    "A neutral atom has equal numbers of protons and electrons"
+  ],
+  "whyQuestions": [
+    { "q": "Why is a whole atom electrically neutral even though it contains charged particles?", "expectedIdea": "it has equal numbers of positive protons and negative electrons, so the charges cancel" },
+    { "q": "Why is water called a compound but oxygen gas is called an element?", "expectedIdea": "water's molecule contains atoms of two different elements, while oxygen gas has atoms of only one element" },
+    { "q": "Why do atoms bond together to form molecules instead of staying separate?", "expectedIdea": "bonding lets atoms reach a more stable, lower-energy arrangement" }
+  ],
+  "misconceptions": [
+    "Atoms are the same thing as molecules",
+    "Electrons sit still inside the nucleus",
+    "An atom has more protons than electrons and is therefore charged",
+    "All molecules are compounds"
+  ]
+}

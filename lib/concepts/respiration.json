@@ -1,0 +1,39 @@
+{
+  "id": "respiration",
+  "concept": "Cellular Respiration",
+  "subject": "Biology",
+  "nodes": [
+    { "id": "purpose_energy", "text": "respiration releases the energy stored in food so cells can use it", "weight": 0.2 },
+    { "id": "glucose_fuel", "text": "glucose is the main fuel that is broken down during respiration", "weight": 0.15 },
+    { "id": "oxygen_used", "text": "in aerobic respiration oxygen is used to break glucose down completely", "weight": 0.15 },
+    { "id": "atp_currency", "text": "the released energy is stored in ATP, the molecule cells spend to do work", "weight": 0.18 },
+    { "id": "products", "text": "aerobic respiration produces carbon dioxide and water as waste products", "weight": 0.14 },
+    { "id": "anaerobic", "text": "without enough oxygen, anaerobic respiration releases much less energy and produces lactic acid or alcohol", "weight": 0.1 },
+    { "id": "location_mitochondria", "text": "most respiration takes place in the mitochondria of the cell", "weight": 0.08 }
+  ],
+  "textbookPhrasings": [
+    "Cellular respiration is the process by which cells break down glucose in the presence of oxygen to release energy in the form of ATP.",
+    "Respiration is the process of releasing energy from food by oxidising glucose to form carbon dioxide and water.",
+    "The mitochondria are known as the powerhouse of the cell because respiration occurs there."
+  ],
+  "referenceFacts": [
+    "Respiration releases energy from glucose",
+    "Oxygen is used in aerobic respiration",
+    "Carbon dioxide is produced as a waste product",
+    "Energy is stored in ATP molecules",
+    "Anaerobic respiration releases less energy than aerobic respiration",
+    "Respiration takes place mainly in the mitochondria",
+    "Water is produced during aerobic respiration"
+  ],
+  "whyQuestions": [
+    { "q": "Why do your muscles ache and tire during a hard sprint?", "expectedIdea": "oxygen runs low so muscles switch to anaerobic respiration, producing lactic acid and less energy" },
+    { "q": "Why do we need to keep breathing in oxygen all the time?", "expectedIdea": "oxygen is needed continuously to break down glucose and keep releasing energy as ATP" },
+    { "q": "Why is respiration in a way the opposite of photosynthesis?", "expectedIdea": "respiration uses oxygen and glucose and releases carbon dioxide, reversing what photosynthesis builds" }
+  ],
+  "misconceptions": [
+    "Respiration is the same thing as breathing",
+    "Respiration only happens in the lungs",
+    "Respiration makes energy from nothing",
+    "Plants do not respire, they only photosynthesise"
+  ]
+}
