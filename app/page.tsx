@@ -1,65 +1,89 @@
-import Image from "next/image";
+import Link from "next/link";
+import { BRAND } from "@/lib/brand";
+import { conceptSummaries } from "@/lib/concepts";
+import TopicLauncher from "@/components/TopicLauncher";
+import HeroTagline from "@/components/HeroTagline";
 
 export default function Home() {
+  const concepts = conceptSummaries();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+      {/* ---------- hero ---------- */}
+      <section className="max-w-3xl">
+        <p className="text-[11px] uppercase tracking-[0.24em] text-amber">
+          {BRAND.tagline}
+        </p>
+        <h1 className="mt-4 font-display text-5xl leading-[1.05] text-chalk md:text-7xl">
+          {BRAND.name}
+        </h1>
+
+        <HeroTagline text={BRAND.heroLine} />
+
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-chalk-dim">
+          You explain a concept out loud. The AI plays a confused student and asks
+          questions exactly where your understanding has holes — and a real ML engine,
+          not the chatbot, measures how well you actually understand it.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href="#start"
+            className="rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink-900 transition hover:bg-amber-bright"
+          >
+            Start teaching →
+          </Link>
+          <Link
+            href="/progress"
+            className="rounded-full border border-ink-600 px-6 py-3 text-sm text-chalk-dim transition hover:border-ink-500 hover:text-chalk"
+          >
+            My progress
+          </Link>
+        </div>
+      </section>
+
+      {/* ---------- the two USPs ---------- */}
+      <section className="mt-20 grid gap-5 md:grid-cols-2">
+        <div className="rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-amber">USP 01</p>
+          <h2 className="mt-2 font-display text-2xl text-chalk">{BRAND.score.name}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-chalk-dim">
+            {BRAND.score.tagline}
+          </p>
+          <p className="mt-3 text-xs text-chalk-faint">
+            Coverage (embedding similarity vs the concept map) · Correctness (NLI
+            entailment vs reference facts) · Depth (causal “why” follow-ups)
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-amber">USP 02</p>
+          <h2 className="mt-2 font-display text-2xl text-chalk">{BRAND.parrot.name}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-chalk-dim">
+            A trained classifier separates an explanation in your own words from
+            textbook recitation — using semantic similarity <em>and</em> n-gram
+            overlap, because either signal alone gets fooled.
+          </p>
+          <p className="mt-3 text-xs italic text-chalk-faint">
+            “{BRAND.parrot.challenge}”
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ---------- concept picker ---------- */}
+      <section id="start" className="mt-20 scroll-mt-8">
+        <h2 className="font-display text-3xl text-chalk">What will you teach?</h2>
+        <p className="mt-2 text-sm text-chalk-dim">
+          Pick a prepared concept, or type any topic at all — a concept map is built
+          for it on the spot.
+        </p>
+        <TopicLauncher concepts={concepts} />
+      </section>
+
+      <footer className="mt-24 border-t border-ink-700 pt-6 text-xs text-chalk-faint">
+        {BRAND.name} — {BRAND.tagline}. Scores are produced by an on-device ML
+        pipeline (MiniLM embeddings + a DeBERTa NLI cross-encoder + a trained
+        classifier), independently of the conversational AI.
+      </footer>
+    </main>
   );
 }
