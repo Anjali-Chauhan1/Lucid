@@ -15,6 +15,7 @@ import { BRAND } from "@/lib/brand";
 import UnderstandingPanel from "./UnderstandingPanel";
 import ParrotBanner from "./ParrotBanner";
 import { appendHistory, newSessionId, saveReport } from "@/lib/store";
+import { useSpeechInput } from "@/lib/useSpeechInput";
 
 type Phase =
   | "explaining"
@@ -532,20 +533,72 @@ function Composer({
   rows: number;
   secondary?: { label: string; onClick: () => void };
 }) {
+  // Appending spoken chunks needs the *current* draft, so go through the
+  // functional form rather than closing over a stale `value`.
+  const valueRef = useRef(value);
+  useEffect(() => {
+    valueRef.current = value;
+  }, [value]);
+
+  const speech = useSpeechInput((chunk) => {
+    const current = valueRef.current;
+    const joined = current.trim() ? `${current.trim()} ${chunk}` : chunk;
+    onChange(joined);
+  });
+
   return (
     <div>
-      <label className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
-        {label}
-      </label>
-      <textarea
-        value={value}
-        rows={rows}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => onKeyDown(e, onSubmit)}
-        placeholder={placeholder}
-        disabled={busy}
-        className="mt-2 w-full resize-none rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm leading-relaxed text-chalk placeholder:text-chalk-faint focus:border-amber focus:outline-none disabled:opacity-50"
-      />
+      <div className="flex items-center justify-between gap-3">
+        <label className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
+          {label}
+        </label>
+        {speech.supported && (
+          <button
+            type="button"
+            onClick={speech.listening ? speech.stop : speech.start}
+            disabled={busy}
+            aria-pressed={speech.listening}
+            aria-label={speech.listening ? "Stop dictating" : "Explain out loud"}
+            className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition disabled:opacity-40 ${
+              speech.listening
+                ? "border-rose bg-rose/15 text-rose"
+                : "border-ink-600 text-chalk-faint hover:border-amber hover:text-amber"
+            }`}
+          >
+            {speech.listening ? (
+              <motion.span
+                aria-hidden
+                className="block h-2 w-2 rounded-full bg-rose"
+                animate={{ opacity: [1, 0.25, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+              />
+            ) : (
+              <span aria-hidden>🎙</span>
+            )}
+            {speech.listening ? "Listening — tap to stop" : "Explain out loud"}
+          </button>
+        )}
+      </div>
+
+      <div className="relative">
+        <textarea
+          value={value}
+          rows={rows}
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={(e) => onKeyDown(e, onSubmit)}
+          placeholder={placeholder}
+          disabled={busy}
+          className="mt-2 w-full resize-none rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm leading-relaxed text-chalk placeholder:text-chalk-faint focus:border-amber focus:outline-none disabled:opacity-50"
+        />
+        {speech.interim && (
+          <p className="pointer-events-none absolute inset-x-4 bottom-3 truncate text-sm italic text-chalk-faint">
+            {speech.interim}
+          </p>
+        )}
+      </div>
+
+      {speech.error && <p className="mt-1 text-xs text-rose">{speech.error}</p>}
+
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <button
           onClick={onSubmit}

@@ -2,9 +2,9 @@
 
 > Everyone built an AI that teaches. We built one that listens.
 
-**You** explain a concept. The AI plays a confused student and asks questions
-exactly where your understanding has holes. A real ML engine — not the chatbot —
-measures how well you actually understand it.
+**You** explain a concept — out loud, or typed. The AI plays a confused student
+and asks questions exactly where your understanding has holes. A real ML engine —
+not the chatbot — measures how well you actually understand it.
 
 Built on the Feynman Technique and the protégé effect: the fastest way to find
 the edge of your understanding is to try to teach it.
@@ -259,9 +259,11 @@ this task, which is precisely the motivation for fine-tuning the embedding model
 - **Scoring is imperfect.** Coverage uses a single cosine threshold on a generic
   embedding model. Borderline ideas (~0.55) can fall either way.
 - **English only**, and tuned for roughly ages 14–18.
+- **Voice input needs a Chromium browser.** It uses the browser-native Web
+  Speech API (no key, no cost, streams interim words). Firefox has no
+  implementation, so the mic button hides itself and typing still works.
 - **Depth is shallow** — two why-questions, scored by similarity to an expected
   idea, not by real reasoning assessment.
-- **Typed input only.** Voice was cut for time.
 - **No auth, no DB.** History lives in `localStorage`; clearing site data loses it.
 - **The classifier trains on synthetic data.** Until the human test set lands,
   treat the accuracy figures as an upper bound.
@@ -274,11 +276,26 @@ this task, which is precisely the motivation for fine-tuning the embedding model
   improvement; it directly fixes the coverage-threshold problem above.
 - Auto-generated concept maps from an uploaded PDF or syllabus.
 - Human-labeled test set + inter-rater agreement (Cohen's κ).
-- Voice input, so it is genuinely "explain it out loud".
 - Multilingual support.
 - Teacher dashboard: which ideas does a whole class consistently miss?
 
 ---
+
+## Tech stack
+
+| Layer | Choice |
+|---|---|
+| LLM | **Anthropic Claude** (`claude-opus-4-8`) — personas, micro-lessons, concept-map generation |
+| Pre-trained models | **Hugging Face**: `Xenova/all-MiniLM-L6-v2` (embeddings) + `Xenova/nli-deberta-v3-xsmall` (NLI), via transformers.js |
+| Speech | **Web Speech API** — browser-native dictation, no key required |
+| Frontend | **Next.js 16** (App Router) + **React 19** + **Tailwind CSS v4** + Framer Motion + Recharts |
+| Backend | **Next.js API routes on the Node runtime** — all keys server-side, Zod-validated inputs |
+| Training | **Python**: sentence-transformers, scikit-learn, pandas, matplotlib |
+
+Pre-trained models and open-source libraries are used as *components*; all core
+application logic — the scoring engine, the two-signal Parrot Detector, the
+concept-map schema and generation, the gap→persona grounding, and the Loop Mode
+delta — is original to this project.
 
 ## Repo layout
 
