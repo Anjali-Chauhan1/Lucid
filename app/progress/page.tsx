@@ -29,8 +29,11 @@ export default function ProgressPage() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect -- localStorage is a
+       browser-only external store; it cannot be read during SSR. */
     setHistory(loadHistory());
     setReady(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   /** One line per concept, x = attempt number for that concept. */

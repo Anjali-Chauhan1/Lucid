@@ -39,8 +39,12 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
 
   useEffect(() => {
     const s = loadReport(sessionId);
+    /* eslint-disable react-hooks/set-state-in-effect -- localStorage is a
+       browser-only external store; it cannot be read during SSR or in a render
+       body, so hydrating from it on mount is the intended external-system sync. */
     setStored(s);
     setLoading(false);
+    /* eslint-enable react-hooks/set-state-in-effect */
     if (s && s.report.samajhScore >= 80) {
       // Celebrate only a genuinely strong result.
       confetti({

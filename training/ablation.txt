@@ -1,0 +1,11 @@
+ABLATION — removing the Parrot Detector copying features
+removed: textbook_similarity, trigram_overlap
+==================================================================
+5-fold CV accuracy   full=0.7200   ablated=0.6133   delta=+0.1067
+held-out accuracy    full=0.7333   ablated=0.6933   delta=+0.0400
+'memorized' recall   full=1.0000   ablated=0.8000   delta=+0.2000
+
+Interpretation: semantic similarity alone cannot separate a recited
+answer from an understood one — a memorized explanation is, by
+construction, semantically correct. The n-gram overlap signal is what
+makes that distinction possible.

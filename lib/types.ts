@@ -64,7 +64,8 @@ export interface RattaSignal {
 
 export interface ScoreDimensions {
   coverage: number; // 0..1
-  correctness: number; // 0..1
+  /** 0..1, null when the NLI stage degraded (omitted, NOT treated as perfect) */
+  correctness: number | null;
   depth: number | null; // 0..1, null until why-questions answered
 }
 

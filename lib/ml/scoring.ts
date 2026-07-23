@@ -140,13 +140,28 @@ function maxTrigramOverlap(explanation: string, phrasings: string[]): number {
 
 // ---------- Score composition ----------
 
-/** Compose the 0..100 Grasp Score from the three dimensions. */
+/**
+ * Compose the 0..100 Grasp Score.
+ *
+ * Weights are coverage 0.5 / correctness 0.3 / depth 0.2. A dimension that is
+ * null (not measured) is dropped and the remaining weights are renormalized —
+ * never substituted with a full mark, which would silently inflate the score.
+ */
 export function composeScore(d: ScoreDimensions): number {
-  if (d.depth === null) {
-    // renormalize the coverage/correctness weights (0.5 + 0.3)
-    return Math.round(((0.5 * d.coverage + 0.3 * d.correctness) / 0.8) * 100);
+  const parts: [number | null, number][] = [
+    [d.coverage, 0.5],
+    [d.correctness, 0.3],
+    [d.depth, 0.2],
+  ];
+  let weighted = 0;
+  let totalWeight = 0;
+  for (const [value, weight] of parts) {
+    if (value === null) continue;
+    weighted += value * weight;
+    totalWeight += weight;
   }
-  return Math.round((0.5 * d.coverage + 0.3 * d.correctness + 0.2 * d.depth) * 100);
+  if (totalWeight === 0) return 0;
+  return Math.round((weighted / totalWeight) * 100);
 }
 
 // ---------- Depth (causal why-questions) ----------
@@ -356,10 +371,10 @@ export async function runAnalysis(
 
   const dimensions: ScoreDimensions = {
     coverage: coverageScore,
-    correctness: degraded.includes("nli") ? 1 : correctness,
+    // NLI failure omits the dimension entirely — composeScore renormalizes.
+    correctness: degraded.includes("nli") ? null : correctness,
     depth,
   };
-  // If correctness degraded, drop it from the blend by treating as neutral 1.
 
   const samajhScore = composeScore(dimensions);
 

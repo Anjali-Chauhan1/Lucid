@@ -12,8 +12,11 @@ export default function HeroTagline({ text }: { text: string }) {
     // Respect users who don't want motion — show the line immediately.
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
+      /* eslint-disable react-hooks/set-state-in-effect -- matchMedia is a
+         browser-only API; reduced-motion can only be resolved after mount. */
       setReduced(true);
       setCount(text.length);
+      /* eslint-enable react-hooks/set-state-in-effect */
       return;
     }
     let i = 0;
