@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getConcept } from "@/lib/concepts";
+import { resolveConcept } from "@/lib/concepts/generate";
 import { runAnalysis } from "@/lib/ml/scoring";
 import { warmup } from "@/lib/ml/embeddings";
 
@@ -51,9 +51,17 @@ export async function POST(req: Request) {
     );
   }
 
-  const concept = getConcept(parsed.data.conceptId);
+  // Curated maps first, then any map previously generated for a custom topic.
+  // Scoring never triggers generation — the client calls /api/concept first.
+  const concept = resolveConcept(parsed.data.conceptId);
   if (!concept) {
-    return NextResponse.json({ error: "unknown_concept" }, { status: 404 });
+    return NextResponse.json(
+      {
+        error: "unknown_concept",
+        message: "Call POST /api/concept with the topic first to build its concept map.",
+      },
+      { status: 404 },
+    );
   }
 
   try {
