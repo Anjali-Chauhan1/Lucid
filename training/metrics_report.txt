@@ -1,50 +1,50 @@
 ==================================================================
 LUCID — explanation-quality classifier
 ==================================================================
-samples=300  features=8  classes=['good', 'partial', 'memorized', 'wrong']
-train=225  held-out test=75
+samples=659  features=8  classes=['good', 'partial', 'memorized', 'wrong']
+train=494  held-out test=165
 
 5-fold cross-validation (accuracy, on training split)
 ------------------------------------------------------------------
 model                       mean       std
-LogisticRegression        0.7200    0.0387
-GradientBoosting          0.7200    0.0227
+LogisticRegression        0.7530    0.0178
+GradientBoosting          0.7469    0.0176
 
 Held-out classification report (LogisticRegression)
 ------------------------------------------------------------------
               precision    recall  f1-score   support
 
-        good       0.59      0.74      0.65        23
-     partial       0.58      0.50      0.54        22
-   memorized       1.00      1.00      1.00        15
-       wrong       1.00      0.80      0.89        15
+        good       0.81      0.86      0.83        49
+     partial       0.78      0.73      0.76        49
+   memorized       1.00      0.97      0.99        35
+       wrong       0.85      0.88      0.86        32
 
-    accuracy                           0.73        75
-   macro avg       0.79      0.76      0.77        75
-weighted avg       0.75      0.73      0.74        75
+    accuracy                           0.85       165
+   macro avg       0.86      0.86      0.86       165
+weighted avg       0.85      0.85      0.85       165
 
-Held-out accuracy  LogisticRegression : 0.7333
-Held-out accuracy  GradientBoosting   : 0.8267
+Held-out accuracy  LogisticRegression : 0.8485
+Held-out accuracy  GradientBoosting   : 0.8485
 
 Feature coefficients per class (standardized units)
 ------------------------------------------------------------------
 feature                           good memorized   partial     wrong
-coverage                         0.948    -0.133     0.212    -1.028
-mean_node_similarity             0.287    -0.005     0.001    -0.283
-textbook_similarity             -0.927     1.739    -0.335    -0.476
-trigram_overlap                  0.368     1.840    -0.657    -1.551
-length_ratio                     0.756    -0.224     0.843    -1.374
-contradiction_ratio             -0.549    -0.312    -0.331     1.192
-entailment_ratio                 0.035     0.223     0.007    -0.264
-misconception_similarity        -0.106     0.045    -1.043     1.104
+coverage                         0.125    -0.433    -0.131     0.439
+mean_node_similarity             1.158     0.630    -0.030    -1.758
+textbook_similarity             -0.622     2.109    -0.233    -1.254
+trigram_overlap                 -0.957     2.007    -0.506    -0.543
+length_ratio                     1.575    -0.970    -0.445    -0.159
+contradiction_ratio             -0.410    -0.033    -0.390     0.833
+entailment_ratio                -0.356    -0.200     0.381     0.176
+misconception_similarity        -0.185    -0.381    -0.436     1.002
 
 
 ABLATION — removing the Parrot Detector copying features
 removed: textbook_similarity, trigram_overlap
 ==================================================================
-5-fold CV accuracy   full=0.7200   ablated=0.6133   delta=+0.1067
-held-out accuracy    full=0.7333   ablated=0.6933   delta=+0.0400
-'memorized' recall   full=1.0000   ablated=0.8000   delta=+0.2000
+5-fold CV accuracy   full=0.7530   ablated=0.6033   delta=+0.1497
+held-out accuracy    full=0.8485   ablated=0.6364   delta=+0.2121
+'memorized' recall   full=0.9714   ablated=0.3429   delta=+0.6286
 
 Interpretation: semantic similarity alone cannot separate a recited
 answer from an understood one — a memorized explanation is, by
