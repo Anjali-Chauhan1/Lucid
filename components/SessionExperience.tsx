@@ -113,15 +113,33 @@ export default function SessionExperience({
             conversationHistory: history,
           }),
         });
-        const data = await res.json();
-        if (!res.ok) {
+        if (!res.ok || !res.body) {
+          const data = await res.json().catch(() => ({}));
           setNotice(
             data.message ??
               "The AI persona is unavailable, but your score is unaffected — it is computed by the engine.",
           );
           return false;
         }
-        setTranscript((t) => [...t, { role: "persona", content: data.reply }]);
+
+        // Stream the reply into a bubble that grows as text arrives, so the
+        // student sees words immediately rather than a spinner.
+        setPersonaThinking(false);
+        setTranscript((t) => [...t, { role: "persona", content: "" }]);
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let acc = "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          acc += decoder.decode(value, { stream: true });
+          setTranscript((t) => {
+            const next = [...t];
+            next[next.length - 1] = { role: "persona", content: acc };
+            return next;
+          });
+        }
         return true;
       } catch {
         setNotice("Could not reach the AI persona. Your score is unaffected.");

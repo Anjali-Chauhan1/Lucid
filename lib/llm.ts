@@ -162,7 +162,8 @@ async function callGeminiModel(
   // Not every model accepts thinkingConfig; retry once without it rather than
   // failing the request.
   if (res.status === 400) {
-    const { thinkingConfig: _drop, ...generationConfig } = payload.generationConfig;
+    const generationConfig: Record<string, unknown> = { ...payload.generationConfig };
+    delete generationConfig.thinkingConfig;
     res = await fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json", "x-goog-api-key": key },
@@ -199,6 +200,115 @@ async function callGeminiModel(
     throw new LlmUnavailableError(`Gemini returned no text (finishReason: ${reason}).`);
   }
   return text;
+}
+
+/**
+ * Streaming variant, used for the conversational persona.
+ *
+ * The model only needs ~1.2s to produce a two-sentence question, but delivering
+ * it in one lump after a silent typing indicator feels far slower than it is.
+ * Streaming puts the first words on screen in ~400ms, which is the difference
+ * between "thinking" and "laggy".
+ */
+export async function* completeStream(
+  system: string,
+  messages: Turn[],
+  maxTokens = 400,
+): AsyncGenerator<string> {
+  const provider = activeProvider();
+  if (!provider) throw new LlmUnavailableError(NO_CREDENTIALS_HINT);
+
+  // Anthropic path stays non-streaming — one chunk keeps the client identical.
+  if (provider === "anthropic") {
+    yield await completeAnthropic(system, messages, maxTokens);
+    return;
+  }
+
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) throw new LlmUnavailableError(NO_CREDENTIALS_HINT);
+
+  let lastError: unknown = null;
+  for (const model of GEMINI_MODELS) {
+    const url =
+      `https://generativelanguage.googleapis.com/v1beta/models/` +
+      `${encodeURIComponent(model)}:streamGenerateContent?alt=sse`;
+
+    const payload = {
+      system_instruction: { parts: [{ text: system }] },
+      contents: (messages.length
+        ? messages
+        : [{ role: "user" as const, content: "Begin." }]
+      ).map((m) => ({
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: m.content }],
+      })),
+      generationConfig: {
+        maxOutputTokens: Math.max(maxTokens, 800),
+        thinkingConfig: { thinkingBudget: 0 },
+      },
+    };
+
+    const send = (body: unknown) =>
+      fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify(body),
+      });
+
+    let res = await send(payload);
+    // Some models reject thinkingConfig; retry once without it.
+    if (res.status === 400) {
+      const generationConfig: Record<string, unknown> = { ...payload.generationConfig };
+      delete generationConfig.thinkingConfig;
+      res = await send({ ...payload, generationConfig });
+    }
+
+    if (!res.ok || !res.body) {
+      if ([429, 404, 400].includes(res.status)) {
+        console.warn(`[llm] stream: model "${model}" unavailable (${res.status}); next`);
+        lastError = Object.assign(new Error(`gemini ${res.status}`), {
+          status: res.status,
+        });
+        continue;
+      }
+      throw Object.assign(new Error(`gemini ${res.status}`), { status: res.status });
+    }
+
+    // Parse the SSE frames, emitting text as it arrives.
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let emitted = false;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const frames = buffer.split("\n");
+      buffer = frames.pop() ?? "";
+      for (const frame of frames) {
+        const line = frame.trim();
+        if (!line.startsWith("data:")) continue;
+        const json = line.slice(5).trim();
+        if (!json || json === "[DONE]") continue;
+        try {
+          const parsed = JSON.parse(json) as GeminiResponse;
+          const text = (parsed.candidates?.[0]?.content?.parts ?? [])
+            .map((p) => p.text ?? "")
+            .join("");
+          if (text) {
+            emitted = true;
+            yield text;
+          }
+        } catch {
+          /* partial frame — the next chunk completes it */
+        }
+      }
+    }
+    if (emitted) return;
+    lastError = new LlmUnavailableError("Gemini stream produced no text.");
+  }
+
+  throw lastError ?? new LlmUnavailableError("No Gemini model available.");
 }
 
 // ---------------------------------------------------------------- Anthropic

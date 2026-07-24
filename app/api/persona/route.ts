@@ -3,7 +3,7 @@ import { z } from "zod";
 import { resolveConcept } from "@/lib/concepts/generate";
 import { buildConfusedStudentPrompt } from "@/lib/personas/confusedStudent";
 import { buildExaminerPrompt } from "@/lib/personas/examiner";
-import { complete, describeLlmError, type Turn } from "@/lib/llm";
+import { completeStream, describeLlmError, type Turn } from "@/lib/llm";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -68,9 +68,45 @@ export async function POST(req: Request) {
     messages.unshift({ role: "user", content: "Here is my explanation." });
   }
 
+  // Stream the reply so the first words render in ~400ms instead of the client
+  // staring at a typing indicator until the whole sentence is ready.
   try {
-    const reply = await complete(system, messages, 400);
-    return NextResponse.json({ reply });
+    const iterator = completeStream(system, messages, 400);
+
+    // Pull the first chunk eagerly: it forces auth/quota/model-fallback errors
+    // to surface HERE, where we can still return a proper JSON error status,
+    // rather than mid-stream where the client can only see a truncated body.
+    const first = await iterator.next();
+    if (first.done) {
+      return NextResponse.json(
+        { error: "persona_failed", message: "The model returned no reply." },
+        { status: 502 },
+      );
+    }
+
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream<Uint8Array>({
+      async start(controller) {
+        try {
+          controller.enqueue(encoder.encode(first.value));
+          for await (const chunk of iterator) {
+            controller.enqueue(encoder.encode(chunk));
+          }
+        } catch (err) {
+          console.error("[persona] stream broke:", (err as Error).message);
+        } finally {
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(stream, {
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "no-store",
+        "x-accel-buffering": "no", // don't let a proxy defeat the streaming
+      },
+    });
   } catch (err) {
     const { status, message } = describeLlmError(err);
     console.error("[persona] failed:", message);
