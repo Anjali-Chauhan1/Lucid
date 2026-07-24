@@ -116,6 +116,8 @@ chatbot's opinion.
 
 ## Running it
 
+> **Full walkthrough — modes, demo script, troubleshooting: [USAGE.md](USAGE.md)**
+
 ```bash
 npm install
 cp .env.example .env.local     # add ANTHROPIC_API_KEY
