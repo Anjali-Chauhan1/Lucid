@@ -197,6 +197,118 @@ def online_samples(concept: dict, mix: dict[str, int]) -> list[tuple[str, str]]:
     return rows
 
 
+# --------------------------------------------------- online mode (Gemini, free)
+
+# Free-tier daily cap is per-model, so fall through the chain on 429.
+GEMINI_MODELS = [
+    "gemini-3.1-flash-lite",
+    "gemini-flash-latest",
+    "gemini-3.6-flash",
+    "gemini-2.5-flash",
+]
+
+
+def _load_env_local() -> None:
+    """Pull GEMINI_API_KEY out of ../.env.local so the trainer shares the app key."""
+    env_path = Path(__file__).resolve().parent.parent / ".env.local"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip())
+
+
+def _gemini_call(key: str, prompt: str, max_tokens: int) -> str:
+    """
+    One Gemini completion, walking the model fallback chain on 429/404/400.
+
+    Transient network failures (DNS, reset connections) are retried with
+    backoff rather than abandoned — a long generation run WILL hit them, and
+    losing a whole concept to one blip wastes quota.
+    """
+    import time
+    import urllib.error
+    import urllib.request
+
+    last_err = None
+    for model in GEMINI_MODELS:
+        url = (
+            f"https://generativelanguage.googleapis.com/v1beta/models/"
+            f"{model}:generateContent"
+        )
+        body = json.dumps(
+            {
+                "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+                "generationConfig": {"maxOutputTokens": max_tokens},
+            }
+        ).encode()
+
+        for attempt in range(1, 4):  # 3 network attempts per model
+            req = urllib.request.Request(
+                url,
+                data=body,
+                headers={"content-type": "application/json", "x-goog-api-key": key},
+            )
+            try:
+                with urllib.request.urlopen(req, timeout=180) as resp:
+                    data = json.loads(resp.read().decode())
+                parts = (
+                    data.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+                )
+                return "".join(p.get("text", "") for p in parts).strip()
+            except urllib.error.HTTPError as e:
+                if e.code in (429, 404, 400):
+                    print(f"    (model {model} unavailable: {e.code}; trying next)")
+                    last_err = e
+                    time.sleep(2)
+                    break  # move to the next model
+                raise
+            except (urllib.error.URLError, OSError, TimeoutError) as e:
+                # DNS / reset / timeout — transient, so back off and retry.
+                last_err = e
+                wait = 5 * attempt
+                print(f"    (network issue on {model}, attempt {attempt}/3; retry in {wait}s)")
+                time.sleep(wait)
+
+    raise RuntimeError(f"all Gemini models exhausted: {last_err}")
+
+
+def gemini_online_samples(concept: dict, mix: dict[str, int]) -> list[tuple[str, str]]:
+    import time
+
+    key = os.environ["GEMINI_API_KEY"]
+    rows: list[tuple[str, str]] = []
+    for label, n in mix.items():
+        prompt = PROMPT.format(
+            concept=concept["concept"],
+            subject=concept["subject"],
+            nodes="\n".join(f"- {x['text']}" for x in concept["nodes"]),
+            textbook="\n".join(f"- {x}" for x in concept["textbookPhrasings"]),
+            misconceptions="\n".join(f"- {x}" for x in concept["misconceptions"]),
+            n=n,
+            label=label,
+            definition=DEFINITIONS[label],
+        )
+        try:
+            text = _gemini_call(key, prompt, max_tokens=6000)
+        except Exception as e:  # partial data is better than none
+            print(f"  ! {concept['id']}/{label} failed ({e}); skipping")
+            continue
+        text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
+        try:
+            items = json.loads(text)
+        except json.JSONDecodeError:
+            print(f"  ! could not parse JSON for {concept['id']}/{label}; skipping")
+            continue
+        rows.extend((str(s).strip(), label) for s in items if str(s).strip())
+        print(f"  {concept['id']}/{label}: {len(items)}")
+        time.sleep(4)  # stay under the free-tier per-minute request cap
+    return rows
+
+
 # ---------------------------------------------------------------------- driver
 
 
@@ -207,31 +319,79 @@ def main() -> None:
     ap.add_argument("--per-concept", type=int, default=None,
                     help="total samples per concept (split across the 4 labels)")
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--fresh", action="store_true",
+                    help="discard existing samples.csv instead of merging into it")
     args = ap.parse_args()
+
+    _load_env_local()
 
     mix = dict(DEFAULT_MIX)
     if args.per_concept:
         scale = args.per_concept / sum(DEFAULT_MIX.values())
         mix = {k: max(2, round(v * scale)) for k, v in mix.items()}
 
-    use_online = args.online or (not args.offline and bool(os.environ.get("ANTHROPIC_API_KEY")))
-    mode = "online (Claude-authored)" if use_online else "offline (template synthesis)"
+    has_gemini = bool(os.environ.get("GEMINI_API_KEY"))
+    has_claude = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    want_online = args.online or (not args.offline and (has_gemini or has_claude))
+
+    if want_online and has_gemini:
+        provider = "gemini"
+        mode = "online (Gemini-authored, free tier)"
+    elif want_online and has_claude:
+        provider = "claude"
+        mode = "online (Claude-authored)"
+    else:
+        provider = "offline"
+        mode = "offline (template synthesis)"
     print(f"Mode: {mode}")
 
     rng = random.Random(args.seed)
     concepts = load_concepts()
+    print(f"{len(concepts)} concepts: {', '.join(concepts)}\n")
+
+    # Merge with whatever is already on disk unless --fresh is given. A long
+    # online run WILL be interrupted; destroying prior samples on every run
+    # turns a network blip into total data loss.
     rows: list[tuple[str, str, str]] = []
+    seen: set[tuple[str, str]] = set()
+    if not args.fresh and OUT_PATH.exists():
+        with open(OUT_PATH, newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                key = (r["concept_id"], r["explanation"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                rows.append((r["concept_id"], r["explanation"], r["label"]))
+        print(f"merging with {len(rows)} existing samples\n")
+
+    def flush() -> None:
+        with open(OUT_PATH, "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["concept_id", "explanation", "label"])
+            w.writerows(rows)
 
     for cid, concept in concepts.items():
         print(f"- {cid}")
-        pairs = online_samples(concept, mix) if use_online else offline_samples(concept, mix, rng)
-        rows.extend((cid, text, label) for text, label in pairs)
+        if provider == "gemini":
+            pairs = gemini_online_samples(concept, mix)
+        elif provider == "claude":
+            pairs = online_samples(concept, mix)
+        else:
+            pairs = offline_samples(concept, mix, rng)
+        added = 0
+        for text, label in pairs:
+            key = (cid, text)
+            if key in seen:
+                continue  # de-dupe across runs
+            seen.add(key)
+            rows.append((cid, text, label))
+            added += 1
+        # Save after every concept so an interruption keeps prior progress.
+        flush()
+        if added:
+            print(f"  +{added} (total {len(rows)})")
 
-    with open(OUT_PATH, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["concept_id", "explanation", "label"])
-        w.writerows(rows)
-
+    flush()
     counts: dict[str, int] = {}
     for _, _, label in rows:
         counts[label] = counts.get(label, 0) + 1
