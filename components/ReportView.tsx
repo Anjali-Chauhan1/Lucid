@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { BRAND } from "@/lib/brand";
 import { loadReport, type StoredReport } from "@/lib/store";
+import { categoryInfo } from "@/lib/ml/misconceptionTaxonomy";
 import ScoreGauge from "./ScoreGauge";
 import DimensionBars from "./DimensionBars";
 import DeltaReveal from "./DeltaReveal";
@@ -205,6 +206,11 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
                 <p className="mt-2 text-sm text-chalk-dim">
                   <span className="text-emerald">But actually:</span> {w.contradicts}
                 </p>
+                {w.misconceptionCategory && (
+                  <p className="mt-2 text-[11px] uppercase tracking-wider text-rose/70">
+                    Pattern: {categoryInfo(w.misconceptionCategory).label}
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>

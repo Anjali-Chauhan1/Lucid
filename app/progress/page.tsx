@@ -13,7 +13,8 @@ import {
 } from "recharts";
 import { BRAND } from "@/lib/brand";
 import { clearHistory, loadHistory } from "@/lib/store";
-import type { SessionHistoryEntry } from "@/lib/types";
+import type { MisconceptionCategory, SessionHistoryEntry } from "@/lib/types";
+import { categoryInfo } from "@/lib/ml/misconceptionTaxonomy";
 
 const SERIES_COLORS = [
   "var(--amber)",
@@ -69,6 +70,33 @@ export default function ProgressPage() {
     return Math.max(max, h.samajhScore - h.priorScore);
   }, 0);
 
+  /**
+   * Misconception Fingerprint: a category only counts as a "recurring blind
+   * spot" once it has fired in TWO OR MORE DIFFERENT concepts — that cross-
+   * topic repetition is the signal that it's a pattern in how the student
+   * reasons, not just one hard topic.
+   */
+  const blindSpots = useMemo(() => {
+    const byCategory = new Map<MisconceptionCategory, { concepts: Set<string>; count: number }>();
+    for (const h of history) {
+      for (const cat of h.misconceptionCategories ?? []) {
+        const entry = byCategory.get(cat) ?? { concepts: new Set<string>(), count: 0 };
+        entry.concepts.add(h.concept);
+        entry.count += 1;
+        byCategory.set(cat, entry);
+      }
+    }
+    return [...byCategory.entries()]
+      .filter(([, v]) => v.concepts.size >= 2)
+      .map(([category, v]) => ({
+        category,
+        info: categoryInfo(category),
+        concepts: [...v.concepts],
+        count: v.count,
+      }))
+      .sort((a, b) => b.concepts.length - a.concepts.length);
+  }, [history]);
+
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-12">
       <Link href="/" className="text-xs text-chalk-faint hover:text-amber">
@@ -108,6 +136,35 @@ export default function ProgressPage() {
               color="var(--violet)"
             />
           </div>
+
+          {blindSpots.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-display text-xl text-chalk">Recurring blind spots</h2>
+              <p className="mt-1 text-sm text-chalk-dim">
+                The same kind of wrong reasoning, caught across unrelated topics — not
+                what you got wrong, but the pattern behind it.
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {blindSpots.map((b) => (
+                  <div
+                    key={b.category}
+                    className="rounded-xl border border-rose/30 bg-rose/6 p-4"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-display text-base text-chalk">{b.info.label}</p>
+                      <span className="rounded-full bg-rose/15 px-2.5 py-0.5 text-[11px] font-semibold text-rose">
+                        {b.concepts.length} subjects
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-chalk-dim">{b.info.description}</p>
+                    <p className="mt-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                      Seen in: {b.concepts.join(", ")}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-8 h-[380px] rounded-2xl border border-ink-600 bg-ink-800/50 p-5">
             <ResponsiveContainer width="100%" height="100%">

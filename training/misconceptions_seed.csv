@@ -1,0 +1,25 @@
+text,category,subject
+Atoms are the same thing as molecules,term_conflation,Chemistry
+Electrons sit still inside the nucleus,definition_substitution,Chemistry
+An atom has more protons than electrons and is therefore charged,definition_substitution,Chemistry
+All molecules are compounds,overgeneralization,Chemistry
+"Only animals are made of cells, not plants",overgeneralization,Biology
+The cell wall and cell membrane are the same thing,term_conflation,Biology
+All cells have a nucleus,overgeneralization,Biology
+The cytoplasm is empty space inside the cell,definition_substitution,Biology
+A moving object will eventually stop on its own even with no force acting,naive_causal_model,Physics
+Heavier objects always fall faster than lighter ones,overgeneralization,Physics
+"If two objects push on each other, the bigger one pushes harder",naive_causal_model,Physics
+A constant force is needed to keep an object moving at constant speed,naive_causal_model,Physics
+Plants get their food from the soil,input_output_reversal,Biology
+Plants breathe in oxygen and breathe out carbon dioxide during photosynthesis,input_output_reversal,Biology
+Chlorophyll is the food that plants make,term_conflation,Biology
+Photosynthesis happens in the roots,definition_substitution,Biology
+Respiration is the same thing as breathing,term_conflation,Biology
+Respiration only happens in the lungs,overgeneralization,Biology
+Respiration makes energy from nothing,naive_causal_model,Biology
+"Plants do not respire, they only photosynthesise",overgeneralization,Biology
+Only mirrors reflect light,overgeneralization,Physics
+The angle of incidence and reflection are measured from the surface,definition_substitution,Physics
+Rough surfaces do not reflect light at all,overgeneralization,Physics
+Light is absorbed and destroyed when it hits a surface,naive_causal_model,Physics

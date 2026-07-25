@@ -28,6 +28,20 @@ export interface ConceptMap {
   misconceptions: string[];
 }
 
+// ---------- Misconception Fingerprint ----------
+
+/**
+ * The pattern-of-reasoning a matched misconception is an instance of,
+ * independent of subject — see lib/ml/misconception-taxonomy.json for the
+ * human-readable label/description of each.
+ */
+export type MisconceptionCategory =
+  | "term_conflation"
+  | "overgeneralization"
+  | "input_output_reversal"
+  | "naive_causal_model"
+  | "definition_substitution";
+
 // ---------- Analysis output ----------
 
 export type ClassifierLabel = "good" | "partial" | "memorized" | "wrong";
@@ -51,6 +65,8 @@ export interface WrongStatement {
   said: string;
   contradicts: string;
   score: number;
+  /** set only when this statement matched a known misconception (not a plain fact contradiction) */
+  misconceptionCategory?: MisconceptionCategory;
 }
 
 export interface RattaSignal {
@@ -142,4 +158,6 @@ export interface SessionHistoryEntry {
   timestamp: number;
   /** for Loop Mode: the score before the micro-lesson */
   priorScore?: number;
+  /** distinct misconception categories triggered in this session, if any */
+  misconceptionCategories?: MisconceptionCategory[];
 }

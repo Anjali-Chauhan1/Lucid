@@ -1,0 +1,52 @@
+[
+  {
+    "id": "term_conflation",
+    "label": "Term Conflation",
+    "description": "States that two distinct terms or concepts are literally identical, interchangeable, or 'the same thing'.",
+    "examples": [
+      "Atoms are the same thing as molecules",
+      "Weight and mass represent the exact same physical property of an object",
+      "Respiration is the same thing as breathing"
+    ]
+  },
+  {
+    "id": "overgeneralization",
+    "label": "Overgeneralization",
+    "description": "Uses an absolute word (always, all, every, only, never) to apply a rule outside the specific conditions where it actually holds.",
+    "examples": [
+      "All cells have a nucleus",
+      "Heavier objects always fall faster than lighter ones",
+      "Only mirrors reflect light"
+    ]
+  },
+  {
+    "id": "input_output_reversal",
+    "label": "Input/Output Reversal",
+    "description": "Names TWO distinct things (A and B) and gets the direction wrong: claims A moves/flows/converts into B when really B moves into A, or names the wrong one of the pair as the source vs. the result. Must involve two named things and a directional verb (takes in, gives off, flows into, converts into, absorbs, releases, produces from).",
+    "examples": [
+      "Plants breathe in oxygen and breathe out carbon dioxide during photosynthesis",
+      "Compilers are programs that convert machine code into human-readable source code",
+      "The lungs take in carbon dioxide to provide oxygen to the blood"
+    ]
+  },
+  {
+    "id": "naive_causal_model",
+    "label": "Naive Causal Model",
+    "description": "Invents a causal mechanism that violates a conservation law or physical constraint: something appears from nothing, disappears without trace, or an effect occurs with no source or mechanism behind it.",
+    "examples": [
+      "A moving object will eventually stop on its own even with no force acting",
+      "Respiration makes energy from nothing",
+      "Light is absorbed and destroyed when it hits a surface"
+    ]
+  },
+  {
+    "id": "definition_substitution",
+    "label": "Definition Substitution",
+    "description": "Gives a WRONG single-entity property, role, or definition for ONE named thing — not a flow or exchange between two things. The false part is what the thing IS or DOES in isolation (e.g. its job, its makeup, what it's made of, how it's measured), never a direction of movement between it and something else.",
+    "examples": [
+      "The cytoplasm is empty space inside the cell",
+      "A catalyst is a substance that gets used up during a reaction",
+      "The angle of incidence and reflection are measured from the surface"
+    ]
+  }
+]

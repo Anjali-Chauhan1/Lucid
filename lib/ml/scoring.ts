@@ -16,6 +16,7 @@ import type {
 } from "@/lib/types";
 import { cosine, embed, nliPair } from "./embeddings";
 import { classify } from "./classifier";
+import { classifyMisconception } from "./misconceptionCategory";
 import type { FeatureVector } from "./features";
 
 /**
@@ -278,6 +279,7 @@ export async function runAnalysis(
       const seg = segments[si];
       let segEntails = false;
       let bestContradiction: { fact: string; score: number } | null = null;
+      let matchedMisconceptionText: string | null = null;
 
       // Only compare this segment against the facts it is actually about.
       const related = concept.referenceFacts
@@ -326,6 +328,7 @@ export async function runAnalysis(
               }
             });
             bestContradiction = { fact: correction, score: scores.entailment };
+            matchedMisconceptionText = concept.misconceptions[bestMis.idx];
           }
         }
       }
@@ -337,6 +340,9 @@ export async function runAnalysis(
           said: seg,
           contradicts: bestContradiction.fact,
           score: bestContradiction.score,
+          misconceptionCategory: matchedMisconceptionText
+            ? classifyMisconception(matchedMisconceptionText).category
+            : undefined,
         });
       }
     }

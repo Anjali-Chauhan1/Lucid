@@ -293,6 +293,13 @@ export default function SessionExperience({
       microLesson: microLesson ?? undefined,
       createdAt: Date.now(),
     });
+    const misconceptionCategories = [
+      ...new Set(
+        finalReport.wrongStatements
+          .map((w) => w.misconceptionCategory)
+          .filter((c): c is NonNullable<typeof c> => Boolean(c)),
+      ),
+    ];
     appendHistory({
       sessionId,
       conceptId: concept.id,
@@ -302,6 +309,7 @@ export default function SessionExperience({
       dimensions: finalReport.dimensions,
       timestamp: Date.now(),
       priorScore: priorReport?.samajhScore,
+      misconceptionCategories: misconceptionCategories.length ? misconceptionCategories : undefined,
     });
     router.push(`/report/${sessionId}`);
   }
