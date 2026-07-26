@@ -22,6 +22,8 @@ export interface StoredReport {
   transcript: { role: "student" | "persona"; content: string }[];
   microLesson?: string;
   createdAt: number;
+  /** self-rated confidence (1-5), captured BEFORE the explanation was scored */
+  confidenceRating?: number;
 }
 
 function safeParse<T>(raw: string | null): T | null {

@@ -160,4 +160,6 @@ export interface SessionHistoryEntry {
   priorScore?: number;
   /** distinct misconception categories triggered in this session, if any */
   misconceptionCategories?: MisconceptionCategory[];
+  /** self-rated confidence (1-5), captured BEFORE the explanation was scored */
+  confidenceRating?: number;
 }

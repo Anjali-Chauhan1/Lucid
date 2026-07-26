@@ -7,6 +7,7 @@ import confetti from "canvas-confetti";
 import { BRAND } from "@/lib/brand";
 import { loadReport, type StoredReport } from "@/lib/store";
 import { categoryInfo } from "@/lib/ml/misconceptionTaxonomy";
+import { calibrate } from "@/lib/calibration";
 import ScoreGauge from "./ScoreGauge";
 import DimensionBars from "./DimensionBars";
 import DeltaReveal from "./DeltaReveal";
@@ -83,7 +84,7 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
     );
   }
 
-  const { report, priorScore, concept, conceptId, mode, microLesson } = stored;
+  const { report, priorScore, concept, conceptId, mode, microLesson, confidenceRating } = stored;
   const label = LABEL_COPY[report.classifierLabel] ?? LABEL_COPY.partial;
   const improved = typeof priorScore === "number";
 
@@ -132,6 +133,11 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
           <DimensionBars dimensions={report.dimensions} />
         </div>
       </section>
+
+      {/* ---------- confidence calibration ---------- */}
+      {typeof confidenceRating === "number" && (
+        <ConfidenceCheck confidenceRating={confidenceRating} actualScore={report.samajhScore} />
+      )}
 
       {/* ---------- Parrot Detector ---------- */}
       <section className="mt-12 rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
@@ -253,6 +259,59 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
         {report.degraded.length > 0 && ` · degraded: ${report.degraded.join(", ")}`}
       </p>
     </main>
+  );
+}
+
+const CALIBRATION_COPY: Record<
+  "overconfident" | "underconfident" | "calibrated",
+  { title: string; blurb: string; color: string }
+> = {
+  overconfident: {
+    title: "You were overconfident",
+    blurb:
+      "You expected more than you actually delivered — the exact gap a re-read or a passive review session never catches.",
+    color: "var(--rose)",
+  },
+  underconfident: {
+    title: "You were underconfident",
+    blurb: "You knew more than you gave yourself credit for. Trust this more next time.",
+    color: "var(--sky)",
+  },
+  calibrated: {
+    title: "Well calibrated",
+    blurb: "Your gut sense of your own understanding matched what you actually demonstrated.",
+    color: "var(--emerald)",
+  },
+};
+
+function ConfidenceCheck({
+  confidenceRating,
+  actualScore,
+}: {
+  confidenceRating: number;
+  actualScore: number;
+}) {
+  const { verdict, confidencePercent } = calibrate(confidenceRating, actualScore);
+  const copy = CALIBRATION_COPY[verdict];
+  return (
+    <section className="mt-12 rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
+      <h2 className="font-display text-2xl text-chalk">Confidence check</h2>
+      <div className="mt-4 grid gap-4 sm:grid-cols-3">
+        <Metric label="You said" value={`${confidenceRating}/5 confident`} />
+        <Metric label="You actually scored" value={`${actualScore}/100`} />
+        <Metric
+          label="Verdict"
+          value={copy.title}
+          tone={
+            verdict === "overconfident" ? "warn" : verdict === "calibrated" ? "good" : undefined
+          }
+        />
+      </div>
+      <p className="mt-4 text-xs leading-relaxed text-chalk-faint">{copy.blurb}</p>
+      <p className="mt-1 text-[11px] text-chalk-faint">
+        (self-rating scaled to {confidencePercent.toFixed(0)}/100 for comparison)
+      </p>
+    </section>
   );
 }
 

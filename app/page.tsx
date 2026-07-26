@@ -69,6 +69,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- accessibility ---------- */}
+      <section className="mt-8 rounded-2xl border border-sky/30 bg-sky/6 p-6">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-sky/15 px-2.5 py-0.5 text-[11px] font-semibold text-sky">
+            No audio required
+          </span>
+        </div>
+        <h2 className="mt-3 font-display text-2xl text-chalk">{BRAND.access.name}</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-chalk-dim">
+          {BRAND.access.tagline}
+        </p>
+        <ul className="mt-4 grid gap-2 text-xs text-chalk-faint sm:grid-cols-3">
+          <li className="rounded-lg border border-ink-600 bg-ink-850/50 px-3 py-2">
+            🎤 → ⌨️ Speak or type — your choice, every time
+          </li>
+          <li className="rounded-lg border border-ink-600 bg-ink-850/50 px-3 py-2">
+            💬 Persona questions are always shown as text, never audio-only
+          </li>
+          <li className="rounded-lg border border-ink-600 bg-ink-850/50 px-3 py-2">
+            📄 Reports, gaps, and scores are fully readable — no sound needed
+          </li>
+        </ul>
+      </section>
+
       {/* ---------- concept picker ---------- */}
       <section id="start" className="mt-20 scroll-mt-8">
         <h2 className="font-display text-3xl text-chalk">What will you teach?</h2>

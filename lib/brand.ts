@@ -18,4 +18,12 @@ export const BRAND = {
     challenge:
       "That's the textbook talking. Now you tell me — in your own words, with an example.",
   },
+  // Accessibility — a factual property of being text-first, not a dedicated
+  // feature: nothing was specially built for this, the app just never
+  // needed audio in the first place. State it as an observation, not a claim.
+  access: {
+    name: "Works without sound, top to bottom",
+    tagline:
+      "Voice input is an optional convenience, never a requirement. Every question, gap, and score is delivered as text — type your explanation, read the persona's questions, read your report. That also means nothing here requires hearing or speaking.",
+  },
 } as const;

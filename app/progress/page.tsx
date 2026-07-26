@@ -15,6 +15,8 @@ import { BRAND } from "@/lib/brand";
 import { clearHistory, loadHistory } from "@/lib/store";
 import type { MisconceptionCategory, SessionHistoryEntry } from "@/lib/types";
 import { categoryInfo } from "@/lib/ml/misconceptionTaxonomy";
+import { calibrate } from "@/lib/calibration";
+import { daysSince, isDueForReview } from "@/lib/spacedRepetition";
 
 const SERIES_COLORS = [
   "var(--amber)",
@@ -97,6 +99,41 @@ export default function ProgressPage() {
       .sort((a, b) => b.concepts.length - a.concepts.length);
   }, [history]);
 
+  /**
+   * Spaced repetition: for each concept, look only at its MOST RECENT
+   * session — a concept last seen well is due later than one last seen
+   * shakily (see lib/spacedRepetition.ts). This surfaces "about to be
+   * forgotten" purely from timestamps already being recorded, no new
+   * tracking needed.
+   */
+  const dueForReview = useMemo(() => {
+    const latestByConcept = new Map<string, SessionHistoryEntry>();
+    for (const h of history) {
+      const existing = latestByConcept.get(h.concept);
+      if (!existing || h.timestamp > existing.timestamp) latestByConcept.set(h.concept, h);
+    }
+    return [...latestByConcept.values()]
+      .filter((h) => isDueForReview(h.timestamp, h.samajhScore))
+      .map((h) => ({ ...h, daysAgo: daysSince(h.timestamp) }))
+      .sort((a, b) => b.daysAgo - a.daysAgo);
+  }, [history]);
+
+  /** Calibration: confidence vs actual score across every rated session. */
+  const calibration = useMemo(() => {
+    const points = history
+      .filter((h): h is SessionHistoryEntry & { confidenceRating: number } =>
+        typeof h.confidenceRating === "number",
+      )
+      .map((h) => ({
+        concept: h.concept,
+        actualScore: h.samajhScore,
+        ...calibrate(h.confidenceRating, h.samajhScore),
+      }));
+    const counts = { overconfident: 0, underconfident: 0, calibrated: 0 };
+    for (const p of points) counts[p.verdict]++;
+    return { points, counts };
+  }, [history]);
+
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-12">
       <Link href="/" className="text-xs text-chalk-faint hover:text-amber">
@@ -137,6 +174,33 @@ export default function ProgressPage() {
             />
           </div>
 
+          {dueForReview.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-display text-xl text-chalk">Time to review</h2>
+              <p className="mt-1 text-sm text-chalk-dim">
+                Understanding fades on a schedule, not randomly — these are due before
+                you forget them, not after.
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {dueForReview.map((h) => (
+                  <Link
+                    key={h.conceptId}
+                    href={`/session/${h.conceptId}?mode=explain`}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-amber/30 bg-amber/6 p-4 transition hover:border-amber/60"
+                  >
+                    <div>
+                      <p className="font-display text-base text-chalk">{h.concept}</p>
+                      <p className="mt-1 text-xs text-chalk-faint">
+                        Scored {h.samajhScore} · {h.daysAgo === 0 ? "today" : `${h.daysAgo}d ago`}
+                      </p>
+                    </div>
+                    <span className="text-sm text-amber">Review →</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {blindSpots.length > 0 && (
             <div className="mt-8">
               <h2 className="font-display text-xl text-chalk">Recurring blind spots</h2>
@@ -162,6 +226,36 @@ export default function ProgressPage() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {calibration.points.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-display text-xl text-chalk">How well do you know what you know?</h2>
+              <p className="mt-1 text-sm text-chalk-dim">
+                Self-rated confidence, captured before scoring, compared against what
+                you actually demonstrated.
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <CalibrationStat
+                  label="Overconfident"
+                  count={calibration.counts.overconfident}
+                  total={calibration.points.length}
+                  color="var(--rose)"
+                />
+                <CalibrationStat
+                  label="Well calibrated"
+                  count={calibration.counts.calibrated}
+                  total={calibration.points.length}
+                  color="var(--emerald)"
+                />
+                <CalibrationStat
+                  label="Underconfident"
+                  count={calibration.counts.underconfident}
+                  total={calibration.points.length}
+                  color="var(--sky)"
+                />
               </div>
             </div>
           )}
@@ -266,6 +360,31 @@ function Stat({
       <p className="mt-1 font-display text-2xl tabular-nums" style={{ color }}>
         {value}
       </p>
+    </div>
+  );
+}
+
+function CalibrationStat({
+  label,
+  count,
+  total,
+  color,
+}: {
+  label: string;
+  count: number;
+  total: number;
+  color: string;
+}) {
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+  return (
+    <div className="rounded-xl border border-ink-600 bg-ink-800/50 p-4">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-chalk-faint">{label}</p>
+      <p className="mt-1 font-display text-2xl tabular-nums" style={{ color }}>
+        {count}/{total}
+      </p>
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-700">
+        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+      </div>
     </div>
   );
 }

@@ -41,6 +41,7 @@ export default function SessionExperience({
   const [phase, setPhase] = useState<Phase>("explaining");
   const [warm, setWarm] = useState(false);
   const [draft, setDraft] = useState("");
+  const [confidence, setConfidence] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
@@ -157,6 +158,10 @@ export default function SessionExperience({
     const text = draft.trim();
     if (text.length < 15) {
       setError("Write a bit more — at least a sentence or two.");
+      return;
+    }
+    if (confidence === null) {
+      setError("Rate your confidence first — that's what makes the gap meaningful.");
       return;
     }
     setError(null);
@@ -292,6 +297,7 @@ export default function SessionExperience({
       transcript,
       microLesson: microLesson ?? undefined,
       createdAt: Date.now(),
+      confidenceRating: confidence ?? undefined,
     });
     const misconceptionCategories = [
       ...new Set(
@@ -310,6 +316,7 @@ export default function SessionExperience({
       timestamp: Date.now(),
       priorScore: priorReport?.samajhScore,
       misconceptionCategories: misconceptionCategories.length ? misconceptionCategories : undefined,
+      confidenceRating: confidence ?? undefined,
     });
     router.push(`/report/${sessionId}`);
   }
@@ -428,6 +435,9 @@ export default function SessionExperience({
           {/* ---------------- composer ---------------- */}
           <div className="mt-4 border-t border-ink-700 pt-4">
             {phase === "explaining" && (
+              <ConfidenceSelector value={confidence} onChange={setConfidence} disabled={busy} />
+            )}
+            {phase === "explaining" && (
               <Composer
                 value={draft}
                 onChange={setDraft}
@@ -531,6 +541,53 @@ export default function SessionExperience({
         </aside>
       </div>
     </main>
+  );
+}
+
+/* -------------------------------------------------------- confidence rating */
+
+/**
+ * Captured BEFORE the explanation is scored, so it reflects genuine
+ * self-assessment rather than a reaction to feedback already seen — that's
+ * what makes the gap against the actual Grasp Score meaningful (see
+ * lib/calibration.ts).
+ */
+function ConfidenceSelector({
+  value,
+  onChange,
+  disabled,
+}: {
+  value: number | null;
+  onChange: (v: number) => void;
+  disabled: boolean;
+}) {
+  return (
+    <div className="mb-4">
+      <label className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
+        Before you explain — how confident are you in this topic?
+      </label>
+      <div className="mt-2 flex items-center gap-2">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            key={n}
+            type="button"
+            disabled={disabled}
+            onClick={() => onChange(n)}
+            aria-pressed={value === n}
+            className={`h-9 w-9 rounded-full border text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-40 ${
+              value === n
+                ? "border-sky bg-sky/20 text-sky"
+                : "border-ink-600 text-chalk-faint hover:border-ink-500 hover:text-chalk"
+            }`}
+          >
+            {n}
+          </button>
+        ))}
+        <span className="ml-2 text-[11px] text-chalk-faint">
+          1 = not sure at all · 5 = very confident
+        </span>
+      </div>
+    </div>
   );
 }
 
