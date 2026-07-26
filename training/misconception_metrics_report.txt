@@ -1,25 +1,25 @@
 ======================================================================
 LUCID — misconception-category classifier (Misconception Fingerprint)
 ======================================================================
-samples=533  features=2433  classes=['definition_substitution', 'input_output_reversal', 'naive_causal_model', 'overgeneralization', 'term_conflation']
-train=399  held-out test=134
+samples=1293  features=5002  classes=['definition_substitution', 'input_output_reversal', 'naive_causal_model', 'overgeneralization', 'term_conflation']
+train=969  held-out test=324
 
-5-fold CV accuracy (training split): mean=0.9348  std=0.0215
+5-fold CV accuracy (training split): mean=0.9732  std=0.0110
 
 Held-out classification report
 ----------------------------------------------------------------------
                          precision    recall  f1-score   support
 
-definition_substitution       0.96      0.90      0.93        29
-  input_output_reversal       0.96      0.93      0.95        28
-     naive_causal_model       0.89      0.96      0.93        26
-     overgeneralization       0.96      1.00      0.98        27
-        term_conflation       1.00      1.00      1.00        24
+definition_substitution       0.89      0.97      0.93        65
+  input_output_reversal       0.97      0.97      0.97        65
+     naive_causal_model       0.95      0.92      0.94        66
+     overgeneralization       1.00      0.95      0.98        64
+        term_conflation       1.00      0.98      0.99        64
 
-               accuracy                           0.96       134
-              macro avg       0.96      0.96      0.96       134
-           weighted avg       0.96      0.96      0.96       134
+               accuracy                           0.96       324
+              macro avg       0.96      0.96      0.96       324
+           weighted avg       0.96      0.96      0.96       324
 
-Held-out accuracy: 0.9552
+Held-out accuracy: 0.9599
 
-Target met: held-out accuracy 0.9552 >= 0.95
+Target met: held-out accuracy 0.9599 >= 0.95

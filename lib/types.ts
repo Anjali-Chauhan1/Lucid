@@ -163,3 +163,34 @@ export interface SessionHistoryEntry {
   /** self-rated confidence (1-5), captured BEFORE the explanation was scored */
   confidenceRating?: number;
 }
+
+// ---------- Teacher assignments (server-side, JSON-file backed) ----------
+
+/**
+ * Unlike SessionHistoryEntry (localStorage, single browser only), an
+ * Assignment lives on the server so it can be reached from every student's
+ * device and read back by the teacher — see lib/assignments.ts.
+ */
+export interface Assignment {
+  code: string;
+  conceptId: string;
+  concept: string;
+  mode: SessionMode;
+  teacherLabel?: string;
+  createdAt: number;
+}
+
+export interface AssignmentSubmission {
+  submissionId: string;
+  studentName: string;
+  samajhScore: number;
+  dimensions: ScoreDimensions;
+  misconceptionCategories?: MisconceptionCategory[];
+  confidenceRating?: number;
+  submittedAt: number;
+}
+
+export interface AssignmentWithSubmissions {
+  assignment: Assignment;
+  submissions: AssignmentSubmission[];
+}

@@ -26,6 +26,19 @@ FEATURE_ORDER = [
     "contradiction_ratio",
     "entailment_ratio",
     "misconception_similarity",
+    # Distribution-shape features over per-node similarity — good vs partial
+    # is a coverage-COUNT distinction ("misses 2-3 ideas"), which the
+    # weight-blurred `coverage` and averaged `mean_node_similarity` above
+    # both wash out. These expose the shape directly, at no extra model-call
+    # cost (derived from the same per-node similarity vector).
+    "covered_node_fraction",
+    "min_node_similarity",
+    "weakest_two_mean",
+    "median_node_similarity",
+    "node_similarity_std",
+    "uncovered_node_count_norm",
+    "max_similarity_gap",
+    "sim_p25",
 ]
 
 # ---- Thresholds — must match lib/ml/scoring.ts ----
@@ -229,6 +242,12 @@ class FeatureExtractor:
                 contradictions += 1
 
         n = max(1, len(segments))
+
+        # --- distribution-shape features over best_per_node ---
+        n_nodes = max(1, len(best_per_node))
+        sorted_sims = np.sort(best_per_node) if len(best_per_node) else np.zeros(1)
+        gaps = np.diff(sorted_sims) if len(sorted_sims) > 1 else np.array([0.0])
+
         return {
             "coverage": coverage,
             "mean_node_similarity": mean_node_similarity,
@@ -238,6 +257,14 @@ class FeatureExtractor:
             "contradiction_ratio": contradictions / n,
             "entailment_ratio": entailments / n,
             "misconception_similarity": misconception_similarity,
+            "covered_node_fraction": float((best_per_node >= COVERAGE_THRESHOLD).sum() / n_nodes),
+            "min_node_similarity": float(sorted_sims[0]),
+            "weakest_two_mean": float(sorted_sims[: min(2, len(sorted_sims))].mean()),
+            "median_node_similarity": float(np.median(best_per_node)) if len(best_per_node) else 0.0,
+            "node_similarity_std": float(best_per_node.std()) if len(best_per_node) else 0.0,
+            "uncovered_node_count_norm": float((best_per_node < COVERAGE_THRESHOLD).sum() / n_nodes),
+            "max_similarity_gap": float(gaps.max()),
+            "sim_p25": float(np.percentile(best_per_node, 25)) if len(best_per_node) else 0.0,
         }
 
     def extract_matrix(self, rows: list[tuple[dict[str, Any], str]]) -> np.ndarray:

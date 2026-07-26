@@ -87,6 +87,13 @@ CONTRAST_NOTES = {
         "Stay about what ONE thing IS or DOES in isolation: its role, what "
         "it's made of, how it's measured, what job it has. No 'flows "
         "into', 'absorbs', 'converts to', 'takes in' verbs.\n"
+        "ALSO do NOT describe a causal mechanism, a process happening over "
+        "time, or a conservation violation (that is a DIFFERENT category, "
+        "Naive Causal Model — e.g. 'friction makes things stop', 'energy "
+        "appears from nothing'). Stay STATIC: a wrong label, category, "
+        "composition, or measurement convention for the thing — not a story "
+        "about what causes what. A good test: your sentence should still "
+        "make sense with 'is/are' as the main verb, not an action verb.\n"
     ),
     "input_output_reversal": (
         "\nIMPORTANT — do NOT write this as a static wrong property of one "
@@ -94,6 +101,16 @@ CONTRAST_NOTES = {
         "MUST name two distinct things and a directional verb between them "
         "(takes in / gives off / flows into / converts into / absorbs / "
         "releases / produces from), with the direction stated backwards.\n"
+    ),
+    "naive_causal_model": (
+        "\nIMPORTANT — do NOT just mislabel or miscategorize a single thing "
+        "(that is a DIFFERENT category, Definition Substitution). You MUST "
+        "describe a CAUSAL STORY — something happening BECAUSE of something "
+        "else, over time or through a mechanism — that is wrong specifically "
+        "because it violates conservation (creates something from nothing, "
+        "destroys something without trace) or invents a force/effect with no "
+        "real source. A good test: your sentence should describe an action "
+        "or process, not just define what something is.\n"
     ),
 }
 

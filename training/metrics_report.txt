@@ -1,50 +1,57 @@
 ==================================================================
 LUCID — explanation-quality classifier
 ==================================================================
-samples=659  features=8  classes=['good', 'partial', 'memorized', 'wrong']
-train=494  held-out test=165
+samples=3219  features=16  classes=['good', 'partial', 'memorized', 'wrong']
+train=2575  held-out test=644
 
 5-fold cross-validation (accuracy, on training split)
 ------------------------------------------------------------------
 model                       mean       std
-LogisticRegression        0.7530    0.0178
-GradientBoosting          0.7469    0.0176
+LogisticRegression        0.8540    0.0096
+ExtraTrees                0.8893    0.0171
 
-Held-out classification report (LogisticRegression)
+Held-out accuracy  LogisticRegression : 0.8711
+Held-out accuracy  ExtraTrees         : 0.9037
+
+Held-out classification report (ExtraTrees, exported model)
 ------------------------------------------------------------------
               precision    recall  f1-score   support
 
-        good       0.81      0.86      0.83        49
-     partial       0.78      0.73      0.76        49
-   memorized       1.00      0.97      0.99        35
-       wrong       0.85      0.88      0.86        32
+        good       0.87      0.85      0.86       191
+     partial       0.84      0.87      0.86       197
+   memorized       0.99      0.94      0.97       124
+       wrong       0.96      0.99      0.98       132
 
-    accuracy                           0.85       165
-   macro avg       0.86      0.86      0.86       165
-weighted avg       0.85      0.85      0.85       165
+    accuracy                           0.90       644
+   macro avg       0.92      0.91      0.92       644
+weighted avg       0.90      0.90      0.90       644
 
-Held-out accuracy  LogisticRegression : 0.8485
-Held-out accuracy  GradientBoosting   : 0.8485
-
-Feature coefficients per class (standardized units)
+Feature importances (ExtraTrees, mean decrease in impurity)
 ------------------------------------------------------------------
-feature                           good memorized   partial     wrong
-coverage                         0.125    -0.433    -0.131     0.439
-mean_node_similarity             1.158     0.630    -0.030    -1.758
-textbook_similarity             -0.622     2.109    -0.233    -1.254
-trigram_overlap                 -0.957     2.007    -0.506    -0.543
-length_ratio                     1.575    -0.970    -0.445    -0.159
-contradiction_ratio             -0.410    -0.033    -0.390     0.833
-entailment_ratio                -0.356    -0.200     0.381     0.176
-misconception_similarity        -0.185    -0.381    -0.436     1.002
+trigram_overlap               0.1748
+length_ratio                  0.1269
+textbook_similarity           0.0840
+covered_node_fraction         0.0824
+uncovered_node_count_norm     0.0697
+coverage                      0.0664
+weakest_two_mean              0.0524
+mean_node_similarity          0.0518
+sim_p25                       0.0470
+misconception_similarity      0.0444
+median_node_similarity        0.0435
+min_node_similarity           0.0379
+node_similarity_std           0.0350
+entailment_ratio              0.0294
+contradiction_ratio           0.0291
+max_similarity_gap            0.0252
 
 
 ABLATION — removing the Parrot Detector copying features
-removed: textbook_similarity, trigram_overlap
+removed: textbook_similarity, trigram_overlap   (model: ExtraTrees)
 ==================================================================
-5-fold CV accuracy   full=0.7530   ablated=0.6033   delta=+0.1497
-held-out accuracy    full=0.8485   ablated=0.6364   delta=+0.2121
-'memorized' recall   full=0.9714   ablated=0.3429   delta=+0.6286
+5-fold CV accuracy   full=0.8893   ablated=0.8384   delta=+0.0509
+held-out accuracy    full=0.9037   ablated=0.8463   delta=+0.0575
+'memorized' recall   full=0.9435   ablated=0.7903   delta=+0.1532
 
 Interpretation: semantic similarity alone cannot separate a recited
 answer from an understood one — a memorized explanation is, by

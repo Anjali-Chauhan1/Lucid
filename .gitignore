@@ -43,3 +43,6 @@ next-env.d.ts
 # ML model cache and generated concept maps
 .cache/
 .models-cache/
+
+# training: reproducible scratch cache (training/experiment_features.py --extract)
+training/.feature_cache.npz

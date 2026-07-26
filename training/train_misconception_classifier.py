@@ -38,10 +38,10 @@ SAMPLES = HERE / "misconceptions.csv"
 TAXONOMY_PATH = ROOT / "lib" / "ml" / "misconception-taxonomy.json"
 WEIGHTS_OUT = ROOT / "lib" / "ml" / "misconception-weights.json"
 
-WORD_MIN_DF = 2
-WORD_MAX_FEATURES = 1500
-CHAR_MIN_DF = 3
-CHAR_MAX_FEATURES = 1500
+WORD_MIN_DF = 1
+WORD_MAX_FEATURES = 2500
+CHAR_MIN_DF = 2
+CHAR_MAX_FEATURES = 2500
 
 
 def main() -> None:

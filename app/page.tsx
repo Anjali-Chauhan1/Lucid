@@ -39,6 +39,12 @@ export default function Home() {
           >
             My progress
           </Link>
+          <Link
+            href="/teacher"
+            className="rounded-full border border-violet/40 px-6 py-3 text-sm text-violet transition hover:border-violet hover:bg-violet/10"
+          >
+            For teachers →
+          </Link>
         </div>
       </section>
 

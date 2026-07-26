@@ -32,9 +32,12 @@ const DEPTH_QUESTIONS = 2;
 export default function SessionExperience({
   concept,
   mode,
+  assignment,
 }: {
   concept: ConceptMap;
   mode: SessionMode;
+  /** present when this session was launched via a teacher's join code */
+  assignment?: { code: string; studentName: string };
 }) {
   const router = useRouter();
 
@@ -318,6 +321,25 @@ export default function SessionExperience({
       misconceptionCategories: misconceptionCategories.length ? misconceptionCategories : undefined,
       confidenceRating: confidence ?? undefined,
     });
+
+    if (assignment) {
+      // Best-effort: a failed submit shouldn't block the student from seeing
+      // their own report, which already saved locally above.
+      fetch(`/api/assignment/${assignment.code}/submit`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          studentName: assignment.studentName,
+          samajhScore: finalReport.samajhScore,
+          dimensions: finalReport.dimensions,
+          misconceptionCategories: misconceptionCategories.length ? misconceptionCategories : undefined,
+          confidenceRating: confidence ?? undefined,
+        }),
+      }).catch(() => {
+        /* the student's own report is unaffected either way */
+      });
+    }
+
     router.push(`/report/${sessionId}`);
   }
 
@@ -343,6 +365,11 @@ export default function SessionExperience({
           <p className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
             {concept.subject} · {mode} mode
           </p>
+          {assignment && (
+            <p className="mt-1 text-[11px] text-violet">
+              Assignment {assignment.code} · submitting as {assignment.studentName}
+            </p>
+          )}
         </div>
         {!warm && (
           <span className="rounded-full border border-ink-600 px-3 py-1.5 text-xs text-amber">

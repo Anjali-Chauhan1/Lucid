@@ -163,6 +163,43 @@ DEFINITIONS = {
     "wrong": "the student's explanation contains one or more of the listed misconceptions, stated as if true.",
 }
 
+# ---- coverage-controlled generation (good / partial) ----
+#
+# `good` and `partial` differ ONLY in how many key ideas are covered, so the
+# label is only as trustworthy as the generator's compliance. Asking for
+# "misses 2-3 ideas" without saying WHICH produced samples whose true
+# coverage drifted from their label — measured label noise that capped the
+# classifier at ~79%. These prompts name the exact ideas to include and
+# omit, so the label is correct BY CONSTRUCTION rather than by hope.
+#
+# This does not make the task circular: the classifier still has to infer
+# coverage from raw text through embeddings, which is a genuinely noisy
+# estimate of the ground truth we control here.
+COVERAGE_PROMPT = """You are producing TRAINING DATA for a classifier that grades how well a student understands a concept.
+
+Concept: {concept} ({subject})
+
+Write {n} short explanations of this concept, as if written by real students aged 14-16.
+
+You MUST cover ALL of these ideas in every explanation:
+{include}
+{omit_block}
+Requirements:
+- Use the student's OWN words. Do NOT copy this textbook phrasing:
+{textbook}
+- Everything stated must be TRUE. Do not include any of these false beliefs:
+{misconceptions}
+- Vary length, vocabulary, sentence structure and confidence between the {n} explanations.
+- Vary the English register: include some non-native-English-speaker phrasing.
+- Do NOT number them or add any commentary.
+
+Return ONLY a JSON array of {n} strings. No markdown fence, no other text."""
+
+OMIT_BLOCK = """
+You MUST NOT mention, hint at, or allude to ANY of these ideas — leave them out completely:
+{omit}
+"""
+
 
 def online_samples(concept: dict, mix: dict[str, int]) -> list[tuple[str, str]]:
     import anthropic
@@ -276,12 +313,90 @@ def _gemini_call(key: str, prompt: str, max_tokens: int) -> str:
     raise RuntimeError(f"all Gemini models exhausted: {last_err}")
 
 
-def gemini_online_samples(concept: dict, mix: dict[str, int]) -> list[tuple[str, str]]:
+def _call_and_parse(key: str, prompt: str, tag: str) -> list[str]:
+    """One generation call, returning parsed strings (empty list on failure)."""
+    try:
+        text = _gemini_call(key, prompt, max_tokens=6000)
+    except Exception as e:  # partial data is better than none
+        print(f"  ! {tag} failed ({e}); skipping")
+        return []
+    text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
+    try:
+        items = json.loads(text)
+    except json.JSONDecodeError:
+        print(f"  ! could not parse JSON for {tag}; skipping")
+        return []
+    return [str(s).strip() for s in items if str(s).strip()]
+
+
+def _coverage_samples(
+    key: str, concept: dict, label: str, n: int, rng: random.Random
+) -> list[tuple[str, str]]:
+    """
+    Generate `good` / `partial` with an explicitly controlled node set.
+
+    `partial` is produced in small batches, each omitting a DIFFERENT random
+    2-3 nodes, so the dataset covers many distinct "which ideas are missing"
+    patterns rather than one.
+    """
+    import time
+
+    nodes = concept["nodes"]
+    textbook = "\n".join(f"  - {x}" for x in concept["textbookPhrasings"])
+    misconceptions = "\n".join(f"  - {x}" for x in concept["misconceptions"])
+    rows: list[tuple[str, str]] = []
+
+    if label == "good":
+        batches = [(list(nodes), [], n)]
+    else:
+        # ~5 per batch so each omission pattern is represented several times.
+        batch_size = 5
+        batches = []
+        remaining = n
+        while remaining > 0:
+            take = min(batch_size, remaining)
+            n_omit = rng.randint(2, min(3, max(2, len(nodes) - 2)))
+            omit = rng.sample(nodes, n_omit)
+            keep = [x for x in nodes if x not in omit]
+            batches.append((keep, omit, take))
+            remaining -= take
+
+    for keep, omit, take in batches:
+        omit_block = (
+            OMIT_BLOCK.format(omit="\n".join(f"  - {x['text']}" for x in omit)) if omit else ""
+        )
+        prompt = COVERAGE_PROMPT.format(
+            concept=concept["concept"],
+            subject=concept["subject"],
+            n=take,
+            include="\n".join(f"  - {x['text']}" for x in keep),
+            omit_block=omit_block,
+            textbook=textbook,
+            misconceptions=misconceptions,
+        )
+        items = _call_and_parse(key, prompt, f"{concept['id']}/{label}")
+        rows.extend((s, label) for s in items)
+        time.sleep(4)  # stay under the free-tier per-minute request cap
+
+    print(f"  {concept['id']}/{label}: {len(rows)}")
+    return rows
+
+
+def gemini_online_samples(
+    concept: dict, mix: dict[str, int], rng: random.Random
+) -> list[tuple[str, str]]:
     import time
 
     key = os.environ["GEMINI_API_KEY"]
     rows: list[tuple[str, str]] = []
     for label, n in mix.items():
+        # good/partial are coverage-defined, so generate them with the node
+        # set pinned explicitly (see COVERAGE_PROMPT). memorized/wrong are
+        # defined by phrasing/falsehood instead, so the original prompt fits.
+        if label in ("good", "partial"):
+            rows.extend(_coverage_samples(key, concept, label, n, rng))
+            continue
+
         prompt = PROMPT.format(
             concept=concept["concept"],
             subject=concept["subject"],
@@ -292,18 +407,8 @@ def gemini_online_samples(concept: dict, mix: dict[str, int]) -> list[tuple[str,
             label=label,
             definition=DEFINITIONS[label],
         )
-        try:
-            text = _gemini_call(key, prompt, max_tokens=6000)
-        except Exception as e:  # partial data is better than none
-            print(f"  ! {concept['id']}/{label} failed ({e}); skipping")
-            continue
-        text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.MULTILINE).strip()
-        try:
-            items = json.loads(text)
-        except json.JSONDecodeError:
-            print(f"  ! could not parse JSON for {concept['id']}/{label}; skipping")
-            continue
-        rows.extend((str(s).strip(), label) for s in items if str(s).strip())
+        items = _call_and_parse(key, prompt, f"{concept['id']}/{label}")
+        rows.extend((s, label) for s in items)
         print(f"  {concept['id']}/{label}: {len(items)}")
         time.sleep(4)  # stay under the free-tier per-minute request cap
     return rows
@@ -373,7 +478,7 @@ def main() -> None:
     for cid, concept in concepts.items():
         print(f"- {cid}")
         if provider == "gemini":
-            pairs = gemini_online_samples(concept, mix)
+            pairs = gemini_online_samples(concept, mix, rng)
         elif provider == "claude":
             pairs = online_samples(concept, mix)
         else:

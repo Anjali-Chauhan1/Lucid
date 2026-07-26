@@ -12,8 +12,10 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ClassifierLabel } from "@/lib/types";
 import { FEATURE_ORDER, toVector, type FeatureVector } from "./features";
+import { predictEnsemble, type TreeNode } from "./treeEnsemble";
 
-interface Weights {
+interface LinearWeights {
+  type?: "linear";
   feature_order: string[];
   classes: ClassifierLabel[];
   // coef[classIndex][featureIndex]
@@ -23,6 +25,15 @@ interface Weights {
   mean?: number[];
   scale?: number[];
 }
+
+interface TreeEnsembleWeights {
+  type: "tree_ensemble";
+  feature_order: string[];
+  classes: ClassifierLabel[];
+  trees: TreeNode[];
+}
+
+type Weights = LinearWeights | TreeEnsembleWeights;
 
 /**
  * Load weights.json at runtime via fs (not a bundler `require`/`import`, which
@@ -35,15 +46,17 @@ try {
   const weightsPath = path.join(process.cwd(), "lib", "ml", "weights.json");
   if (fs.existsSync(weightsPath)) {
     const loaded = JSON.parse(fs.readFileSync(weightsPath, "utf8")) as Weights;
+    const isTreeEnsemble = loaded?.type === "tree_ensemble" && Array.isArray((loaded as TreeEnsembleWeights).trees);
+    const isLinear = Array.isArray((loaded as LinearWeights).coef);
     if (
       loaded &&
-      Array.isArray(loaded.coef) &&
+      (isTreeEnsemble || isLinear) &&
       Array.isArray(loaded.classes) &&
       Array.isArray(loaded.feature_order) &&
       loaded.feature_order.join(",") === FEATURE_ORDER.join(",")
     ) {
       weights = loaded;
-      console.info("[classifier] loaded trained weights.json");
+      console.info(`[classifier] loaded trained weights.json (${loaded.type ?? "linear"})`);
     } else {
       console.warn(
         "[classifier] weights.json feature_order mismatch — using heuristic fallback.",
@@ -136,17 +149,22 @@ export function classify(f: FeatureVector): ClassifierResult {
   if (!weights) return heuristic(f);
 
   const x = toVector(f);
-  const mean = weights.mean ?? x.map(() => 0);
-  const scale = weights.scale ?? x.map(() => 1);
-  const standardized = x.map((v, i) => (v - mean[i]) / (scale[i] || 1));
+  let probs: number[];
 
-  const logits = weights.coef.map((row, k) => {
-    let z = weights!.intercept[k];
-    for (let i = 0; i < row.length; i++) z += row[i] * standardized[i];
-    return z;
-  });
+  if (weights.type === "tree_ensemble") {
+    probs = predictEnsemble(weights.trees, weights.classes.length, x);
+  } else {
+    const mean = weights.mean ?? x.map(() => 0);
+    const scale = weights.scale ?? x.map(() => 1);
+    const standardized = x.map((v, i) => (v - mean[i]) / (scale[i] || 1));
+    const logits = weights.coef.map((row, k) => {
+      let z = weights!.intercept[k];
+      for (let i = 0; i < row.length; i++) z += row[i] * standardized[i];
+      return z;
+    });
+    probs = softmax(logits);
+  }
 
-  const probs = softmax(logits);
   let bestIdx = 0;
   for (let i = 1; i < probs.length; i++) if (probs[i] > probs[bestIdx]) bestIdx = i;
 

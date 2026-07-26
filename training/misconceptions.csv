@@ -4,531 +4,1291 @@ All molecules are compounds,overgeneralization,Chemistry
 "Only animals are made of cells, not plants",overgeneralization,Biology
 The cell wall and cell membrane are the same thing,term_conflation,Biology
 All cells have a nucleus,overgeneralization,Biology
-A moving object will eventually stop on its own even with no force acting,naive_causal_model,Physics
 Heavier objects always fall faster than lighter ones,overgeneralization,Physics
-"If two objects push on each other, the bigger one pushes harder",naive_causal_model,Physics
-A constant force is needed to keep an object moving at constant speed,naive_causal_model,Physics
+Plants get their food from the soil,input_output_reversal,Biology
+Plants breathe in oxygen and breathe out carbon dioxide during photosynthesis,input_output_reversal,Biology
 Chlorophyll is the food that plants make,term_conflation,Biology
 Respiration is the same thing as breathing,term_conflation,Biology
 Respiration only happens in the lungs,overgeneralization,Biology
-Respiration makes energy from nothing,naive_causal_model,Biology
 "Plants do not respire, they only photosynthesise",overgeneralization,Biology
 Only mirrors reflect light,overgeneralization,Physics
 Rough surfaces do not reflect light at all,overgeneralization,Physics
-Light is absorbed and destroyed when it hits a surface,naive_causal_model,Physics
-Evolution is the exact same thing as the theory of natural selection,term_conflation,generated
-Velocity and speed are essentially the same value in physics,term_conflation,generated
-An element is just the same thing as an atom,term_conflation,generated
-The internet is the same thing as the World Wide Web,term_conflation,generated
-Inflation is the same thing as the high cost of living,term_conflation,generated
-A sequence is the same thing as a mathematical series,term_conflation,generated
-Mitosis is the same thing as cell division,term_conflation,generated
-Heat and temperature are the same physical property,term_conflation,generated
-A chemical bond is the same thing as a compound,term_conflation,generated
-Software is the same thing as an operating system,term_conflation,generated
-A recession is the same thing as an economic depression,term_conflation,generated
-A digit is the same thing as a number,term_conflation,generated
-Genotype is the same thing as phenotype in biology,term_conflation,generated
-Gravity is the same thing as air pressure,term_conflation,generated
-A mixture is the same thing as a chemical solution,term_conflation,generated
-Coding is the same thing as computer programming,term_conflation,generated
-Market price is the same thing as a product's intrinsic value,term_conflation,generated
-A variable is the same thing as an unknown,term_conflation,generated
-An ecosystem is the same thing as a habitat,term_conflation,generated
-Nuclear fusion is the same thing as nuclear fission,term_conflation,generated
-A molecule is the same thing as a chemical reaction,term_conflation,generated
-Data is the same thing as information in computing,term_conflation,generated
-Revenue is the same thing as profit for a company,term_conflation,generated
-A function is the same thing as an equation,term_conflation,generated
-DNA is the same thing as a gene,term_conflation,generated
-Work is the same thing as power in physics,term_conflation,generated
-A catalyst is the same thing as a reactant,term_conflation,generated
-A compiler is the same thing as an interpreter,term_conflation,generated
-Supply is the same thing as the quantity demanded,term_conflation,generated
-A fraction is the same thing as a decimal,term_conflation,generated
-A neuron is the same thing as a nerve,term_conflation,generated
-Mass is the same thing as weight on every planet,term_conflation,generated
-A covalent bond is the same thing as an ionic bond,term_conflation,generated
-Hardware is the same thing as a computer processor,term_conflation,generated
-A bank is the same thing as the federal government,term_conflation,generated
-Probability is the same thing as the actual outcome,term_conflation,generated
-Antibiotics are the same thing as vaccines,term_conflation,generated
-Acceleration is the same thing as velocity,term_conflation,generated
-A base is the same thing as an alkaline substance,term_conflation,generated
-A byte is the same thing as a bit,term_conflation,generated
-Velocity and speed are just two words for the same measurement,term_conflation,generated
-A chemical bond is literally identical to a physical attraction,term_conflation,generated
+DNA is the same thing as a chromosome.,term_conflation,generated
+Velocity and speed are the exact same concept in physics.,term_conflation,generated
+Chemical bonds are identical to intermolecular forces.,term_conflation,generated
+Machine learning is the same thing as artificial intelligence.,term_conflation,generated
+Inflation and the cost of living are the same phenomenon.,term_conflation,generated
+A mathematical expression is the same thing as an equation.,term_conflation,generated
+Mitosis and meiosis represent the exact same process.,term_conflation,generated
+Heat and temperature are the same physical property.,term_conflation,generated
+Acids are the same thing as corrosive substances.,term_conflation,generated
+Hardware is identical to firmware in a computer system.,term_conflation,generated
+Revenue is the same thing as profit for a company.,term_conflation,generated
+A theorem is the same thing as a mathematical theory.,term_conflation,generated
+Genotype is the same thing as phenotype.,term_conflation,generated
+Power is the same thing as energy in a physical system.,term_conflation,generated
+An element is the same thing as a compound.,term_conflation,generated
+Operating systems are the same thing as software applications.,term_conflation,generated
+Fiscal policy is the same thing as monetary policy.,term_conflation,generated
+A geometric polygon is the same thing as a polyhedron.,term_conflation,generated
+Antibodies are the same thing as white blood cells.,term_conflation,generated
+Mass and density represent the same physical characteristic.,term_conflation,generated
+Catalysts are the same thing as reactants in chemistry.,term_conflation,generated
+Compiling code is the same thing as interpreting code.,term_conflation,generated
+Stock markets are the same thing as the economy.,term_conflation,generated
+A variable is the same thing as an unknown constant.,term_conflation,generated
+Evolution is the same thing as natural selection.,term_conflation,generated
+Radiation is the same thing as radioactive contamination.,term_conflation,generated
+Solutes are the same thing as solvents in a solution.,term_conflation,generated
+The CPU is the same thing as the computer memory.,term_conflation,generated
+A depression is the same thing as a recession.,term_conflation,generated
+Integers are the same thing as rational numbers.,term_conflation,generated
+Proteins are the same thing as amino acids.,term_conflation,generated
+Friction and gravity are the same fundamental force.,term_conflation,generated
+Covalent bonds are the same thing as ionic bonds.,term_conflation,generated
+Binary code is the same thing as machine language.,term_conflation,generated
+Supply is the same thing as demand in a market.,term_conflation,generated
+Probability is the same thing as possibility.,term_conflation,generated
+A biological species is the same thing as a population.,term_conflation,generated
+Work and force are the same physical quantity.,term_conflation,generated
+Isotopes are the same thing as ions.,term_conflation,generated
+A function is the same thing as a relation.,term_conflation,generated
+Biology: DNA and genes are exactly the same thing.,term_conflation,generated
+Physics: Velocity and speed are identical physical measurements.,term_conflation,generated
+Computer Science: The internet is the same thing as the World Wide Web.,term_conflation,generated
+Economics: Price and cost represent the same economic concept.,term_conflation,generated
+Mathematics: Expressions and equations are the same thing.,term_conflation,generated
+Chemistry: Compounds and mixtures are essentially the same substance.,term_conflation,generated
+Biology: Evolution and natural selection are the same process.,term_conflation,generated
+Physics: Heat and temperature are the same thing.,term_conflation,generated
+Computer Science: Hardware and software are the same thing.,term_conflation,generated
+Economics: Revenue and profit mean the same thing.,term_conflation,generated
+Mathematics: A variable and an unknown are the same thing.,term_conflation,generated
+Chemistry: An element and an atom are the same thing.,term_conflation,generated
+Biology: Viruses and bacteria are the same thing.,term_conflation,generated
+Physics: Power and energy are the same physical property.,term_conflation,generated
+Computer Science: Coding and programming are exactly the same thing.,term_conflation,generated
+Economics: Inflation and the cost of living are the same thing.,term_conflation,generated
+Mathematics: A ratio and a fraction are the same thing.,term_conflation,generated
+Chemistry: A physical change and a chemical change are the same thing.,term_conflation,generated
+Biology: Digestion and metabolism are the same thing.,term_conflation,generated
+Physics: Displacement and distance are the same thing.,term_conflation,generated
+Computer Science: RAM and storage are the same thing.,term_conflation,generated
+Economics: Value and price represent the same thing.,term_conflation,generated
+Mathematics: A digit and a number are the same thing.,term_conflation,generated
+Chemistry: An ionic bond and a covalent bond are the same thing.,term_conflation,generated
+Biology: Mitosis and meiosis are the same thing.,term_conflation,generated
+Physics: Gravity and weight are the same thing.,term_conflation,generated
+Computer Science: A website and a server are the same thing.,term_conflation,generated
+Economics: Deflation and recession are the same thing.,term_conflation,generated
+Mathematics: An average and a median are the same thing.,term_conflation,generated
+Chemistry: Concentration and solubility mean the same thing.,term_conflation,generated
+Biology: Genotype and phenotype are the same thing.,term_conflation,generated
+Physics: Mass and density are the same thing.,term_conflation,generated
+Computer Science: An algorithm and a program are the same thing.,term_conflation,generated
+Economics: Interest and commission are the same thing.,term_conflation,generated
+Mathematics: Correlation and causation are the same thing.,term_conflation,generated
+Chemistry: A catalyst and a reactant are the same thing.,term_conflation,generated
+Biology: Ingestion and nutrition are the same thing.,term_conflation,generated
+Physics: Force and momentum are the same thing.,term_conflation,generated
+Computer Science: Java and JavaScript are the same thing.,term_conflation,generated
+Economics: Supply and quantity supplied mean the same thing.,term_conflation,generated
+A virus is the same thing as a bacterium,term_conflation,generated
+Velocity and speed are the exact same concept in physics,term_conflation,generated
+Heat and temperature are literally identical physical properties,term_conflation,generated
 A hard drive is the same thing as computer memory,term_conflation,generated
 Inflation is the same thing as an increase in prices,term_conflation,generated
-Area and perimeter represent the same property of a shape,term_conflation,generated
-Mitosis is the same thing as the entire cell cycle,term_conflation,generated
-Heat and temperature are the same thing in thermodynamics,term_conflation,generated
-A molecule is the same thing as a compound,term_conflation,generated
-An algorithm is the same thing as a computer program,term_conflation,generated
-A recession is the same thing as a depression,term_conflation,generated
-Genotype is the same thing as phenotype,term_conflation,generated
-Power is the same thing as energy,term_conflation,generated
-Acids are the same thing as caustic substances,term_conflation,generated
-Gross Domestic Product is the same thing as national wealth,term_conflation,generated
-Photosynthesis is the same thing as cellular respiration,term_conflation,generated
-Acceleration is the same thing as high speed,term_conflation,generated
-Electronegativity is the same thing as electron affinity,term_conflation,generated
-The CPU is the same thing as the computer itself,term_conflation,generated
-Revenue is the same thing as profit,term_conflation,generated
-A sequence is the same thing as a series,term_conflation,generated
-DNA is the same thing as a chromosome,term_conflation,generated
-Weight is the same thing as density,term_conflation,generated
-Solubility is the same thing as dissolving speed,term_conflation,generated
-Software is the same thing as data,term_conflation,generated
-Demand is the same thing as quantity demanded,term_conflation,generated
-An average is the same thing as a median,term_conflation,generated
-An organ is the same thing as a tissue,term_conflation,generated
-A mixture is the same thing as a solution,term_conflation,generated
-A server is the same thing as a website,term_conflation,generated
-Capital is the same thing as money,term_conflation,generated
-Probability is the same thing as odds,term_conflation,generated
-A gene is the same thing as a genome,term_conflation,generated
-Friction is the same thing as air resistance,term_conflation,generated
-Binary code is the same thing as machine language,term_conflation,generated
-Evolution is the same thing as natural selection,term_conflation,generated
-Velocity and speed are the exact same physical measurement,term_conflation,generated
-Covalent bonds are the same thing as ionic bonds,term_conflation,generated
-An operating system is the same thing as the computer hardware,term_conflation,generated
-Inflation is the same thing as a rise in the cost of living,term_conflation,generated
-Heat is the same thing as temperature,term_conflation,generated
-A mixture is the same thing as a chemical compound,term_conflation,generated
-Machine learning is the same thing as artificial intelligence,term_conflation,generated
-Deficit and national debt represent the same thing,term_conflation,generated
-An expression is the same thing as an equation,term_conflation,generated
-Mitosis is the same thing as meiosis,term_conflation,generated
-Nuclear fission is the same thing as nuclear fusion,term_conflation,generated
-A solvent is the same thing as a solute,term_conflation,generated
-GDP is the same thing as national wealth,term_conflation,generated
-A prime number is the same thing as an odd number,term_conflation,generated
-Electrical current is the same thing as electrical voltage,term_conflation,generated
-All bacteria are harmful to human health,overgeneralization,generated
-Heavy objects always reach the ground before light ones,overgeneralization,generated
-Chemical reactions always release heat into the surroundings,overgeneralization,generated
-Every computer program always runs faster with more memory,overgeneralization,generated
-All government spending always leads to higher inflation,overgeneralization,generated
-Every number multiplied by ten always ends in a zero,overgeneralization,generated
-All plants need direct sunlight to survive,overgeneralization,generated
-Friction always acts to oppose the motion of an object,overgeneralization,generated
-Only ionic substances dissolve in water,overgeneralization,generated
-All passwords always become secure if they contain a symbol,overgeneralization,generated
-Every economic recession is always caused by government policy,overgeneralization,generated
+A set and a group are the same thing in mathematics,term_conflation,generated
+DNA and chromosomes are the same thing in a cell,term_conflation,generated
+An element and a compound are the same thing,term_conflation,generated
+Computer software is the same thing as computer hardware,term_conflation,generated
+An equation is the same thing as an expression,term_conflation,generated
+Tax and interest are the same thing in economics,term_conflation,generated
+Velocity and acceleration are the same thing,term_conflation,generated
+Genotype and phenotype are the same thing in biology,term_conflation,generated
+A base and an alkali are the same thing in chemistry,term_conflation,generated
+Binary code and machine code are the same thing,term_conflation,generated
+Correlation and causation are the same thing in statistics,term_conflation,generated
+Gross domestic product and national wealth are the same thing,term_conflation,generated
+Mass and weight are the same thing for all objects,term_conflation,generated
+An organ and a tissue are the same thing,term_conflation,generated
+A molecule and a mixture are the same thing,term_conflation,generated
+Operating systems and applications are the same thing,term_conflation,generated
+Budget and debt are the same thing in economics,term_conflation,generated
+A function and a relation are the same thing,term_conflation,generated
+Natural selection and evolution are the same thing,term_conflation,generated
+Acids and bases are the same thing in chemical solutions,term_conflation,generated
+Programming languages and algorithms are the same thing,term_conflation,generated
+A variable and a constant are the same thing,term_conflation,generated
+Supply and demand are the same thing in a market,term_conflation,generated
+Refraction and reflection are the same thing in physics,term_conflation,generated
+Mitosis and meiosis are the same thing in biology,term_conflation,generated
+Catalysts and reactants are the same thing in chemistry,term_conflation,generated
+The internet and the world wide web are the same thing,term_conflation,generated
+Profit and revenue are the same thing in business,term_conflation,generated
+An average and a median are the same thing in math,term_conflation,generated
+Energy and power are the same thing in physics,term_conflation,generated
+A gene and a protein are the same thing,term_conflation,generated
+A covalent bond and an ionic bond are the same thing,term_conflation,generated
+Data and information are the same thing in computer science,term_conflation,generated
+Equity and assets are the same thing in finance,term_conflation,generated
+Probability and odds are the same thing in mathematics,term_conflation,generated
+Genes and DNA are the exact same thing.,term_conflation,generated
+Velocity and speed are interchangeable terms for movement.,term_conflation,generated
+A chemical change is the same thing as a physical change.,term_conflation,generated
+Algorithms and computer programs are identical concepts.,term_conflation,generated
+Inflation and high prices represent the same economic reality.,term_conflation,generated
+A variable and an unknown are the same thing in algebra.,term_conflation,generated
+Cell membranes and cell walls are the same thing.,term_conflation,generated
+Voltage and current are the same thing in a circuit.,term_conflation,generated
+An element and a compound are the same thing.,term_conflation,generated
+Hardware and software are the same thing on a computer.,term_conflation,generated
+A recession and a depression are the same thing.,term_conflation,generated
+A fraction and a ratio are the same thing.,term_conflation,generated
+Evolution and natural selection are the same thing.,term_conflation,generated
+Potential energy and kinetic energy are the same thing.,term_conflation,generated
+A covalent bond and an ionic bond are the same thing.,term_conflation,generated
+A compiler and an interpreter are the same thing.,term_conflation,generated
+Gross Domestic Product and national wealth are the same thing.,term_conflation,generated
+A sequence and a series are the same thing.,term_conflation,generated
+Infection and disease are the same thing.,term_conflation,generated
+Temperature and heat are the same thing.,term_conflation,generated
+An atom and an ion are the same thing.,term_conflation,generated
+Data and information are the same thing.,term_conflation,generated
+A stock and a bond are the same thing.,term_conflation,generated
+An equation and an expression are the same thing.,term_conflation,generated
+Mitosis and meiosis are the same thing.,term_conflation,generated
+Gravity and atmospheric pressure are the same thing.,term_conflation,generated
+A mixture and a solution are the same thing.,term_conflation,generated
+A local variable and a global variable are the same thing.,term_conflation,generated
+Monopoly and competition are the same thing.,term_conflation,generated
+A vector and a scalar are the same thing.,term_conflation,generated
+A genotype and a phenotype are the same thing.,term_conflation,generated
+Mass and volume are the same thing.,term_conflation,generated
+A solute and a solvent are the same thing.,term_conflation,generated
+The CPU and the RAM are the same thing.,term_conflation,generated
+Supply and demand are the same thing.,term_conflation,generated
+An integer and a rational number are the same thing.,term_conflation,generated
+Proteins and amino acids are the same thing.,term_conflation,generated
+Work and power are the same thing.,term_conflation,generated
+Atomic number and atomic mass are the same thing.,term_conflation,generated
+Binary code and machine code are the same thing.,term_conflation,generated
+Velocity and speed are the exact same measure of motion.,term_conflation,generated
+Chromosomes are the same thing as genes.,term_conflation,generated
+Java and JavaScript represent the same programming language.,term_conflation,generated
+Supply and demand are the same thing as the price of a product.,term_conflation,generated
+Area and perimeter are the same thing for any geometric shape.,term_conflation,generated
+"In physics, speed and acceleration are the same property.",term_conflation,generated
+Acids and bases are the same thing in chemical solutions.,term_conflation,generated
+A computer processor is the same thing as the random access memory.,term_conflation,generated
+GDP and national wealth are the exact same economic indicator.,term_conflation,generated
+Correlation and causation are the same thing in statistical analysis.,term_conflation,generated
+"In biology, DNA and RNA are the same molecule.",term_conflation,generated
+Heat and temperature are the same thing in thermodynamics.,term_conflation,generated
+Solutes and solvents are the same thing in a mixture.,term_conflation,generated
+Algorithms and computer programs are the same thing.,term_conflation,generated
+Inflation and high interest rates are the same thing in economics.,term_conflation,generated
+An equation and an expression are the same thing in algebra.,term_conflation,generated
+Mitosis and meiosis are the same process of cellular division.,term_conflation,generated
+Weight and density are the same thing for solid objects.,term_conflation,generated
+Oxidation and combustion are the same thing in chemistry.,term_conflation,generated
+A recession and a depression are the same thing in economics.,term_conflation,generated
+A variable and a constant are the same thing in mathematics.,term_conflation,generated
+Eukaryotes and prokaryotes are the same type of cell.,term_conflation,generated
+Mass and volume are the same thing when measuring matter.,term_conflation,generated
+Ionic and covalent bonds are the same thing between atoms.,term_conflation,generated
+Hardware and software are the same thing in a computer system.,term_conflation,generated
+Stocks and bonds are the same thing as savings accounts.,term_conflation,generated
+Parallel and perpendicular lines are the same thing in geometry.,term_conflation,generated
+A virus and a bacterium are the same thing biologically.,term_conflation,generated
+An element and a compound are the same thing in chemistry.,term_conflation,generated
+A URL and an IP address are the same thing on the internet.,term_conflation,generated
+Revenue and profit are the same thing in business accounting.,term_conflation,generated
+Mean and median are the same thing in statistics.,term_conflation,generated
+Power and energy are the same thing in a physics context.,term_conflation,generated
+Protons and neutrons are the same thing inside an atomic nucleus.,term_conflation,generated
+An operating system and an application are the same thing.,term_conflation,generated
+Monopoly and competition are the same thing in market theory.,term_conflation,generated
+Integers and rational numbers are the same thing in mathematics.,term_conflation,generated
+Evolution is the exact same thing as natural selection.,term_conflation,generated
+Velocity and speed are the same measurement of motion.,term_conflation,generated
+Atomic number and atomic mass are the same value for an element.,term_conflation,generated
+RAM and hard drive storage are the same thing.,term_conflation,generated
+Macroeconomics and microeconomics are the same field of study.,term_conflation,generated
+A sequence and a series are the same mathematical concept.,term_conflation,generated
+DNA and genes are the same biological structure.,term_conflation,generated
+Heat and temperature are the same physical property of matter.,term_conflation,generated
+A chemical change and a physical change are the same thing.,term_conflation,generated
+An algorithm and a computer program are the same thing.,term_conflation,generated
+A line and a line segment are the same geometric figure.,term_conflation,generated
+Antibiotics and vaccines are the same form of medicine.,term_conflation,generated
+Power and energy represent the same physical quantity.,term_conflation,generated
+Compounds and mixtures are the same thing in chemistry.,term_conflation,generated
+A recession and a depression are the same economic state.,term_conflation,generated
+A fraction and a ratio are the same numerical expression.,term_conflation,generated
+Mitosis and meiosis are the same cellular process.,term_conflation,generated
+Gravity and weight are the same force.,term_conflation,generated
+Molecules and elements are the same thing.,term_conflation,generated
+Software and firmware are the same thing.,term_conflation,generated
+Supply and quantity supplied are the same concept.,term_conflation,generated
+A variable and a constant are the same thing in algebra.,term_conflation,generated
+Arteries and veins are the same type of vessel.,term_conflation,generated
+Work and force are the same thing in physics.,term_conflation,generated
+Valence electrons and core electrons are the same thing.,term_conflation,generated
+The internet and the world wide web are the same thing.,term_conflation,generated
+A tariff and a tax are the same thing.,term_conflation,generated
+Probability and odds are the same thing.,term_conflation,generated
+Protein and carbohydrates are the same type of nutrient.,term_conflation,generated
+Mass and density are the same physical attribute.,term_conflation,generated
+An ionic bond and a covalent bond are the same thing.,term_conflation,generated
+A function and an equation are the same thing.,term_conflation,generated
+Interest and principal are the same thing in finance.,term_conflation,generated
+Geometry and trigonometry are the same branch of math.,term_conflation,generated
+Cell membrane and cell wall are the same structure.,term_conflation,generated
+Voltage and current are the same electrical property.,term_conflation,generated
+Solutes and solvents are the same thing in a solution.,term_conflation,generated
+A server and a client are the same thing.,term_conflation,generated
+Velocity and speed are the same thing.,term_conflation,generated
+A plant cell and an animal cell are identical structures.,term_conflation,generated
+The internet and the World Wide Web are interchangeable terms.,term_conflation,generated
+A recession is the same thing as a depression.,term_conflation,generated
+Correlation and causation represent the exact same relationship between variables.,term_conflation,generated
+Protons and neutrons are the same thing.,term_conflation,generated
+"In biology, DNA and genes are the same thing.",term_conflation,generated
+Encryption and encoding are the exact same process.,term_conflation,generated
+Inflation and the rising cost of living are the same thing.,term_conflation,generated
+A geometric line and a line segment are the same thing.,term_conflation,generated
+An ecosystem and a habitat are interchangeable concepts.,term_conflation,generated
+"In computer science, hardware and software are the same thing.",term_conflation,generated
+A tax and a fine are the exact same thing.,term_conflation,generated
+Variables and constants are the same thing in an equation.,term_conflation,generated
+A compound and a mixture are the same thing.,term_conflation,generated
+"In economics, gross domestic product and national wealth are the same thing.",term_conflation,generated
+A polygon and a polyhedron are the same thing.,term_conflation,generated
+All living organisms require sunlight to survive,overgeneralization,generated
+Heavier objects always reach the ground before lighter objects,overgeneralization,generated
+Every chemical reaction releases heat energy,overgeneralization,generated
+All computer programs always run faster on newer hardware,overgeneralization,generated
+Only individuals with high incomes pay taxes,overgeneralization,generated
 All prime numbers are always odd,overgeneralization,generated
-Every living thing always requires oxygen to survive,overgeneralization,generated
-Light always travels in a perfectly straight line,overgeneralization,generated
-Every chemical compound always exists in a solid state,overgeneralization,generated
-All websites always track your location while you browse,overgeneralization,generated
-Only high taxes are ever used to fund public services,overgeneralization,generated
-Every geometric square always has four equal sides,overgeneralization,generated
-All birds always have the ability to fly,overgeneralization,generated
-An object in motion always requires a force to keep moving,overgeneralization,generated
-All acids are always dangerous to touch with bare skin,overgeneralization,generated
-Every computer virus always deletes files from the hard drive,overgeneralization,generated
-All market monopolies always charge the highest possible prices,overgeneralization,generated
-Every equation always has a single numerical solution,overgeneralization,generated
-All mammals always give birth to live young,overgeneralization,generated
-Sound always travels faster through air than through metal,overgeneralization,generated
-All atoms always contain an equal number of neutrons,overgeneralization,generated
-Only complex algorithms are ever considered true artificial intelligence,overgeneralization,generated
-All international trade always benefits every participating nation,overgeneralization,generated
-Every fraction is always smaller than a whole number,overgeneralization,generated
-All insects always have six legs and two antennae,overgeneralization,generated
-Every object that sinks always has a higher density than water,overgeneralization,generated
-All chemical bonds are always formed by sharing electrons,overgeneralization,generated
-Every software update always improves the performance of a device,overgeneralization,generated
-All personal wealth always increases during periods of economic growth,overgeneralization,generated
-Every mathematical proof always relies on using a calculator,overgeneralization,generated
-All microorganisms always thrive in high temperature environments,overgeneralization,generated
-Energy is always conserved only in closed mechanical systems,overgeneralization,generated
-All metal elements are always shiny and silver in color,overgeneralization,generated
-Every digital file always occupies the same amount of space,overgeneralization,generated
-All plants always require direct sunlight to perform photosynthesis,overgeneralization,generated
-Heavy objects always fall faster than light ones in a vacuum,overgeneralization,generated
-All chemical reactions always result in a permanent color change,overgeneralization,generated
-Every computer program always runs faster on newer hardware,overgeneralization,generated
-All economic inflation is always caused by government printing,overgeneralization,generated
-Every prime number is always odd,overgeneralization,generated
-All living organisms always require oxygen to survive,overgeneralization,generated
-Every object in motion will always eventually come to a stop,overgeneralization,generated
-Only ionic compounds always form crystalline lattice structures,overgeneralization,generated
-All code always executes in the exact order it is written,overgeneralization,generated
-All market crashes are always preceded by a banking failure,overgeneralization,generated
-Every mathematical equation always has exactly one solution,overgeneralization,generated
-All cells always possess a defined nucleus,overgeneralization,generated
-Only magnets always attract metal objects,overgeneralization,generated
-Every exothermic reaction always releases visible light,overgeneralization,generated
-All software updates always improve system performance,overgeneralization,generated
-All price increases are always the result of corporate greed,overgeneralization,generated
-Every sequence always follows a predictable pattern,overgeneralization,generated
-All animals always need to consume other organisms for energy,overgeneralization,generated
-Every light wave always travels in a straight line,overgeneralization,generated
-All substances always exist in three distinct states of matter,overgeneralization,generated
-Every computer error is always caused by a virus,overgeneralization,generated
-All unemployment is always caused by a lack of available jobs,overgeneralization,generated
-Every circle always has a circumference calculated by pi,overgeneralization,generated
-All bacterial species always cause disease in humans,overgeneralization,generated
-All sound waves always require a physical medium to travel,overgeneralization,generated
-Only acids always have a pH value below seven,overgeneralization,generated
-All algorithms always find the most efficient path to completion,overgeneralization,generated
-All wealth is always generated by the production of goods,overgeneralization,generated
-Every polygon always has interior angles summing to 180 degrees,overgeneralization,generated
-All genetic traits are always passed down directly to offspring,overgeneralization,generated
-Every moving object always has more energy than a stationary one,overgeneralization,generated
+Every species always competes directly with every other species,overgeneralization,generated
+Energy is only conserved in closed physical systems,overgeneralization,generated
+All chemical bonds always involve the sharing of electrons,overgeneralization,generated
+Only high-level programming languages are considered real code,overgeneralization,generated
+All market economies always result in perfect competition,overgeneralization,generated
+Every mathematical equation always has exactly one unique solution,overgeneralization,generated
+All plants only perform photosynthesis during the daytime,overgeneralization,generated
+Sound always travels at the same speed regardless of medium,overgeneralization,generated
+All atoms always have an equal number of protons and neutrons,overgeneralization,generated
+Every software bug is always caused by bad logic,overgeneralization,generated
+Only gold is considered a valuable store of wealth,overgeneralization,generated
+All geometric shapes with equal perimeters always have equal areas,overgeneralization,generated
+Every mammal always gives birth to live young,overgeneralization,generated
+Friction always acts to oppose the motion of objects,overgeneralization,generated
 All catalysts are always consumed during a chemical reaction,overgeneralization,generated
-All operating systems are always immune to hardware failure,overgeneralization,generated
-Every transaction is always a zero-sum game,overgeneralization,generated
-All quadratic equations always have two real roots,overgeneralization,generated
-All friction always acts to decrease the speed of an object,overgeneralization,generated
-Every solvent is always water in a chemical solution,overgeneralization,generated
-All logical paradoxes are always unsolvable by computers,overgeneralization,generated
-All bacteria are harmful to human health.,overgeneralization,generated
-Heavier objects always require more force to move.,overgeneralization,generated
-Every chemical reaction releases heat into the environment.,overgeneralization,generated
-Only compiled programs can be executed by a computer.,overgeneralization,generated
-All taxes are always paid by the consumers.,overgeneralization,generated
-Every prime number is always an odd number.,overgeneralization,generated
-All plants always perform photosynthesis during the night.,overgeneralization,generated
-Friction always acts in the opposite direction of motion.,overgeneralization,generated
-All atoms of the same element have the same mass.,overgeneralization,generated
-Every computer algorithm always terminates in finite time.,overgeneralization,generated
-All monopolies always result in higher prices for consumers.,overgeneralization,generated
-Only fractions with denominators of ten are decimals.,overgeneralization,generated
-All animals always breathe oxygen to survive.,overgeneralization,generated
-Every physical process always conserves mechanical energy.,overgeneralization,generated
+Only compiled code can ever be executed by a processor,overgeneralization,generated
+All economic inflation is always caused by printing more money,overgeneralization,generated
+Every fraction with a larger denominator is always smaller,overgeneralization,generated
+All bacteria are always harmful to human health,overgeneralization,generated
+Light always moves in a perfectly straight line,overgeneralization,generated
+"Every substance is always either a solid, liquid, or gas",overgeneralization,generated
+All algorithms always require a massive amount of memory,overgeneralization,generated
+Only scarcity determines the price of a traded good,overgeneralization,generated
+All functions are always differentiable at every single point,overgeneralization,generated
+Every cell always reproduces through the process of mitosis,overgeneralization,generated
+Vacuum chambers always remove every single particle of matter,overgeneralization,generated
+All acids are always dangerous to touch with skin,overgeneralization,generated
+Only computers with cooling fans can perform complex calculations,overgeneralization,generated
+All government spending always leads to higher national debt,overgeneralization,generated
+Every triangle always has at least one acute angle,overgeneralization,generated
+All birds always have the ability to fly,overgeneralization,generated
+Electricity always follows the path of least resistance,overgeneralization,generated
+All molecules are always composed of at least three atoms,overgeneralization,generated
+Every infinite sequence always eventually diverges to infinity,overgeneralization,generated
+Heavier objects always accelerate faster in a vacuum,overgeneralization,generated
+Every chemical reaction results in a temperature increase,overgeneralization,generated
+Only executable files can contain malicious code,overgeneralization,generated
+All government spending always leads to higher inflation,overgeneralization,generated
+Every prime number is always odd,overgeneralization,generated
+Sound always travels faster through air than water,overgeneralization,generated
+Every ionic compound always dissolves in water,overgeneralization,generated
+All programming languages always use curly braces,overgeneralization,generated
+Only high interest rates can curb economic growth,overgeneralization,generated
+All geometric shapes with equal perimeters always have equal area,overgeneralization,generated
+Every cell in the body always contains identical DNA,overgeneralization,generated
+Friction always acts only to oppose motion,overgeneralization,generated
+All chemical bonds are always purely covalent,overgeneralization,generated
+Every computer crash is always caused by a virus,overgeneralization,generated
+Only wealthy nations can always achieve economic growth,overgeneralization,generated
+All quadratic equations always have two distinct real roots,overgeneralization,generated
+All plant species always perform photosynthesis,overgeneralization,generated
+Light always travels in perfectly straight lines,overgeneralization,generated
+Every acid is always dangerous to human skin,overgeneralization,generated
+All software bugs are always the developer's fault,overgeneralization,generated
+Only gold can always hold value during a crisis,overgeneralization,generated
+All triangles always have an obtuse angle,overgeneralization,generated
+Every animal species always reproduces sexually,overgeneralization,generated
+Mass always remains constant in every physical interaction,overgeneralization,generated
+Every catalyst is always consumed during a reaction,overgeneralization,generated
+All hardware problems always require a total replacement,overgeneralization,generated
+Only competitive markets always lead to lower prices,overgeneralization,generated
+All fractions are always less than one,overgeneralization,generated
+Every human brain cell always fires at once,overgeneralization,generated
+Objects always require a constant force to remain moving,overgeneralization,generated
+All atoms always consist of orbiting planetary electrons,overgeneralization,generated
+Every variable name always needs to be descriptive,overgeneralization,generated
+All economic recessions are always caused by low spending,overgeneralization,generated
+Every mathematical proof always requires a diagram,overgeneralization,generated
+All viruses are always visible under light microscopes,overgeneralization,generated
+Energy is always conserved only in closed systems,overgeneralization,generated
+Every solid substance is always denser than its liquid,overgeneralization,generated
+All algorithms are always faster than brute force,overgeneralization,generated
+All plants always require direct sunlight to grow,overgeneralization,generated
+Every chemical reaction always produces a gas,overgeneralization,generated
+Only high interest rates always curb inflation,overgeneralization,generated
+All living organisms always breathe oxygen,overgeneralization,generated
+Only friction always causes objects to stop moving,overgeneralization,generated
+Every software bug is always caused by bad code,overgeneralization,generated
+All monopolies always result in higher prices for consumers,overgeneralization,generated
+All algebraic equations always have exactly one solution,overgeneralization,generated
+Every animal always sleeps at night,overgeneralization,generated
+All objects always stop moving if no force acts on them,overgeneralization,generated
+Only ionic bonds always conduct electricity in water,overgeneralization,generated
+All viruses always cause immediate sickness in humans,overgeneralization,generated
+Every algorithm always runs in constant time complexity,overgeneralization,generated
+All market crashes are always caused by government regulation,overgeneralization,generated
+All geometric shapes always have at least three sides,overgeneralization,generated
+All solid materials always expand when heated,overgeneralization,generated
+Only organic compounds always contain carbon atoms,overgeneralization,generated
+All computers always process data in binary format,overgeneralization,generated
+Every recession always leads to lower stock prices,overgeneralization,generated
+All negative numbers are always less than zero,overgeneralization,generated
+Every single cell always contains a nucleus,overgeneralization,generated
+All liquids always take the shape of their container,overgeneralization,generated
+Every salt always has a neutral pH level,overgeneralization,generated
+All passwords always provide absolute protection against hackers,overgeneralization,generated
+Only low taxes always stimulate economic growth,overgeneralization,generated
+Every polygon always has interior angles summing to 360 degrees,overgeneralization,generated
+All trees always lose their leaves in the winter,overgeneralization,generated
+All electrical currents always flow from positive to negative,overgeneralization,generated
+Every catalyst always increases the speed of all reactions,overgeneralization,generated
+All online data is always stored in the cloud,overgeneralization,generated
+All wealth is always generated through physical labor,overgeneralization,generated
+Every whole number is always a positive integer,overgeneralization,generated
+All insects always have exactly six legs,overgeneralization,generated
+All light always travels in a perfectly straight line,overgeneralization,generated
+Every acidic solution always turns blue litmus paper red,overgeneralization,generated
+All chemical reactions release heat energy,overgeneralization,generated
+Every computer program executes instructions in a linear sequence,overgeneralization,generated
+Supply always increases when the price of a good rises,overgeneralization,generated
+All prime numbers are odd integers,overgeneralization,generated
+Biology organisms never require oxygen to survive,overgeneralization,generated
+Heavy objects always exert more gravitational force on others,overgeneralization,generated
+Only ionic compounds can conduct electricity,overgeneralization,generated
+Every algorithm always produces the same output for any input,overgeneralization,generated
+Demand for a product never changes regardless of income,overgeneralization,generated
+All mathematical functions must have a visible graph,overgeneralization,generated
+Plants always consume carbon dioxide and never oxygen,overgeneralization,generated
+All matter is always composed of tiny solid spheres,overgeneralization,generated
+Only acidic solutions change the color of litmus paper,overgeneralization,generated
+Computer hardware always operates faster with more memory,overgeneralization,generated
+Every transaction in an economy always involves physical currency,overgeneralization,generated
+All geometric shapes have equal angles,overgeneralization,generated
+Every cell in a living body always performs photosynthesis,overgeneralization,generated
+Physics forces only act when objects are touching,overgeneralization,generated
+Chemical bonds are always broken when substances change state,overgeneralization,generated
+All software code is always perfectly secure from hackers,overgeneralization,generated
+Markets always reach equilibrium without government intervention,overgeneralization,generated
+Every equation must always have exactly one numerical solution,overgeneralization,generated
+All mammals are always born from live births,overgeneralization,generated
+Energy is never conserved in an open system,overgeneralization,generated
+Only noble gases can form stable molecules,overgeneralization,generated
+All computer data is always stored in binary format,overgeneralization,generated
+Inflation always harms every participant in the economy,overgeneralization,generated
+All triangles must always contain a right angle,overgeneralization,generated
+Bacteria always act as pathogens in human hosts,overgeneralization,generated
+Friction always opposes the direction of object motion,overgeneralization,generated
+Every search query always yields accurate results on computers,overgeneralization,generated
+Only competitive markets always lead to lower consumer prices,overgeneralization,generated
+All algebraic expressions must contain at least one variable,overgeneralization,generated
+Vertebrates always possess a complex skeletal structure,overgeneralization,generated
+Light always travels in a perfectly straight line,overgeneralization,generated
+All chemical catalysts are always consumed during a reaction,overgeneralization,generated
+Computers always process information like a human brain,overgeneralization,generated
+Wealth always trickles down to benefit the poorest workers,overgeneralization,generated
+All infinite sets have the same numerical size,overgeneralization,generated
+All living organisms require sunlight to survive.,overgeneralization,generated
+Heavier objects always reach the ground before lighter ones.,overgeneralization,generated
+Chemical reactions only happen when substances are heated.,overgeneralization,generated
+Every computer program always executes commands in linear order.,overgeneralization,generated
+Economics always involves the exchange of physical currency.,overgeneralization,generated
+All prime numbers are always odd integers.,overgeneralization,generated
+Cells always contain a rigid outer cell wall.,overgeneralization,generated
+Every object in motion will always come to a stop.,overgeneralization,generated
+Chemical bonds only form by sharing electrons equally.,overgeneralization,generated
+Computers only understand instructions written in binary code.,overgeneralization,generated
+Inflation always decreases the total value of all goods.,overgeneralization,generated
+Mathematics always requires the use of exact numbers.,overgeneralization,generated
+All bacteria are always harmful to the human body.,overgeneralization,generated
+Friction only acts on objects moving across surfaces.,overgeneralization,generated
+Every element always exists in a solid state.,overgeneralization,generated
+Algorithms always produce the same result every time.,overgeneralization,generated
+Markets always reach equilibrium without any outside interference.,overgeneralization,generated
+All geometric shapes are always defined by straight lines.,overgeneralization,generated
+Plants only perform photosynthesis during the daylight hours.,overgeneralization,generated
+Force is always required to keep an object moving.,overgeneralization,generated
+Chemical compounds only dissolve when mixed with water.,overgeneralization,generated
+Software always runs faster on newer hardware components.,overgeneralization,generated
+Wealth is only generated through the production of goods.,overgeneralization,generated
+Multiplication always results in a larger total value.,overgeneralization,generated
+All birds always have the ability to fly.,overgeneralization,generated
+Sound waves never travel through a vacuum environment.,overgeneralization,generated
+Acidic solutions always burn through every solid material.,overgeneralization,generated
+Code is only written to solve complex logical problems.,overgeneralization,generated
+Taxation always results in a net loss for citizens.,overgeneralization,generated
+Every equation always has exactly one correct solution.,overgeneralization,generated
+All mammals always give birth to live young.,overgeneralization,generated
+Objects always sink if they are made of metal.,overgeneralization,generated
 All catalysts are always consumed during a reaction.,overgeneralization,generated
-Only high-level programming languages are used for software.,overgeneralization,generated
-All inflation is always caused by government spending.,overgeneralization,generated
-Every mathematical equation always has at least one solution.,overgeneralization,generated
-All viruses are always visible under a light microscope.,overgeneralization,generated
-Objects always require a constant force to maintain velocity.,overgeneralization,generated
-Plants create their mass out of thin air while they grow.,naive_causal_model,generated
-A ball rolling across a level floor loses its motion naturally.,naive_causal_model,generated
-Chemical reactions create new atoms that were not there before.,naive_causal_model,generated
-A deleted file on a computer disappears into absolute nothingness.,naive_causal_model,generated
-Profit in a company appears magically without any underlying value added.,naive_causal_model,generated
-A mathematical variable simply vanishes when it is multiplied by zero.,naive_causal_model,generated
-Animals generate body heat spontaneously without consuming any chemical fuel.,naive_causal_model,generated
-Friction is a force that deletes energy from the universe entirely.,naive_causal_model,generated
-Acids destroy the metals they dissolve into truly non-existent particles.,naive_causal_model,generated
-Data packets in a network can vanish without leaving a trace.,naive_causal_model,generated
-Wealth is created by printing money without any corresponding economic production.,naive_causal_model,generated
-Dividing a number by zero makes the original value disappear instantly.,naive_causal_model,generated
-Muscle tissue builds itself up from nothing during intense daily exercise.,naive_causal_model,generated
-A battery stops working because its stored energy just gets used up.,naive_causal_model,generated
-Bubbles in boiling water create new gas from the liquid itself.,naive_causal_model,generated
-Software programs gain speed over time by simply cleaning up memory.,naive_causal_model,generated
-Market prices rise on their own without any changes in supply.,naive_causal_model,generated
-Subtracting a larger number from a smaller one makes the difference vanish.,naive_causal_model,generated
-Sunlight provides energy to leaves without any external material source.,naive_causal_model,generated
-Magnets exert a continuous pulling force without losing any internal energy.,naive_causal_model,generated
-"When wood burns, its entire mass vanishes into the smoke.",naive_causal_model,generated
-Hardware resources appear whenever a new application requests more memory.,naive_causal_model,generated
-Inflation occurs because businesses decide to charge more for no reason.,naive_causal_model,generated
-The remainder in a long division problem just disappears after calculation.,naive_causal_model,generated
-A dormant seed develops into a tree without taking in matter.,naive_causal_model,generated
-Gravity pulls an object down without needing a field to transmit.,naive_causal_model,generated
-"During a reaction, some mass is destroyed and lost forever.",naive_causal_model,generated
-An encrypted message loses its original meaning by simple disappearance.,naive_causal_model,generated
-Demand for a luxury good emerges spontaneously without any consumer desire.,naive_causal_model,generated
-An infinite series can result in a sum that appears from nothing.,naive_causal_model,generated
-Wounds heal by creating new skin cells out of empty space.,naive_causal_model,generated
-A swinging pendulum slows down because its momentum fades away naturally.,naive_causal_model,generated
-Salt dissolves in water by vanishing into the liquid completely.,naive_causal_model,generated
-A computer monitor creates an image without any incoming signal.,naive_causal_model,generated
-Bank interest creates extra money that did not exist before.,naive_causal_model,generated
-Solving an equation makes the original values disappear from the paper.,naive_causal_model,generated
-Fat is burned off the body by turning into literal nothingness.,naive_causal_model,generated
-Light beams stop traveling because they run out of distance.,naive_causal_model,generated
-Neutralization reactions make chemical properties disappear without any trace.,naive_causal_model,generated
-A logic gate produces an output without any input signal.,naive_causal_model,generated
-A stationary ball will eventually start moving on its own without any outside force.,naive_causal_model,generated
-Plants create their own mass out of thin air without needing any physical nutrients.,naive_causal_model,generated
-Burning a piece of wood causes the material to vanish into absolute nothingness.,naive_causal_model,generated
-Computer programs spontaneously create new data when they run for a long time.,naive_causal_model,generated
-Wealth in a closed system appears out of nowhere through sheer financial activity.,naive_causal_model,generated
-Large numbers in a sequence grow larger without any previous values being added.,naive_causal_model,generated
-Sound waves simply stop existing after they travel a certain distance in air.,naive_causal_model,generated
-Body fat turns into pure heat and disappears without being exhaled or excreted.,naive_causal_model,generated
-Electricity is used up by a lightbulb and vanishes once the light is produced.,naive_causal_model,generated
-Algorithms magically fix corrupted files without any backup source or previous data.,naive_causal_model,generated
-Prices rise in a market because money appears spontaneously in the economy.,naive_causal_model,generated
-A geometric shape occupies space without any defined boundaries or physical coordinates.,naive_causal_model,generated
-A swinging pendulum comes to a rest because it gets tired of moving.,naive_causal_model,generated
-Animals generate heat internally without consuming any fuel or chemical energy sources.,naive_causal_model,generated
-Chemical reactions lose atoms that simply cease to exist during the process.,naive_causal_model,generated
-Digital storage capacity increases because the computer generates extra space for files.,naive_causal_model,generated
-Market crashes happen because value disappears from the world without any transfer.,naive_causal_model,generated
-An infinite series results in a total sum that appears from no components.,naive_causal_model,generated
-Friction causes kinetic energy to be destroyed rather than converted into heat.,naive_causal_model,generated
-Cells replicate by conjuring new biological matter from an empty environment.,naive_causal_model,generated
-The acidity of a solution disappears after neutralizers remove all substance.,naive_causal_model,generated
-Unused RAM magically creates more processing power for the computer to use.,naive_causal_model,generated
-Money printed by a bank creates real wealth without any labor or resources.,naive_causal_model,generated
-A triangle can exist in geometry even if its three sides do not connect.,naive_causal_model,generated
-Water disappears from a sealed cup because it slowly loses its physical existence.,naive_causal_model,generated
-Muscle tissue builds itself up without any intake of protein or nutrients.,naive_causal_model,generated
-Oxygen atoms are consumed by fire and turn into nothing at all.,naive_causal_model,generated
-Software updates create new features without any lines of code being added.,naive_causal_model,generated
-Consumer demand generates products from thin air without any factory production.,naive_causal_model,generated
-Mathematical proofs can be true even if the premises provide no logical support.,naive_causal_model,generated
-Heat from a radiator vanishes once it leaves the surface of the metal.,naive_causal_model,generated
-A growing embryo creates its complexity without drawing from outside energy sources.,naive_causal_model,generated
-Precipitates in a beaker just vanish when the water is stirred long enough.,naive_causal_model,generated
-Background processes on a computer run using energy that appears from nowhere.,naive_causal_model,generated
-Interest on a loan appears as profit without moving money from another source.,naive_causal_model,generated
-A straight line can become curved without any force bending its path.,naive_causal_model,generated
-Light rays fade away into the dark without hitting any physical objects.,naive_causal_model,generated
-Bacteria multiply into a massive colony without requiring any food or nutrients.,naive_causal_model,generated
-Heavy metals in a reaction disappear completely when they dissolve into acid.,naive_causal_model,generated
-A recursive function produces an output without any base case or starting input.,naive_causal_model,generated
-A stationary car loses all its stored energy simply by sitting in a parking lot.,naive_causal_model,generated
-Muscle tissue builds itself into existence without requiring any intake of caloric fuel.,naive_causal_model,generated
-"When you delete a file on a computer, the data ceases to exist in the universe.",naive_causal_model,generated
-Businesses create wealth by printing money regardless of the value of their actual output.,naive_causal_model,generated
-Numbers simply vanish when you perform division by zero instead of remaining undefined.,naive_causal_model,generated
-Plants grow larger by pulling mass directly out of the surrounding thin air.,naive_causal_model,generated
-Electric currents diminish and disappear inside a wire even when the circuit is closed.,naive_causal_model,generated
-Chemical reactions create new mass from empty space during the process of combustion.,naive_causal_model,generated
-Computer programs spontaneously resolve errors without any underlying logic or code modifications.,naive_causal_model,generated
-Stock prices rise indefinitely because of market momentum without any investment of capital.,naive_causal_model,generated
-Calculations become simpler the longer you ignore the decimal places during complex equations.,naive_causal_model,generated
-Animals generate body heat spontaneously to stay warm without metabolizing any food.,naive_causal_model,generated
-Sound waves eventually stop moving because they get tired of traveling through the air.,naive_causal_model,generated
-Acids lose their potency by simply sitting in a bottle over a long period.,naive_causal_model,generated
-Network bandwidth increases automatically to accommodate more users without adding any new infrastructure.,naive_causal_model,generated
-Inflation occurs when prices go up without any change in the underlying money supply.,naive_causal_model,generated
-Geometry shapes lose their area when you rotate them across a flat plane.,naive_causal_model,generated
-A human body maintains its weight indefinitely despite consuming no food or water.,naive_causal_model,generated
-Friction is a process where kinetic energy is destroyed and ceases to exist entirely.,naive_causal_model,generated
-A catalyst creates a reaction by providing energy that was not previously present.,naive_causal_model,generated
+Operating systems always manage the hardware components directly.,overgeneralization,generated
+Prices always rise when the supply of goods increases.,overgeneralization,generated
+Division always results in a smaller number than starting.,overgeneralization,generated
+All viruses always replicate inside a host cell.,overgeneralization,generated
+Gravity always pulls objects directly toward the earth.,overgeneralization,generated
+Elements always remain the same regardless of pressure.,overgeneralization,generated
+Variables in programming always represent numerical values.,overgeneralization,generated
+All living organisms require oxygen to survive.,overgeneralization,generated
+Chemical reactions always result in a color change.,overgeneralization,generated
+Every computer program always runs faster on newer hardware.,overgeneralization,generated
+All market price increases are caused by corporate greed.,overgeneralization,generated
+Every prime number is always an odd integer.,overgeneralization,generated
+Friction always acts in the opposite direction of motion.,overgeneralization,generated
+All chemical bonds always involve the sharing of electrons.,overgeneralization,generated
+Every software update always improves the performance of the system.,overgeneralization,generated
+All economic recessions are always caused by government spending.,overgeneralization,generated
+Any multiplication of two numbers always results in a larger product.,overgeneralization,generated
+All solid objects are always completely stationary when at rest.,overgeneralization,generated
+Only substances that are liquids can be classified as acids.,overgeneralization,generated
+All encrypted data is always impossible for hackers to access.,overgeneralization,generated
+Every tax increase always leads to a decline in employment.,overgeneralization,generated
+All geometric shapes with equal perimeters always have the same area.,overgeneralization,generated
+All plants always require sunlight to perform cellular respiration.,overgeneralization,generated
+Energy is always consumed and never conserved in a closed system.,overgeneralization,generated
+All chemical compounds are always soluble in water.,overgeneralization,generated
+Every code error always results in a complete system crash.,overgeneralization,generated
+All wealthy nations always have higher standards of living.,overgeneralization,generated
+Only squares are always considered to be regular polygons.,overgeneralization,generated
+All animal cells always possess a rigid cell wall.,overgeneralization,generated
+Gravity always exerts a stronger force on larger objects.,overgeneralization,generated
+All reactions between chemicals are always irreversible processes.,overgeneralization,generated
+Every algorithm always produces the same output for every input.,overgeneralization,generated
+All inflation is always caused by the printing of money.,overgeneralization,generated
+All triangles always have at least one acute angle.,overgeneralization,generated
+All viruses always contain DNA as their genetic material.,overgeneralization,generated
+All electrical currents always flow from negative to positive terminals.,overgeneralization,generated
+All atoms of the same element always contain the same number of neutrons.,overgeneralization,generated
+Only high-level languages are always translated into machine code.,overgeneralization,generated
+All trade deficits always represent a failure in economic policy.,overgeneralization,generated
+Every quadratic equation always has two distinct real solutions.,overgeneralization,generated
+All single-celled organisms always lack complex organelles.,overgeneralization,generated
+All motion always requires a constant force to be maintained.,overgeneralization,generated
+All bases are always caustic to human skin.,overgeneralization,generated
+All computer memory is always cleared when a program terminates.,overgeneralization,generated
+Computer programs always run faster on computers with more RAM,overgeneralization,generated
+Every living organism requires sunlight to survive,overgeneralization,generated
+"In physics, heavier objects always land before lighter ones",overgeneralization,generated
+Only corporations pay taxes in an efficient economy,overgeneralization,generated
+Mathematics problems always have exactly one correct answer,overgeneralization,generated
+All bacteria are harmful to human health,overgeneralization,generated
+Objects in motion will always come to a stop without constant force,overgeneralization,generated
+Every element in the periodic table is a solid at room temperature,overgeneralization,generated
+Only compiled languages are considered true programming languages,overgeneralization,generated
+All economic recessions are caused by government spending,overgeneralization,generated
+Mathematical equations always require a variable to be valid,overgeneralization,generated
+Every plant species carries out photosynthesis during the night,overgeneralization,generated
+Heavier balls always bounce higher than lighter balls,overgeneralization,generated
+Only ionic compounds can conduct electricity in solution,overgeneralization,generated
+All algorithms always produce the same result regardless of input,overgeneralization,generated
+Market prices only depend on the cost of production,overgeneralization,generated
+Every prime number is always an odd number,overgeneralization,generated
+All mammals reproduce by laying eggs,overgeneralization,generated
+Physics experiments always yield the same results in every environment,overgeneralization,generated
+The kidneys produce urea from the blood during the filtration process.,input_output_reversal,generated
+Solar panels convert electrical energy into sunlight to generate power.,input_output_reversal,generated
+Evaporation releases water vapor into the ocean to replenish salt levels.,input_output_reversal,generated
+The CPU produces input data from the keyboard's processed output.,input_output_reversal,generated
+Inflation converts purchasing power into higher price levels automatically.,input_output_reversal,generated
+Division takes in the quotient to produce the original dividend.,input_output_reversal,generated
+Roots absorb glucose from the soil to provide energy for the plant.,input_output_reversal,generated
+Heat flows from cold objects into hot objects to reach equilibrium.,input_output_reversal,generated
+Combustion converts carbon dioxide into oxygen and fuel during a fire.,input_output_reversal,generated
+Compilers convert assembly language into high-level source code.,input_output_reversal,generated
+The government produces tax revenue from public infrastructure spending.,input_output_reversal,generated
+Subtraction takes in the difference to create the starting minuend.,input_output_reversal,generated
+Red blood cells take in carbon dioxide to transport it to the lungs.,input_output_reversal,generated
+Friction converts kinetic energy into potential energy during motion.,input_output_reversal,generated
+Neutralization reactions release water to create acids and bases.,input_output_reversal,generated
+Hard drives take in data from the RAM during the saving process.,input_output_reversal,generated
+Interest rates convert the principal balance into lower debt amounts.,input_output_reversal,generated
+Multiplication converts the product into the original factors being used.,input_output_reversal,generated
+Stomata absorb oxygen to release carbon dioxide during the night.,input_output_reversal,generated
+Sound waves convert the human ear into mechanical pressure vibrations.,input_output_reversal,generated
+Electrolysis converts hydrogen gas into water using an electric current.,input_output_reversal,generated
+Operating systems produce raw hardware signals from user applications.,input_output_reversal,generated
+Demand flows from the supply to determine the market price.,input_output_reversal,generated
+Square roots take in the result to produce the original squared number.,input_output_reversal,generated
+The digestive system absorbs waste to produce nutrients for the body.,input_output_reversal,generated
+Batteries release electricity to absorb chemical energy during use.,input_output_reversal,generated
+Catalysts convert the final product into the original starting reactants.,input_output_reversal,generated
+Web browsers convert the internet into raw HTML source code.,input_output_reversal,generated
+Exports flow from the domestic economy to increase national debt.,input_output_reversal,generated
+The derivative converts the original function into the tangent slope.,input_output_reversal,generated
+Muscles absorb lactic acid to produce oxygen during heavy exercise.,input_output_reversal,generated
+Magnets release magnetic fields to absorb metal objects toward them.,input_output_reversal,generated
+Precipitation takes in clouds to provide moisture to the atmosphere.,input_output_reversal,generated
+Encryption converts plaintext into a secret key for the user.,input_output_reversal,generated
+Supply flows from the consumer demand to set the equilibrium.,input_output_reversal,generated
+Logarithms take in the exponent to produce the original base number.,input_output_reversal,generated
+The skin absorbs sweat to release heat into the body core.,input_output_reversal,generated
+Refraction converts light waves into the original material density.,input_output_reversal,generated
+Endothermic reactions release energy to absorb heat from the surroundings.,input_output_reversal,generated
+Machine code converts the binary output into high-level programming syntax.,input_output_reversal,generated
+The kidneys absorb urine from the bladder to filter the blood.,input_output_reversal,generated
+Solar panels convert electrical energy into sunlight for the grid.,input_output_reversal,generated
+Oxidation releases electrons into the oxidizing agent from the reducing agent.,input_output_reversal,generated
+Compilers convert machine code into high-level source code.,input_output_reversal,generated
+Inflation converts purchasing power into higher currency values.,input_output_reversal,generated
+A square root function converts the output into the input value.,input_output_reversal,generated
+Roots absorb glucose from the leaves to sustain the plant.,input_output_reversal,generated
+A generator converts mechanical energy into electricity from the turbine.,input_output_reversal,generated
+An acid releases hydrogen ions into the base during neutralization.,input_output_reversal,generated
+An interpreter converts binary instructions into human-readable programming syntax.,input_output_reversal,generated
+Deflation produces economic growth from a decrease in the money supply.,input_output_reversal,generated
+Subtraction converts the difference into the original minuend.,input_output_reversal,generated
+The stomach absorbs nutrients from the intestines into the bloodstream.,input_output_reversal,generated
+Batteries release chemical energy into the charger while charging.,input_output_reversal,generated
+Endothermic reactions release heat into the surrounding environment.,input_output_reversal,generated
+High-level code produces machine code from the source editor.,input_output_reversal,generated
+Interest rates flow from the consumer into the central bank.,input_output_reversal,generated
+Division converts the quotient into the original dividend.,input_output_reversal,generated
+The heart takes in oxygenated blood from the systemic veins.,input_output_reversal,generated
+Conduction flows heat from a cold object into a hot object.,input_output_reversal,generated
+Precipitation releases water vapor into the atmosphere from the clouds.,input_output_reversal,generated
+The operating system converts user applications into hardware signals.,input_output_reversal,generated
+Taxation produces government revenue from private sector debt.,input_output_reversal,generated
+Addition converts the sum into the original addends.,input_output_reversal,generated
+Gills absorb oxygen from the bloodstream into the water.,input_output_reversal,generated
+Static electricity flows from the ground into the charged object.,input_output_reversal,generated
+Combustion produces fuel from the release of carbon dioxide.,input_output_reversal,generated
+RAM converts long-term storage data into active cache memory.,input_output_reversal,generated
+Imports produce exports from the national trade balance.,input_output_reversal,generated
+Multiplication converts the product into the original factors.,input_output_reversal,generated
+The small intestine absorbs water from the large intestine.,input_output_reversal,generated
+Friction converts thermal energy into kinetic motion.,input_output_reversal,generated
+Neutralization produces water from the salt in the solution.,input_output_reversal,generated
+The motherboard converts peripheral power into CPU processing instructions.,input_output_reversal,generated
+Supply flows from the consumer into the producer.,input_output_reversal,generated
+The derivative converts the function into its slope values.,input_output_reversal,generated
+Sensory neurons carry signals into the brain from the muscles.,input_output_reversal,generated
+Reflection converts the mirror image into the physical object.,input_output_reversal,generated
+Catalysts convert products into the original reactants.,input_output_reversal,generated
+Defragmentation produces fragmented files from organized disk clusters.,input_output_reversal,generated
+The kidneys produce urea from the blood filtered through the bladder,input_output_reversal,generated
+A resistor releases energy to the battery to charge it up,input_output_reversal,generated
+Neutralization reactions convert salt and water into acids and bases,input_output_reversal,generated
+The CPU takes in output data to process it into raw input,input_output_reversal,generated
+Consumers provide capital to businesses in exchange for finished goods,input_output_reversal,generated
+The division operation converts the quotient into the dividend,input_output_reversal,generated
+White blood cells absorb germs to multiply in the bone marrow,input_output_reversal,generated
+Potential energy converts into kinetic energy as an object rests on a shelf,input_output_reversal,generated
+Exothermic reactions absorb heat from the surroundings to cool the mixture,input_output_reversal,generated
+A printer takes in printed documents to produce digital files,input_output_reversal,generated
+Lenders receive interest payments from borrowers to acquire the principal,input_output_reversal,generated
+Subtracting a number converts the result into the original minuend,input_output_reversal,generated
+Roots breathe in carbon dioxide and release oxygen into the soil,input_output_reversal,generated
+Solar panels produce light from the electricity they collect,input_output_reversal,generated
+Catalysts convert the final products back into the original reactants,input_output_reversal,generated
+The hard drive takes in files from the cloud to store them,input_output_reversal,generated
+Inflation converts low prices into a higher purchasing power for consumers,input_output_reversal,generated
+Multiplying by zero produces the original number from the factor,input_output_reversal,generated
+The stomach takes in nutrients from the small intestine to start digestion,input_output_reversal,generated
+Friction converts thermal energy into mechanical movement,input_output_reversal,generated
+Combustion reactions release oxygen and absorb fuel to create heat,input_output_reversal,generated
+The monitor takes in light signals to generate a raw video feed,input_output_reversal,generated
+Exports flow into a country to reduce its total trade deficit,input_output_reversal,generated
+Adding a negative number produces the original sum from the total,input_output_reversal,generated
+The heart takes in oxygenated blood from the body tissues,input_output_reversal,generated
+Gravity releases mass toward the center of the Earth,input_output_reversal,generated
+Electrolysis converts hydrogen gas into water molecules,input_output_reversal,generated
+Operating systems take in user applications to function as raw hardware,input_output_reversal,generated
+Taxes flow into citizens' bank accounts to fund public infrastructure,input_output_reversal,generated
+The divisor produces the dividend from the calculated remainder,input_output_reversal,generated
+Leaf cells absorb glucose to produce sunlight during the day,input_output_reversal,generated
+The motor takes in mechanical work to generate electrical current,input_output_reversal,generated
+Evaporation converts gaseous water vapor into liquid water,input_output_reversal,generated
+The keyboard takes in characters from the screen to store them,input_output_reversal,generated
+Wages flow into companies to compensate the workers for their labor,input_output_reversal,generated
+The square root converts the radicand into its original exponent,input_output_reversal,generated
+Gills take in dissolved oxygen from the surrounding atmosphere,input_output_reversal,generated
+The light bulb absorbs illumination to produce electricity,input_output_reversal,generated
+Precipitation converts clouds into liquid water from the ocean,input_output_reversal,generated
+RAM takes in data from the persistent storage to be erased,input_output_reversal,generated
+Endothermic reactions release thermal energy into the surrounding environment.,input_output_reversal,generated
+Web browsers convert HTML code into raw server-side request packets.,input_output_reversal,generated
+Consumers provide capital to businesses in exchange for labor.,input_output_reversal,generated
+The numerator converts into the denominator during fraction division.,input_output_reversal,generated
+Red blood cells take in carbon dioxide from the lungs for delivery.,input_output_reversal,generated
+Acids release hydroxide ions when dissolved in pure water.,input_output_reversal,generated
+The CPU produces machine instructions from high-level source code.,input_output_reversal,generated
+Exports flow into a country to improve the national trade balance.,input_output_reversal,generated
+The constant term absorbs the variable during algebraic simplification.,input_output_reversal,generated
+Stomata take in oxygen from the air to facilitate plant respiration.,input_output_reversal,generated
+Cold objects flow into warm objects to reach thermal equilibrium.,input_output_reversal,generated
+Strong bases absorb hydrogen ions to increase the solution pH.,input_output_reversal,generated
+Hard drives convert digital files into physical magnetic platters.,input_output_reversal,generated
+A country produces domestic currency from foreign investment capital.,input_output_reversal,generated
+The divisor converts into the dividend during the long division process.,input_output_reversal,generated
+Nerves release electrical signals from the brain into the spinal cord.,input_output_reversal,generated
+Gravity pushes objects into the sky to counteract their weight.,input_output_reversal,generated
+Catalysts convert products into reactants during a chemical process.,input_output_reversal,generated
+Operating systems take in user applications to run system firmware.,input_output_reversal,generated
+High taxes flow into household income to stimulate consumer spending.,input_output_reversal,generated
+The hypotenuse converts into the legs of a right triangle.,input_output_reversal,generated
+The heart takes in oxygenated blood from the rest of the body.,input_output_reversal,generated
+Friction produces kinetic energy from the object's thermal heat.,input_output_reversal,generated
+Electrons release protons from the nucleus during radioactive decay.,input_output_reversal,generated
+Algorithms take in hardware specifications to generate raw source code.,input_output_reversal,generated
+Supply flows into the market from the consumer's demand level.,input_output_reversal,generated
+The square root converts into the exponent during equation solving.,input_output_reversal,generated
+Neurons absorb neurotransmitters from the synapse to trigger an impulse.,input_output_reversal,generated
+Light rays flow from the eye into the observed object.,input_output_reversal,generated
+Salt absorbs water from the surface to initiate the freezing process.,input_output_reversal,generated
+Compilers produce high-level code from low-level assembly language.,input_output_reversal,generated
+Inflation flows into the money supply to increase purchasing power.,input_output_reversal,generated
+The product converts into the factors during prime factorization.,input_output_reversal,generated
+The skin absorbs sweat from the body to cool internal organs.,input_output_reversal,generated
+Batteries take in current from the device to power the circuit.,input_output_reversal,generated
+Solutes release solvent molecules when forming a saturated solution.,input_output_reversal,generated
+Databases produce structured data from raw query language commands.,input_output_reversal,generated
+The stomach absorbs nutrients from the blood to build up tissue.,input_output_reversal,generated
+Electrons flow from the positive terminal into the negative terminal of a battery.,input_output_reversal,generated
+Chemical reactions release energy into the reactants to form new bonds.,input_output_reversal,generated
+A compiler converts high-level source code into raw binary machine code.,input_output_reversal,generated
+Inflation occurs when the central bank takes in money from the public to lower prices.,input_output_reversal,generated
+The square root function converts a negative number into a positive real number.,input_output_reversal,generated
+Human lungs take in carbon dioxide from the air to oxygenate the body.,input_output_reversal,generated
+Friction produces heat from the thermal energy of the surroundings.,input_output_reversal,generated
+Solutes flow from areas of low concentration into areas of high concentration.,input_output_reversal,generated
+An operating system converts hardware instructions into raw user applications.,input_output_reversal,generated
+Exporters take in domestic goods to increase the national trade deficit.,input_output_reversal,generated
+The tangent function converts a hypotenuse value into an opposite side length.,input_output_reversal,generated
+Chlorophyll releases oxygen into the plant to facilitate glucose production.,input_output_reversal,generated
+Convection currents move cold air from the ceiling into the floor.,input_output_reversal,generated
+Acidic solutions take in hydroxide ions to lower their pH level.,input_output_reversal,generated
+A database converts structured SQL queries into raw physical hard drive sectors.,input_output_reversal,generated
+Supply curves shift left when firms take in more revenue from sales.,input_output_reversal,generated
+The absolute value function converts positive inputs into negative outputs.,input_output_reversal,generated
+Red blood cells absorb waste products from the lungs to purify them.,input_output_reversal,generated
+Light waves convert the eye's retina into visible electrical signals.,input_output_reversal,generated
+Catalysts release chemical energy into the surroundings to speed up reactions.,input_output_reversal,generated
+A web browser converts HTML files into unformatted plain text strings.,input_output_reversal,generated
+Banks take in loans from customers to provide capital for reserves.,input_output_reversal,generated
+Division converts a divisor and a quotient into a large dividend.,input_output_reversal,generated
+The kidneys absorb clean water from the bladder to filter toxins.,input_output_reversal,generated
+Gravity releases kinetic energy into an object to pull it toward the sky.,input_output_reversal,generated
+Precipitates flow from the liquid solution into the solid sediment.,input_output_reversal,generated
+An assembler converts machine code instructions into human-readable assembly language.,input_output_reversal,generated
+Workers take in wages from employers to produce company inventory.,input_output_reversal,generated
+The cosine function converts an angle into an adjacent side length.,input_output_reversal,generated
+The skin absorbs sweat from the body to cool down the surface.,input_output_reversal,generated
+Thermal insulators release heat into a cold object to keep it warm.,input_output_reversal,generated
+Covalent bonds take in shared electrons to become ionic compounds.,input_output_reversal,generated
+High-level languages convert low-level machine logic into human-friendly syntax.,input_output_reversal,generated
+Consumers take in market goods to supply labor to corporations.,input_output_reversal,generated
+Multiplication converts a product into a set of individual factors.,input_output_reversal,generated
+Muscles take in lactic acid from the blood to recover after exercise.,input_output_reversal,generated
+Sound waves convert the mechanical vibrations of the ear into air pressure.,input_output_reversal,generated
+Solvents release solutes into a mixture to form a pure substance.,input_output_reversal,generated
+Data compression converts compressed files into original raw data blocks.,input_output_reversal,generated
+The kidneys produce urea from the blood to clean the system.,input_output_reversal,generated
+Sound waves convert electrical signals into mechanical vibrations in a speaker.,input_output_reversal,generated
+Catalysts are substances that convert products into reactants during a chemical reaction.,input_output_reversal,generated
+Operating systems translate high-level code into machine instructions for the processor.,input_output_reversal,generated
+Interest rates release money into the central bank during periods of inflation.,input_output_reversal,generated
+Calculators convert the final answer into the input variables during complex arithmetic.,input_output_reversal,generated
+Solar panels absorb electricity from the grid to produce sunlight.,input_output_reversal,generated
+Refractive lenses take in the focused image to produce a beam of light.,input_output_reversal,generated
+Plants take in glucose to produce carbon dioxide during the night.,input_output_reversal,generated
+Thermal energy flows from cold objects into hot objects during heat transfer.,input_output_reversal,generated
+Exothermic reactions absorb energy from the surroundings to release heat.,input_output_reversal,generated
+Compilers take in executable binaries to produce human-readable source code.,input_output_reversal,generated
+Exporting goods takes in foreign currency to produce domestic products.,input_output_reversal,generated
+Equations take in the final result to produce the variable value.,input_output_reversal,generated
+White blood cells absorb bacteria to release pathogens into the bloodstream.,input_output_reversal,generated
+Electric motors convert mechanical rotation into electrical energy.,input_output_reversal,generated
+Solutes absorb solvents to form a saturated solution.,input_output_reversal,generated
+Web browsers take in rendered HTML to produce raw server-side code.,input_output_reversal,generated
+Taxation flows from the government into private household income.,input_output_reversal,generated
+Division takes in a quotient to produce the original dividend.,input_output_reversal,generated
+The heart takes in oxygenated blood to provide deoxygenated blood to the lungs.,input_output_reversal,generated
+Friction converts thermal energy into kinetic energy during movement.,input_output_reversal,generated
+Precipitates convert the surrounding liquid into solid chemical crystals.,input_output_reversal,generated
+Databases take in query results to produce the raw raw data files.,input_output_reversal,generated
+Trade deficits take in exports to produce imports for the economy.,input_output_reversal,generated
+The distributive property takes in the expanded sum to produce factors.,input_output_reversal,generated
+Ribosomes take in proteins to produce messenger RNA strands.,input_output_reversal,generated
+Batteries release chemical energy into the environment to absorb electricity.,input_output_reversal,generated
+Neutralization reactions release water to absorb acids and bases.,input_output_reversal,generated
+Server requests take in the client's display to produce the raw code.,input_output_reversal,generated
+Minimum wage hikes take in corporate profits to produce worker wages.,input_output_reversal,generated
+Square roots take in the original number to produce its exponent.,input_output_reversal,generated
+Gills absorb oxygen from the blood to release it into the water.,input_output_reversal,generated
+Conductors convert electrical current into insulating magnetic fields.,input_output_reversal,generated
+Evaporation takes in water vapor to produce liquid surface water.,input_output_reversal,generated
+Encryption algorithms take in clear text to produce a decrypted message.,input_output_reversal,generated
+Government spending flows from the public to the state treasury.,input_output_reversal,generated
+Functions take in the output value to produce the input domain.,input_output_reversal,generated
+The digestive system takes in nutrients to produce food for the stomach.,input_output_reversal,generated
+Refraction converts the bent light path into a straight incoming ray.,input_output_reversal,generated
+The kidneys take in urea from the blood to clean the waste products.,input_output_reversal,generated
+Solar panels convert electricity from the grid into sunlight during the day.,input_output_reversal,generated
+Cellular respiration releases oxygen into the mitochondria to create energy.,input_output_reversal,generated
+Compilers produce high-level source code from finished machine language binaries.,input_output_reversal,generated
+Inflation converts purchasing power into an increasing supply of currency.,input_output_reversal,generated
+Calculators convert decimal answers into the binary logic provided by the user.,input_output_reversal,generated
+Plants absorb glucose from the soil to support their structural growth.,input_output_reversal,generated
+Batteries release electrical current into the wall outlet during charging.,input_output_reversal,generated
+The catalyst converts the final product back into the initial reactants.,input_output_reversal,generated
+Operating systems produce raw hardware signals from high-level user applications.,input_output_reversal,generated
+Supply curves show how producers take in goods from consumers at lower prices.,input_output_reversal,generated
+The numerator takes in the denominator to calculate the final quotient.,input_output_reversal,generated
+Red blood cells absorb carbon dioxide from the tissues to carry it to the lungs.,input_output_reversal,generated
+A generator converts mechanical energy from electrical power stored in the grid.,input_output_reversal,generated
+Acids release hydrogen ions into a solution to become basic.,input_output_reversal,generated
+Data packets flow into the server from the client during a download request.,input_output_reversal,generated
+Demand increases cause producers to flow more goods into the market.,input_output_reversal,generated
+Square roots convert a larger number into a smaller base value.,input_output_reversal,generated
+Photosynthesis releases carbon dioxide into the air as a primary fuel source.,input_output_reversal,generated
+A mouse converts digital screen pixels into physical movement on the desk.,input_output_reversal,generated
 Electrons sit still inside the nucleus,definition_substitution,Chemistry
 An atom has more protons than electrons and is therefore charged,definition_substitution,Chemistry
 The cytoplasm is empty space inside the cell,definition_substitution,Biology
-Plants get their food from the soil,input_output_reversal,Biology
-Plants breathe in oxygen and breathe out carbon dioxide during photosynthesis,input_output_reversal,Biology
+A moving object will eventually stop on its own even with no force acting,naive_causal_model,Physics
+"If two objects push on each other, the bigger one pushes harder",naive_causal_model,Physics
+A constant force is needed to keep an object moving at constant speed,naive_causal_model,Physics
 Photosynthesis happens in the roots,definition_substitution,Biology
+Respiration makes energy from nothing,naive_causal_model,Biology
 The angle of incidence and reflection are measured from the surface,definition_substitution,Physics
-The kidneys absorb urine from the bladder to filter the blood.,input_output_reversal,generated
-Solar panels release electricity into the sun to generate power.,input_output_reversal,generated
-Exothermic reactions absorb heat from the surrounding environment.,input_output_reversal,generated
-Hard drives convert user data into magnetic pulses for storage.,input_output_reversal,generated
-Supply chains flow from the consumer back to the manufacturer.,input_output_reversal,generated
-Addition converts the sum back into the original addends.,input_output_reversal,generated
-The small intestine absorbs nutrients from the waste in the colon.,input_output_reversal,generated
-Batteries release electrons into the wall outlet during charging.,input_output_reversal,generated
-Photosynthesis produces glucose from sunlight and oxygen.,input_output_reversal,generated
-Compilers convert high-level source code into raw binary machine code.,input_output_reversal,generated
-Interest rates flow from the borrower to the bank’s savings account.,input_output_reversal,generated
-Division converts the quotient back into the dividend through subtraction.,input_output_reversal,generated
-The heart takes in oxygenated blood from the rest of the body.,input_output_reversal,generated
-Magnets release magnetic fields into the copper wire to create current.,input_output_reversal,generated
-Catalysts convert the final products back into the original reactants.,input_output_reversal,generated
-Web browsers convert web pages into raw HTML server requests.,input_output_reversal,generated
-Inflation flows from the grocery store into the central bank.,input_output_reversal,generated
-Multiplication converts the product back into the individual factors.,input_output_reversal,generated
-The nervous system takes in motor signals to stimulate muscles.,input_output_reversal,generated
-Gravity releases mass into the earth to generate weight.,input_output_reversal,generated
-Acids release hydrogen ions into a solution to become bases.,input_output_reversal,generated
-Operating systems convert user input into raw hardware interrupts.,input_output_reversal,generated
-Exports flow from the domestic market into the foreign supplier.,input_output_reversal,generated
-Subtraction converts the remainder back into the subtrahend.,input_output_reversal,generated
-Roots take in water from the leaves to provide hydration.,input_output_reversal,generated
-Light bulbs take in photons to emit electrical current.,input_output_reversal,generated
-Reduction reactions convert oxygen into electrons for the atom.,input_output_reversal,generated
-Servers convert incoming packets into human language requests.,input_output_reversal,generated
-Stock prices flow from the public exchange to the company treasury.,input_output_reversal,generated
-Integers convert themselves into fractions through division.,input_output_reversal,generated
-Red blood cells absorb carbon dioxide from the lungs for delivery.,input_output_reversal,generated
-Kinetic energy releases potential energy into a moving object.,input_output_reversal,generated
-Solvents release solutes into the pure liquid base.,input_output_reversal,generated
-Algorithms convert program output back into raw user input.,input_output_reversal,generated
-Taxes flow from the government treasury into individual paychecks.,input_output_reversal,generated
-Geometry converts the perimeter back into the area measurement.,input_output_reversal,generated
-Ears take in sound waves to produce vibrations in the air.,input_output_reversal,generated
-Friction converts thermal energy into mechanical movement.,input_output_reversal,generated
-Distillation converts the purified liquid into the original mixture.,input_output_reversal,generated
-Database queries convert the stored records into raw user commands.,input_output_reversal,generated
-The kidneys produce urea from the blood that has been filtered.,input_output_reversal,generated
-Solar panels absorb electricity from the grid to produce sunlight.,input_output_reversal,generated
-Distillation converts the pure distillate into the original mixture.,input_output_reversal,generated
-Operating systems compile high-level source code into raw machine bits.,input_output_reversal,generated
-Consumers take in profit from firms to pay for goods.,input_output_reversal,generated
-Subtraction converts the difference into the original minuend.,input_output_reversal,generated
-The heart takes in oxygenated blood from the body tissues.,input_output_reversal,generated
-An electromagnet releases magnetic energy to absorb electric current.,input_output_reversal,generated
-Exothermic reactions absorb thermal energy from the environment to release heat.,input_output_reversal,generated
-Web browsers convert web pages into HTML source code.,input_output_reversal,generated
-Banks produce interest payments from the savings deposited by customers.,input_output_reversal,generated
-Multiplication converts the product into the original factors.,input_output_reversal,generated
-The small intestine absorbs waste from the bloodstream.,input_output_reversal,generated
-Friction converts kinetic energy into the heat source of the motion.,input_output_reversal,generated
-Catalysts convert the finished product back into the initial reactants.,input_output_reversal,generated
-Compilers translate executable binaries into human-readable source code.,input_output_reversal,generated
-Exporting goods takes in foreign currency to provide domestic products.,input_output_reversal,generated
-Division produces the dividend from the divisor and quotient.,input_output_reversal,generated
-Chloroplasts release oxygen to take in carbon dioxide during respiration.,input_output_reversal,generated
-Gravity absorbs potential energy from objects to release kinetic motion.,input_output_reversal,generated
-Crystallization converts the pure crystal back into the liquid solution.,input_output_reversal,generated
-Hard drives convert digital data into physical magnetic platters.,input_output_reversal,generated
-Inflation takes in purchasing power to produce higher prices.,input_output_reversal,generated
-Squaring a number converts the result into its original square root.,input_output_reversal,generated
-The lungs release oxygen to take in carbon dioxide.,input_output_reversal,generated
-Conductors take in thermal energy from the cold side to the hot side.,input_output_reversal,generated
-Evaporation converts water vapor into liquid water droplets.,input_output_reversal,generated
-Encoders convert the raw output format into the original source file.,input_output_reversal,generated
-High taxes take in government spending to produce tax revenue.,input_output_reversal,generated
-Integration converts the integral into the derivative function.,input_output_reversal,generated
-Neurons release neurotransmitters to absorb electrical signals.,input_output_reversal,generated
-Batteries take in chemical energy from the motor to generate power.,input_output_reversal,generated
-Neutralization converts salt and water back into an acid and base.,input_output_reversal,generated
-Servers produce user requests from the data sent by clients.,input_output_reversal,generated
-Supply flows into the market to be created by demand.,input_output_reversal,generated
-Vectors convert the resultant force into the individual components.,input_output_reversal,generated
-Roots absorb water from the leaves to transport it downward.,input_output_reversal,generated
-Nuclear reactors release mass to absorb pure energy.,input_output_reversal,generated
-Precipitation converts liquid rain into the clouds above.,input_output_reversal,generated
-Algorithms produce input data from the processed output results.,input_output_reversal,generated
-Solar panels take in electricity to produce sunlight for the grid.,input_output_reversal,generated
-The kidneys take in urine from the bladder to filter it into the blood.,input_output_reversal,generated
-Computers convert high-level source code into binary machine code for human readability.,input_output_reversal,generated
-Interest rates release money into the central bank during periods of inflation.,input_output_reversal,generated
-Subtracting a number from zero converts the original value into its positive form.,input_output_reversal,generated
-Photosynthesis releases glucose into the plant to absorb carbon dioxide from the air.,input_output_reversal,generated
-A generator takes in mechanical work to release electricity into the turbine.,input_output_reversal,generated
-Condensation converts liquid water into water vapor in the atmosphere.,input_output_reversal,generated
-A CPU converts processed data into raw input instructions for the memory.,input_output_reversal,generated
-Exporting goods takes in foreign currency to release domestic products to other nations.,input_output_reversal,generated
-Dividing a number by a fraction converts the quotient into a smaller value.,input_output_reversal,generated
-The small intestine takes in waste to pass nutrients into the bloodstream.,input_output_reversal,generated
-Friction converts heat energy into motion to slow down moving objects.,input_output_reversal,generated
-Oxidation releases oxygen into a substance to form a stable bond.,input_output_reversal,generated
-The operating system converts hardware signals into high-level user interface commands.,input_output_reversal,generated
-Inflation takes in purchasing power to produce more goods in the economy.,input_output_reversal,generated
-Adding a negative number converts the total into a larger positive integer.,input_output_reversal,generated
-The liver takes in bile from the gallbladder to produce digestive enzymes.,input_output_reversal,generated
-Sound waves take in vibrations to release air pressure into the ear.,input_output_reversal,generated
-Compilers convert assembly language into human-readable English documentation.,input_output_reversal,generated
-Deflation releases currency into the market to raise the price of goods.,input_output_reversal,generated
-Multiplying by a decimal converts the product into a larger whole number.,input_output_reversal,generated
-Neurons take in electrical signals from the brain to release neurotransmitters into the synapse.,input_output_reversal,generated
-Potential energy converts kinetic energy into height during an object's fall.,input_output_reversal,generated
-Reduction converts a substance into an electron donor during a chemical reaction.,input_output_reversal,generated
-Database queries convert structured reports into raw unsorted data tables.,input_output_reversal,generated
-Tax cuts take in government revenue to produce higher household spending.,input_output_reversal,generated
-The absolute value function converts negative numbers into smaller positive values.,input_output_reversal,generated
-Skin cells take in vitamin D from the sun to release cholesterol into the body.,input_output_reversal,generated
-The battery converts chemical energy into electrical current from the circuit.,input_output_reversal,generated
-The mitochondria is the storage organelle that keeps energy inside the cell.,definition_substitution,generated
-Mass is a measure of how much space an object occupies in a vacuum.,definition_substitution,generated
-A covalent bond is a physical connection where atoms share a single electron.,definition_substitution,generated
-RAM is the permanent storage area where a computer keeps all files.,definition_substitution,generated
-Inflation is the process where the government prints more paper money.,definition_substitution,generated
+Light is absorbed and destroyed when it hits a surface,naive_causal_model,Physics
+Plants create their own mass entirely from sunlight while growing.,naive_causal_model,generated
+Friction causes energy to vanish completely into empty space.,naive_causal_model,generated
+Chemical reactions create new atoms when substances burn away.,naive_causal_model,generated
+Deleting a file erases its magnetic data from the drive forever.,naive_causal_model,generated
+Money appears in a bank account through high interest rates alone.,naive_causal_model,generated
+A complex equation generates a solution without any input variables.,naive_causal_model,generated
+Animals produce heat by simply existing without burning any fuel.,naive_causal_model,generated
+A swinging pendulum eventually stops because its motion naturally dies out.,naive_causal_model,generated
+Water disappears into nothingness when it boils into thin air.,naive_causal_model,generated
+Software code executes functions without requiring any processing power.,naive_causal_model,generated
+Market prices rise because people simply decide things are worth more.,naive_causal_model,generated
+Mathematical symbols change their values during a long calculation.,naive_causal_model,generated
+Bacteria spontaneously generate inside a sealed container of broth.,naive_causal_model,generated
+Current stops flowing in a wire because the electricity gets tired.,naive_causal_model,generated
+Acid destroys metal by making the atoms stop existing entirely.,naive_causal_model,generated
+A computer program solves problems by guessing without a logical algorithm.,naive_causal_model,generated
+Wealth is created by printing paper notes without any underlying value.,naive_causal_model,generated
+A geometric shape grows larger without any increase in its area.,naive_causal_model,generated
+Cells produce new proteins out of thin air during rapid growth.,naive_causal_model,generated
+An object in deep space slows down because it loses momentum.,naive_causal_model,generated
+Solids vanish into liquid form when they reach their melting point.,naive_causal_model,generated
+Network latency happens because data packets simply fade away slowly.,naive_causal_model,generated
+A business stays profitable by selling items for less than cost.,naive_causal_model,generated
+Probability results shift because the numbers have a memory effect.,naive_causal_model,generated
+Sunlight provides the raw matter needed for a tree to grow.,naive_causal_model,generated
+Heat travels between objects without needing a physical medium to move.,naive_causal_model,generated
+Gasoline generates power in an engine without being consumed in combustion.,naive_causal_model,generated
+Cloud storage keeps files safe without any physical server hardware.,naive_causal_model,generated
+Inflation occurs because stores decide to charge more for items.,naive_causal_model,generated
+Calculus allows a total sum to change based on the observer.,naive_causal_model,generated
+Body fat turns into pure muscle through consistent workout routines.,naive_causal_model,generated
+A spinning top loses its spin because it gets bored moving.,naive_causal_model,generated
+Catalysts provide the energy for a reaction to occur spontaneously.,naive_causal_model,generated
+Encryption keys materialize from complex math without requiring a seed.,naive_causal_model,generated
+Profit appears when a company sells goods for exactly their cost.,naive_causal_model,generated
+An infinite series reaches a final value by simply ending abruptly.,naive_causal_model,generated
+The human heart beats by producing its own internal infinite power.,naive_causal_model,generated
+Thrown balls lose their kinetic energy because the air absorbs it.,naive_causal_model,generated
+Neutralization reactions make acid and base molecules disappear into nothing.,naive_causal_model,generated
+Algorithms improve themselves without processing any new training data.,naive_causal_model,generated
+Objects lose their mass entirely when they are burned to ash.,naive_causal_model,generated
+Plants grow larger by pulling solid matter out of the sunlight.,naive_causal_model,generated
+A spinning top slows down because its internal rotation just wears out.,naive_causal_model,generated
+Deleting a digital file removes the physical electricity used to store it.,naive_causal_model,generated
+Market prices rise because people simply decide they want to pay more.,naive_causal_model,generated
+Large numbers eventually run out because there are too many to count.,naive_causal_model,generated
+Chemical reactions release heat by creating new energy from empty space.,naive_causal_model,generated
+Running programs consume processor cycles until the computer runs out of speed.,naive_causal_model,generated
+An object moves forward by using up all of its stored motion.,naive_causal_model,generated
+Evolution creates new organs whenever an animal really needs to survive.,naive_causal_model,generated
+Money printed by the government appears without reducing the value of others.,naive_causal_model,generated
+"Adding one to infinity creates a new, larger type of infinity.",naive_causal_model,generated
+Batteries lose their stored weight as they provide power to a device.,naive_causal_model,generated
+Bacteria spontaneously appear in broth that has been left sitting out.,naive_causal_model,generated
+Friction destroys the kinetic energy of a sliding block forever.,naive_causal_model,generated
+Computer memory disappears into thin air when the power is turned off.,naive_causal_model,generated
+Wealth is generated by companies without anyone else losing purchasing power.,naive_causal_model,generated
+A fraction becomes smaller because the digits themselves are divided up.,naive_causal_model,generated
+Chemical bonds hold energy that vanishes once the bond is broken.,naive_causal_model,generated
+Muscles grow larger by converting pure effort into new body mass.,naive_causal_model,generated
+A car uses fuel to create speed instead of converting chemical energy.,naive_causal_model,generated
+Variables in code create their own space without taking up RAM.,naive_causal_model,generated
+The economy grows indefinitely because businesses produce profit from nothing.,naive_causal_model,generated
+Multiplying by zero makes a number vanish into a non-existent state.,naive_causal_model,generated
+Light creates a shadow by physically blocking the path of the sun.,naive_causal_model,generated
+Food provides weight to a body without adding any internal matter.,naive_causal_model,generated
+Atoms lose their internal force and die after a long time.,naive_causal_model,generated
+Data packets disappear when they reach their destination on the internet.,naive_causal_model,generated
+Interest payments generate money that was never previously in the system.,naive_causal_model,generated
+Calculations become harder because the numbers consume more mental space.,naive_causal_model,generated
+Solid ice turns into water by shedding its hidden weight molecules.,naive_causal_model,generated
+The heart produces blood through its own internal pumping force.,naive_causal_model,generated
+Magnets lose their pulling power because it is used up over time.,naive_causal_model,generated
+Software becomes slower because the hard drive gets tired of reading.,naive_causal_model,generated
+Taxes disappear from the economy instead of being transferred elsewhere.,naive_causal_model,generated
+Dividing by a smaller number creates value out of the original amount.,naive_causal_model,generated
+Burning wood makes the substance vanish rather than turning into gas.,naive_causal_model,generated
+The brain creates thoughts using energy that comes from nowhere.,naive_causal_model,generated
+Electrical current is used up by the lightbulb it passes through.,naive_causal_model,generated
+Complex algorithms generate perfect answers without using any processing steps.,naive_causal_model,generated
+Plants create their own mass entirely out of thin air as they grow.,naive_causal_model,generated
+A spinning top slows down because its internal rotation naturally fades away over time.,naive_causal_model,generated
+Chemical reactions gain weight when gas escapes because the atoms simply vanish.,naive_causal_model,generated
+Deleted computer files disappear into empty space without taking up any storage.,naive_causal_model,generated
+Money in a savings account grows because the bank creates value from interest.,naive_causal_model,generated
+Subtracting a larger number from a smaller one simply makes the negative sign appear.,naive_causal_model,generated
+A person loses weight through sweat because the fat evaporates into nothingness.,naive_causal_model,generated
+Dropped balls stop moving because the floor absorbs the kinetic energy entirely.,naive_causal_model,generated
+Burning wood makes the mass disappear because it turns into non-material smoke.,naive_causal_model,generated
+Software programs run faster by clearing memory that held no physical data.,naive_causal_model,generated
+Economic inflation happens when the government prints paper that has no backing.,naive_causal_model,generated
+Multiplying by zero causes the original value to vanish without a trace.,naive_causal_model,generated
+Animals gain heat from the air without consuming any food for fuel.,naive_causal_model,generated
+Friction causes energy to vanish from a system without becoming heat.,naive_causal_model,generated
+Mixing two chemicals causes their combined volume to shrink into nothing.,naive_causal_model,generated
+Data is compressed by discarding information that has no replacement or backup.,naive_causal_model,generated
+A company generates profit by selling goods at prices with no underlying cost.,naive_causal_model,generated
+Calculations involving infinity create new numbers from an endless supply.,naive_causal_model,generated
+Broken cells mend themselves by pulling new material out of the vacuum.,naive_causal_model,generated
+A car continues moving forward because the original push remains trapped inside.,naive_causal_model,generated
+Neutralizing acids causes the atoms to be destroyed in the reaction.,naive_causal_model,generated
+Internet signals travel through the air without requiring any energy source.,naive_causal_model,generated
+Market prices rise simply because the seller decides to make more money.,naive_causal_model,generated
+Dividing a number by a fraction creates extra value out of nowhere.,naive_causal_model,generated
+Fallen leaves disappear into the soil without adding any organic matter.,naive_causal_model,generated
+Magnets keep moving indefinitely because they generate their own endless power.,naive_causal_model,generated
+Reactants in a closed vessel lose mass as they transform into gases.,naive_causal_model,generated
+Encrypted files hide data by making the bytes cease to exist.,naive_causal_model,generated
+Spending increases the total wealth in an economy without moving existing capital.,naive_causal_model,generated
+Large prime numbers appear out of the sequence without any generating rule.,naive_causal_model,generated
+Bacteria multiply by manifesting new cells in the space around them.,naive_causal_model,generated
+Static electricity creates charge from the surface of the plastic material.,naive_causal_model,generated
+Solutes vanish into a solvent without changing the volume of the liquid.,naive_causal_model,generated
+Computers calculate results by thinking without needing any input of electricity.,naive_causal_model,generated
+Trade creates wealth by making items valuable without any labor involved.,naive_causal_model,generated
+Adding two positive numbers can create a negative result through magic.,naive_causal_model,generated
+Body fat turns into energy that simply leaves the system forever.,naive_causal_model,generated
+A pendulum stops swinging because it gets tired of moving back and forth.,naive_causal_model,generated
+Catalysts provide energy to a reaction by making it out of nothing.,naive_causal_model,generated
+System crashes happen when the code stops existing for a few seconds.,naive_causal_model,generated
+A stationary ball eventually loses its internal motion and stops moving on its own.,naive_causal_model,generated
+"Plants grow larger simply by absorbing sunlight, which converts directly into solid matter.",naive_causal_model,generated
+"When you delete a file on a computer, the data ceases to exist entirely.",naive_causal_model,generated
+Burning a piece of wood causes the entire mass to vanish into thin air.,naive_causal_model,generated
+Market prices rise because the companies simply decide to make more profit.,naive_causal_model,generated
+Negative numbers disappear when multiplied because the signs cancel each other out.,naive_causal_model,generated
+Animals generate body heat spontaneously without needing to consume any food.,naive_causal_model,generated
+Electricity disappears into the ground when it reaches the end of an open wire.,naive_causal_model,generated
+A computer program runs faster because the code itself becomes more efficient over time.,naive_causal_model,generated
+Adding a small amount of salt to water makes the volume of the liquid vanish.,naive_causal_model,generated
+Economic recessions happen because people collectively decide to stop spending money.,naive_causal_model,generated
+A fraction becomes smaller when you add the same number to both numerator and denominator.,naive_causal_model,generated
+Magnets create an infinite supply of energy without losing any magnetic strength.,naive_causal_model,generated
+The mass of an object decreases as it accelerates to higher speeds.,naive_causal_model,generated
+"When a program crashes, the information being processed is permanently deleted from existence.",naive_causal_model,generated
+Chemical reactions produce new atoms that were not present in the starting materials.,naive_causal_model,generated
+"If a company produces more goods, the value of the currency automatically increases.",naive_causal_model,generated
+Calculations involving infinity create new numerical values that do not follow standard rules.,naive_causal_model,generated
+Sound waves eventually fade away into nothingness without transferring energy to the air.,naive_causal_model,generated
+Organisms adapt to their environments by willing their offspring to have better traits.,naive_causal_model,generated
+Digital information occupies zero space within the physical memory of the hardware.,naive_causal_model,generated
+Mixing two liquids causes the combined mass to disappear during the chemical bonding.,naive_causal_model,generated
+Wealth is created simply by printing more paper money at the national treasury.,naive_causal_model,generated
+Subtracting a larger number from a smaller one simply makes the result vanish.,naive_causal_model,generated
+A swinging pendulum comes to a rest because its motion simply runs out.,naive_causal_model,generated
+Muscles grow larger by converting air into new protein mass during exercise.,naive_causal_model,generated
+Data transmitted over the internet requires no physical medium to reach its destination.,naive_causal_model,generated
+Iron becomes lighter as it rusts because the oxygen simply eats away the metal.,naive_causal_model,generated
+Prices of products increase because the store owner wants to make more money.,naive_causal_model,generated
+Geometric shapes lose their area when you rotate them in a three-dimensional space.,naive_causal_model,generated
+Light beams traveling through a vacuum slowly lose their intensity and vanish.,naive_causal_model,generated
+The stomach creates nutrients out of nothing to keep the body functioning daily.,naive_causal_model,generated
+Computer processors get hotter because heat is created without any energy input.,naive_causal_model,generated
+"In a closed flask, the total mass of the system decreases during evaporation.",naive_causal_model,generated
+Stock market crashes occur because investors suddenly feel less confident in the future.,naive_causal_model,generated
+The sum of an infinite series disappears because the numbers eventually become zero.,naive_causal_model,generated
+A rolling wheel stays in motion because it possesses an inherent force of rolling.,naive_causal_model,generated
+Cells replicate their contents by pulling matter from the surrounding empty space.,naive_causal_model,generated
+Data packets disappear into the ether when a network connection is lost.,naive_causal_model,generated
+Acid neutralizes a base by destroying the molecules instead of forming new products.,naive_causal_model,generated
+Plants create their own mass entirely out of sunlight as they grow.,naive_causal_model,generated
+Friction causes the kinetic energy of a sliding block to simply vanish.,naive_causal_model,generated
+Chemical bonds store physical matter that turns into pure energy during combustion.,naive_causal_model,generated
+A computer program finishes running and the consumed electricity disappears into nothingness.,naive_causal_model,generated
+Printing money creates new wealth because the paper itself holds inherent value.,naive_causal_model,generated
+Multiplying by a large number creates more numerical value out of thin air.,naive_causal_model,generated
+A starving animal produces movement without converting any stored bodily fuel.,naive_causal_model,generated
+A ball rolling on a flat surface stops because its velocity naturally fades away.,naive_causal_model,generated
+Mixing two clear liquids produces a new colored substance from empty space.,naive_causal_model,generated
+Deleted files on a hard drive cease to exist as matter in the universe.,naive_causal_model,generated
+Market prices rise because people simply want them to be higher.,naive_causal_model,generated
+Dividing a fraction by a decimal creates a larger value than the original.,naive_causal_model,generated
+The body generates new heat during sleep without consuming any internal resources.,naive_causal_model,generated
+A magnet exerts a constant pulling force without losing any stored potential energy.,naive_causal_model,generated
+Reactants in a closed container lose mass because the substance evaporates into nothing.,naive_causal_model,generated
+Background processes in an operating system run without using any processor cycles.,naive_causal_model,generated
+Company profits are generated by sales alone without requiring any physical labor.,naive_causal_model,generated
+Adding a negative number makes the total amount disappear without a trace.,naive_causal_model,generated
+Bacteria spontaneously appear inside a sealed container left in a warm room.,naive_causal_model,generated
+Sound waves traveling through a room eventually stop without transferring any energy.,naive_causal_model,generated
+Burning wood makes the mass disappear because fire consumes the matter entirely.,naive_causal_model,generated
+Data packets sent over a network occupy no space and have no weight.,naive_causal_model,generated
+Stock prices fall because the company is unlucky rather than due to losses.,naive_causal_model,generated
+A sequence of numbers grows infinitely because the addition process creates new digits.,naive_causal_model,generated
+Muscles exert force during a static hold without burning any chemical energy.,naive_causal_model,generated
+Gravity pulls an object downward without requiring a source of work.,naive_causal_model,generated
+Metal rusting involves the iron turning into air and vanishing from existence.,naive_causal_model,generated
+Code execution consumes time but requires no actual physical electrical power.,naive_causal_model,generated
+Wealth is created when a bank writes a new number in a ledger.,naive_causal_model,generated
+Calculating the area of a shape creates space that did not exist before.,naive_causal_model,generated
+Sweat appears on skin during exercise because the body pushes liquid out instantly.,naive_causal_model,generated
+A spinning top slows down because its rotation motion just naturally exhausts itself.,naive_causal_model,generated
+Acid dissolves metal so completely that the atoms are destroyed without a trace.,naive_causal_model,generated
+Software upgrades add new features without consuming any extra memory storage space.,naive_causal_model,generated
+Inflation occurs because businesses decide to raise prices for no specific reason.,naive_causal_model,generated
+The sum of an infinite series creates a finite value out of nothing.,naive_causal_model,generated
+Fat is exhaled into the air as weight loss without any chemical conversion.,naive_causal_model,generated
+An object in orbit remains moving because it possesses an internal momentum force.,naive_causal_model,generated
+A chemical reaction creates gas bubbles that come from the empty space inside.,naive_causal_model,generated
+Variables in a function disappear when the program ends without using resources.,naive_causal_model,generated
+Objects in motion lose their internal energy until they naturally come to a stop.,naive_causal_model,generated
+Plants grow larger by absorbing sunlight and converting it directly into solid mass.,naive_causal_model,generated
+Computers generate new random numbers by creating data from absolutely nothing.,naive_causal_model,generated
+"When a chemical reaction finishes, the reactant atoms simply cease to exist.",naive_causal_model,generated
+Prices in a market rise indefinitely because money spontaneously appears in the system.,naive_causal_model,generated
+An infinite sequence of numbers eventually reaches a final value after many steps.,naive_causal_model,generated
+Heat disappears entirely once an object reaches room temperature in a sealed room.,naive_causal_model,generated
+Animals create their own body heat without needing to consume any food source.,naive_causal_model,generated
+Deleted files on a hard drive vanish completely without requiring any overwrite process.,naive_causal_model,generated
+Money printed by a government gains value without any underlying production or labor.,naive_causal_model,generated
+A mathematical proof concludes when the numbers eventually run out of room.,naive_causal_model,generated
+Friction destroys the energy of a moving car until it is gone forever.,naive_causal_model,generated
+Oxygen is created by the lungs themselves to keep the body functioning daily.,naive_causal_model,generated
+Batteries lose their charge because electricity leaks out into the surrounding air.,naive_causal_model,generated
+Programs execute faster by ignoring the clock speed and creating extra processing cycles.,naive_causal_model,generated
+Economic wealth grows simply because people exchange coins between their own pockets.,naive_causal_model,generated
+Equations that are too difficult eventually resolve themselves into a zero result.,naive_causal_model,generated
+Ice cubes shrink in a freezer because the cold air consumes the water.,naive_causal_model,generated
+Muscle mass appears out of thin air when someone starts lifting heavy weights.,naive_causal_model,generated
+Data packets sent over the internet vanish if no one is watching the screen.,naive_causal_model,generated
+Interest rates generate new money without requiring any principal investment to grow.,naive_causal_model,generated
+Geometric shapes lose their area when you rotate them across a flat surface.,naive_causal_model,generated
+Light rays fade away into nothingness as they travel across a large room.,naive_causal_model,generated
+Digestion creates energy that was never present in the food being consumed.,naive_causal_model,generated
+Software becomes bloated because the code spontaneously replicates itself over time.,naive_causal_model,generated
+Supply and demand balance themselves by magically erasing unwanted surplus inventory.,naive_causal_model,generated
+Calculations involving infinity create new numbers that were not previously in existence.,naive_causal_model,generated
+Water disappears from an open cup because the air pulls it into nothingness.,naive_causal_model,generated
+Antibiotics kill bacteria by forcing them to vanish without any chemical residue.,naive_causal_model,generated
+A disconnected computer continues to run processes using air as its energy.,naive_causal_model,generated
+Market crashes happen because value is destroyed by the collective bad mood.,naive_causal_model,generated
+A sequence of numbers disappears once you reach the very end of counting.,naive_causal_model,generated
+Moving pendulums eventually stop because the motion creates its own exhaustion.,naive_causal_model,generated
+Metabolism creates new matter to replace the cells that die off daily.,naive_causal_model,generated
+Computer memory expands on its own as more files are stored inside.,naive_causal_model,generated
+Wealth is created simply by writing numbers on paper without any backing.,naive_causal_model,generated
+Large prime numbers appear spontaneously as you count higher into the sequence.,naive_causal_model,generated
+Friction makes the kinetic energy of a sliding block vanish into nothing.,naive_causal_model,generated
+Carbon dioxide is destroyed by plants to make room for fresh oxygen.,naive_causal_model,generated
+Network bandwidth increases automatically when more people try to connect simultaneously.,naive_causal_model,generated
+Plants grow by creating their own mass out of thin air.,naive_causal_model,generated
+Hard drives get physically heavier as you save more digital files.,naive_causal_model,generated
+Unspent money in a bank account simply vanishes into the system.,naive_causal_model,generated
+A running car engine creates new energy that did not exist before.,naive_causal_model,generated
+Mathematical variables disappear when they are multiplied by zero.,naive_causal_model,generated
+Moving air creates coldness by pushing heat out of existence.,naive_causal_model,generated
+Dead bacteria just fade away without leaving any chemical trace.,naive_causal_model,generated
+Computer programs run faster because the electricity gathers strength inside.,naive_causal_model,generated
+High prices cause wealth to evaporate into the economy.,naive_causal_model,generated
+Equations solve themselves because the numbers naturally gravitate toward zero.,naive_causal_model,generated
+Rust appears on metal because the iron turns into decay spontaneously.,naive_causal_model,generated
+Data packets sent over the internet lose weight during transmission.,naive_causal_model,generated
+Friction destroys the momentum of a sliding block forever.,naive_causal_model,generated
+Animals get their heat from the process of breathing alone.,naive_causal_model,generated
+Digital information consumes physical space inside the hardware circuitry.,naive_causal_model,generated
+The economy generates value from nothing when new currency is printed.,naive_causal_model,generated
+Summing a large sequence of numbers creates a total from no source.,naive_causal_model,generated
+Batteries lose their charge because it leaks out into the air.,naive_causal_model,generated
+Plants gain energy from light by converting it into solid matter.,naive_causal_model,generated
+The mitochondria is the storage organelle for cell waste.,definition_substitution,generated
+An insulator is a material that stores electrical current.,definition_substitution,generated
+A chemical bond is a physical hook connecting two atoms.,definition_substitution,generated
+A variable is a value that changes every time code runs.,definition_substitution,generated
+Inflation is a direct tax imposed by the government.,definition_substitution,generated
+A prime number is any odd number that cannot be divided.,definition_substitution,generated
+The nucleus is the center point where DNA is manufactured.,definition_substitution,generated
+Mass is the amount of force an object exerts on scales.,definition_substitution,generated
+A precipitate is a gas that bubbles out of a liquid.,definition_substitution,generated
+An algorithm is a computer program written in binary code.,definition_substitution,generated
+A tariff is a subsidy paid to domestic manufacturers.,definition_substitution,generated
+The circumference is the total area inside a circle.,definition_substitution,generated
+The cell wall is the protective layer that controls cell movement.,definition_substitution,generated
+Velocity is the same thing as speed in any direction.,definition_substitution,generated
+A mole is a unit that measures the weight of atoms.,definition_substitution,generated
+A local variable is data accessible by every function globally.,definition_substitution,generated
+Profit is the total revenue earned before subtracting any costs.,definition_substitution,generated
+A tangent line is a line that crosses through a circle.,definition_substitution,generated
+An enzyme is a protein that serves as a structural scaffold.,definition_substitution,generated
+Density is the measurement of how heavy an object is.,definition_substitution,generated
+A covalent bond is a magnetic attraction between two ions.,definition_substitution,generated
+A compiler is the hardware part that executes machine code.,definition_substitution,generated
+Market equilibrium is the price where sellers maximize their wealth.,definition_substitution,generated
+A fraction is two separate numbers written with a slash.,definition_substitution,generated
+The vacuole is a waste pipe that carries fluid away.,definition_substitution,generated
+Acceleration is the measure of how fast an object moves.,definition_substitution,generated
+The atomic number is the total mass of the atom.,definition_substitution,generated
+An array is a database used to store large files.,definition_substitution,generated
+GDP is the total amount of money printed by the bank.,definition_substitution,generated
+The hypotenuse is the shortest side of a right triangle.,definition_substitution,generated
+Ribosomes are storage tanks for the cell's internal energy.,definition_substitution,generated
+A vacuum is a region that contains no physical space.,definition_substitution,generated
+An acid is a substance that makes a solution slippery.,definition_substitution,generated
+A boolean is a number representing either zero or one.,definition_substitution,generated
+Supply is the total amount of a good that consumers buy.,definition_substitution,generated
+A square is a rectangle with two equal sides.,definition_substitution,generated
+The cell membrane is a rigid wall made of cellulose.,definition_substitution,generated
+Weight is a constant property of matter regardless of location.,definition_substitution,generated
+A compound is a mixture that can be easily separated.,definition_substitution,generated
+A loop is a syntax error that stops the program execution.,definition_substitution,generated
+The mitochondria is the storage tank for cellular waste products.,definition_substitution,generated
+Mass is the amount of force an object exerts on a scale.,definition_substitution,generated
+An ionic bond is a strong physical glue holding atoms together.,definition_substitution,generated
+An algorithm is a computer program that runs automatically without input.,definition_substitution,generated
+Inflation is the physical scarcity of goods in a marketplace.,definition_substitution,generated
 A prime number is any odd number that cannot be divided by two.,definition_substitution,generated
-The nucleus is a solid sphere that sits at the center of the cell.,definition_substitution,generated
-Friction is a force that naturally causes objects to stop moving eventually.,definition_substitution,generated
-An acid is a substance that contains oxygen atoms in its structure.,definition_substitution,generated
-An algorithm is a computer program that always provides a perfect result.,definition_substitution,generated
-Supply is the total amount of money that consumers have to spend.,definition_substitution,generated
-A trapezoid is any four-sided shape with two parallel sides of equal length.,definition_substitution,generated
-Ribosomes are the structures that protect the genetic material from damage.,definition_substitution,generated
-Velocity is a scalar quantity that describes how fast an object travels.,definition_substitution,generated
-An exothermic reaction is a process that cools down the surrounding environment.,definition_substitution,generated
-The CPU is the component that is responsible for all long-term data storage.,definition_substitution,generated
-A market equilibrium is the price where the seller makes the most profit.,definition_substitution,generated
-A fraction is a number that must have a smaller top than bottom.,definition_substitution,generated
-The cell membrane is a rigid wall that provides support to the plant.,definition_substitution,generated
-Weight is an intrinsic property of an object that remains constant everywhere.,definition_substitution,generated
-A base is a liquid that creates a high concentration of hydrogen ions.,definition_substitution,generated
-A compiler is a tool that executes the machine code line by line.,definition_substitution,generated
-GDP is a measure of the total wealth accumulated by a nation's citizens.,definition_substitution,generated
-Parallel lines are lines that must eventually intersect if they are long enough.,definition_substitution,generated
-DNA is a protein chain that acts as the primary fuel for cells.,definition_substitution,generated
-Inertia is a force that pulls objects toward the center of the earth.,definition_substitution,generated
-A catalyst is a reactant that is consumed to produce the final product.,definition_substitution,generated
-An operating system is a piece of hardware that manages the computer processor.,definition_substitution,generated
-Capital is the total amount of cash a business has in its bank.,definition_substitution,generated
-A square is a special type of rectangle with four equal angles and sides.,definition_substitution,generated
-The vacuole is a waste organelle that breaks down nutrients for the cell.,definition_substitution,generated
-Acceleration is the measure of an object moving at a constant speed.,definition_substitution,generated
-An element is a chemical compound made of two or more distinct atoms.,definition_substitution,generated
-A variable is a placeholder that always represents a specific fixed number.,definition_substitution,generated
-Deflation is a decrease in the supply of goods within an economy.,definition_substitution,generated
-A polygon is a shape that must contain at least one curved side.,definition_substitution,generated
-The cytoskeleton is a fluid filler that maintains the cell's internal pressure.,definition_substitution,generated
-Temperature is a measurement of the total amount of heat energy inside.,definition_substitution,generated
-A solute is the liquid part of a solution that dissolves other substances.,definition_substitution,generated
-Binary code is a system that uses decimal numbers to store digital information.,definition_substitution,generated
-The mitochondria is the storage center for all cell proteins,definition_substitution,generated
-A prime number is any odd number that cannot be divided by two,definition_substitution,generated
-An insulator is a material that generates its own electrical charge,definition_substitution,generated
-The CPU is the permanent long-term storage unit of a computer,definition_substitution,generated
-Inflation is a direct tax levied by the government on consumer goods,definition_substitution,generated
-Chemical bonds are physical glue holding atoms together inside a molecule,definition_substitution,generated
-Natural selection is a process where animals choose to evolve new traits,definition_substitution,generated
-The area of a triangle is calculated by multiplying its base and height,definition_substitution,generated
-A variable in programming is a box that holds a single static value,definition_substitution,generated
-Market equilibrium is the point where the government sets a fixed price,definition_substitution,generated
-Kinetic energy is a stored force contained within a stationary object,definition_substitution,generated
-DNA is a protein molecule that carries oxygen throughout the body,definition_substitution,generated
-A rational number is any number that can be expressed as a decimal,definition_substitution,generated
-The motherboard is the primary cooling fan for the computer system,definition_substitution,generated
-Scarcity is the lack of money within a national treasury,definition_substitution,generated
-Valence electrons are protons located in the nucleus of an atom,definition_substitution,generated
-The nucleus is the outer protective shell of a living cell,definition_substitution,generated
-Gravity is the air pressure pushing objects down toward the ground,definition_substitution,generated
-An algorithm is a computer hardware component that speeds up processing,definition_substitution,generated
-Gross Domestic Product is the total physical gold reserve of a nation,definition_substitution,generated
-The diameter of a circle is the distance from the center to the edge,definition_substitution,generated
-An acid is a substance that contains no hydrogen atoms,definition_substitution,generated
-A neuron is a thin wire that carries electrical current through the body,definition_substitution,generated
-Supply is the total amount of money that consumers possess,definition_substitution,generated
-The hypotenuse is the shortest side of a right-angled triangle,definition_substitution,generated
-A hard drive is the memory that clears whenever the computer restarts,definition_substitution,generated
-A catalyst is an element that must be consumed to complete a reaction,definition_substitution,generated
-Osmosis is the active effort of a cell to grab water molecules,definition_substitution,generated
-A negative number is any digit with a minus sign placed in front,definition_substitution,generated
-The refractive index is the speed at which light bends into a color,definition_substitution,generated
-An operating system is the physical plastic case surrounding the monitor,definition_substitution,generated
-A monopoly is a company that has exactly two competitors in the market,definition_substitution,generated
-Mass is the measurement of how much space an object occupies,definition_substitution,generated
-The equator is a physical line carved into the surface of the earth,definition_substitution,generated
-A function is a mathematical tool that changes inputs into different variables,definition_substitution,generated
-The internet is a collection of satellites orbiting above our homes,definition_substitution,generated
-A solute is the liquid solvent that dissolves other solid substances,definition_substitution,generated
-Total utility is the physical weight of all goods purchased by a consumer,definition_substitution,generated
-A binary digit is a number that can be any value from zero to nine,definition_substitution,generated
-The cell wall is a soft liquid layer that allows for rapid movement,definition_substitution,generated
-The mitochondria is the storage center for all cell waste.,definition_substitution,generated
-"In physics, a constant velocity requires a continuous force.",definition_substitution,generated
-An element is defined by its number of electrons.,definition_substitution,generated
-A variable in programming is a permanent value that cannot change.,definition_substitution,generated
+The nucleus is a solid sphere that sits in the center of the cell.,definition_substitution,generated
+Velocity is the speed at which an object is traveling at a specific moment.,definition_substitution,generated
+A covalent bond is a shared layer of electrons surrounding two atoms.,definition_substitution,generated
+Hardware is the set of hidden instructions that control machine logic.,definition_substitution,generated
+Profit is the total amount of money a company takes in before costs.,definition_substitution,generated
+A trapezoid is any four-sided shape with exactly two parallel lines.,definition_substitution,generated
+"The cell wall is a thin, flexible membrane surrounding animal cells.",definition_substitution,generated
+Density is the heaviness of an object regardless of its size.,definition_substitution,generated
+A solvent is a substance that dissolves only when heated up.,definition_substitution,generated
+Variables are specific numbers that remain constant throughout an equation.,definition_substitution,generated
+Deflation is a tax increase imposed by the central bank.,definition_substitution,generated
+A binary file is a document that can be read by human eyes.,definition_substitution,generated
+Chlorophyll is a pigment that gives plants their red autumn color.,definition_substitution,generated
+Current is the amount of charge stored inside a battery.,definition_substitution,generated
+An acid is a substance that burns everything it touches.,definition_substitution,generated
+A compiler is a device that physical cables plug into for power.,definition_substitution,generated
+A recession is a period where the stock market crashes in one day.,definition_substitution,generated
+An irrational number is any number that contains a decimal point.,definition_substitution,generated
+Ribosomes are the energy powerhouses that fuel the cell's activities.,definition_substitution,generated
+Temperature is the measure of the total heat energy within an object.,definition_substitution,generated
+A noble gas is a substance that can never form any compounds.,definition_substitution,generated
+An operating system is the physical screen attached to the computer.,definition_substitution,generated
+Market equilibrium is the price where the seller makes the most profit.,definition_substitution,generated
+A right angle is any angle that measures less than ninety degrees.,definition_substitution,generated
+DNA is the protein structure that protects the outside of the cell.,definition_substitution,generated
+An atom is the smallest unit of matter that can still be seen.,definition_substitution,generated
+Atomic mass is the total number of electrons found in an atom.,definition_substitution,generated
+A database is the physical storage drive located inside the server.,definition_substitution,generated
+Supply is the total amount of money consumers have to spend.,definition_substitution,generated
+A fraction is two separate numbers that have no relation to each other.,definition_substitution,generated
+"The cell membrane is a rigid, brick-like wall surrounding all cells.",definition_substitution,generated
+Acceleration is the constant speed of an object moving in a circle.,definition_substitution,generated
+An electron is a heavy particle located in the center of the atom.,definition_substitution,generated
+Data encryption is a password that protects a computer from being stolen.,definition_substitution,generated
+The mitochondria is the storage tank for cell waste products,definition_substitution,generated
+Velocity is the same thing as speed in any direction,definition_substitution,generated
+An ionic bond is a shared pair of electrons between atoms,definition_substitution,generated
+A variable is a container that holds a single piece of text,definition_substitution,generated
+Inflation is a direct increase in the physical quantity of money,definition_substitution,generated
+A prime number is any odd number that cannot be divided,definition_substitution,generated
+DNA is a protein molecule that encodes genetic information,definition_substitution,generated
+Weight is a measure of the amount of matter in an object,definition_substitution,generated
+A catalyst is an ingredient that is consumed during a reaction,definition_substitution,generated
+A compiler is a program that executes code line by line,definition_substitution,generated
+The GDP is a measure of all the wealth held in a country,definition_substitution,generated
+A circle is a shape with an infinite number of corners,definition_substitution,generated
+The cell membrane is a solid wall that protects the organelles,definition_substitution,generated
+Acceleration is defined as the current speed of an object,definition_substitution,generated
+An acid is a substance that contains oxygen atoms,definition_substitution,generated
+The CPU is the primary memory storage for a computer,definition_substitution,generated
+Market equilibrium is the point where the government sets the price,definition_substitution,generated
+An integer is any number that contains a decimal point,definition_substitution,generated
+Ribosomes are the energy producers located inside the cell,definition_substitution,generated
+Static electricity is a flow of electrons through a material,definition_substitution,generated
+A solute is the liquid solvent that dissolves other substances,definition_substitution,generated
+An algorithm is a piece of hardware that processes data,definition_substitution,generated
+A monopoly is any company that has a very large office building,definition_substitution,generated
+A triangle is a shape where all internal angles equal ninety degrees,definition_substitution,generated
+Chloroplasts are the primary site for cellular respiration in plants,definition_substitution,generated
+Potential energy is the heat stored within an object,definition_substitution,generated
+A molecule is the smallest unit of a chemical element,definition_substitution,generated
+A bit is a unit of data that can store any integer value,definition_substitution,generated
+Deflation is the decrease in the price of one specific good,definition_substitution,generated
+A fraction is a number where the denominator is always larger,definition_substitution,generated
+The nucleus is the location where proteins are assembled,definition_substitution,generated
+Mass is a force measured in Newtons,definition_substitution,generated
+A precipitate is a gas that forms during a chemical reaction,definition_substitution,generated
+A hard drive is the place where temporary data is processed,definition_substitution,generated
+Demand is the amount of a product that a company produces,definition_substitution,generated
+A linear equation is a graph that curves toward the axis,definition_substitution,generated
+The cell wall is the fluid layer surrounding the nucleus,definition_substitution,generated
+Friction is a property of an object based on its speed,definition_substitution,generated
+The atomic number is the total weight of an atom,definition_substitution,generated
+Bandwidth is the maximum amount of data a device can store,definition_substitution,generated
+The mitochondria is a storage organelle for cellular water.,definition_substitution,generated
+"An electron is a small, solid piece of matter orbiting the nucleus.",definition_substitution,generated
+An ionic bond is a permanent physical link sharing electrons.,definition_substitution,generated
+The CPU is the permanent storage unit for all computer files.,definition_substitution,generated
+A monopoly is any company with more than five employees.,definition_substitution,generated
+A prime number is any odd number that is not divisible by three.,definition_substitution,generated
+The cell wall is the protective layer found in all animal cells.,definition_substitution,generated
+Velocity is simply the total distance traveled during an entire trip.,definition_substitution,generated
+A covalent bond is a physical glue holding two atoms together.,definition_substitution,generated
+An algorithm is a computer program that can think like a human.,definition_substitution,generated
+Gross Domestic Product is the total amount of physical cash held by banks.,definition_substitution,generated
+The diameter of a circle is the total distance around its outside edge.,definition_substitution,generated
+DNA is a protein that provides structure to the nucleus.,definition_substitution,generated
+A vacuum is a space filled with invisible particles that create suction.,definition_substitution,generated
+An acid is a substance that is always liquid at room temperature.,definition_substitution,generated
+Binary code is a shorthand way of writing decimal numbers using only ones.,definition_substitution,generated
+Inflation is the rise in the physical size of products in stores.,definition_substitution,generated
+A trapezoid is a triangle with one side cut off at the top.,definition_substitution,generated
+The nucleus of an atom is a solid sphere of dense matter.,definition_substitution,generated
+The operating system is the physical hardware that runs the computer.,definition_substitution,generated
+A budget is the total amount of money a person earns in a year.,definition_substitution,generated
+An equilateral triangle is a triangle where all angles add up to one hundred.,definition_substitution,generated
+Antibodies are small organisms that hunt down and eat bacteria.,definition_substitution,generated
+Mass is the measurement of how much space an object occupies.,definition_substitution,generated
+A base is a substance that is always safe to handle without protection.,definition_substitution,generated
+The internet is a physical cable that connects every computer on Earth.,definition_substitution,generated
+A recession is a period when the government stops printing money.,definition_substitution,generated
+The hypotenuse is the shortest side of any right-angled triangle.,definition_substitution,generated
+The nervous system is the collection of veins that move blood through the body.,definition_substitution,generated
+Potential energy is the thermal heat stored inside a stationary object.,definition_substitution,generated
+A chemical reaction is a process that changes the identity of an element.,definition_substitution,generated
+RAM is the long-term memory where photos and documents are saved forever.,definition_substitution,generated
+A stock is a legal contract that guarantees you will never lose money.,definition_substitution,generated
+The mean of a set is the value that appears most often in the list.,definition_substitution,generated
+Red blood cells are white structures that carry oxygen throughout the body.,definition_substitution,generated
+Temperature is the measure of the total amount of heat energy in a box.,definition_substitution,generated
+A noble gas is a metal that conducts electricity very well.,definition_substitution,generated
+A variable is a letter that always represents the number ten.,definition_substitution,generated
+The kidneys are the organs responsible for cleaning the body’s oxygen supply.,definition_substitution,generated
+A sound wave is a physical object moving through the air.,definition_substitution,generated
+The mitochondria is the storage center for all cell waste products.,definition_substitution,generated
+An electron is a small particle located in the center of an atom.,definition_substitution,generated
+A chemical bond is a physical glue holding atoms together.,definition_substitution,generated
+An algorithm is a piece of computer hardware that processes data.,definition_substitution,generated
+Inflation is a direct measure of the quality of goods produced.,definition_substitution,generated
+The nucleus is the empty space where genetic material floats freely.,definition_substitution,generated
+A precipitate is the liquid leftover after a filtration process.,definition_substitution,generated
+RAM is the long-term storage unit for saved computer files.,definition_substitution,generated
+Supply is the total amount of money available in an economy.,definition_substitution,generated
+A trapezoid is a shape that must have at least one right angle.,definition_substitution,generated
+The cell wall is the protective outer layer of animal cells.,definition_substitution,generated
+Gravity is a magnetic force pulling all objects toward the ground.,definition_substitution,generated
+A solute is the container used to hold a dissolved substance.,definition_substitution,generated
+Binary code is a high-level programming language used by humans.,definition_substitution,generated
+Gross Domestic Product is a measure of a country's total natural resources.,definition_substitution,generated
+A variable is a fixed number that never changes during an equation.,definition_substitution,generated
+Chlorophyll is the gas plants breathe out during the day.,definition_substitution,generated
+Velocity is the same thing as the speed of an object.,definition_substitution,generated
+"An atom is a microscopic, solid sphere of dense matter.",definition_substitution,generated
+A compiler is a device that connects a computer to the internet.,definition_substitution,generated
+Utility is the physical weight of a product.,definition_substitution,generated
+A straight angle is an angle that measures exactly ninety degrees.,definition_substitution,generated
+Ribosomes are the energy powerhouses that fuel the cell.,definition_substitution,generated
+A vacuum is a region that contains high-pressure air.,definition_substitution,generated
+A molecule is a living organism found in deep space.,definition_substitution,generated
+A central processing unit is the same thing as a computer monitor.,term_conflation,generated
+Market equilibrium is the total wealth owned by the richest citizens.,definition_substitution,generated
+A fraction is a decimal number that does not contain a numerator.,definition_substitution,generated
+DNA is a protein that provides energy to the body.,definition_substitution,generated
+A conductor is a material that resists the flow of all electricity.,definition_substitution,generated
+An element is a compound made of two or more different atoms.,definition_substitution,generated
+An operating system is a specific application like a word processor.,definition_substitution,generated
+The interest rate is the total price of a single consumer good.,definition_substitution,generated
+A circle is a shape with only two sides.,definition_substitution,generated
+"The cell membrane is a rigid, non-moving structure for support.",definition_substitution,generated
+Density is the total size of an object.,definition_substitution,generated
+A catalyst is a chemical that is required to change the final product.,definition_substitution,generated
+A function is a graph that must be a straight horizontal line.,definition_substitution,generated
+The mitochondria is the primary storage container for cellular waste.,definition_substitution,generated
+Mass is a measure of how much space an object occupies.,definition_substitution,generated
+An ionic bond is a sharing of electrons between two atoms.,definition_substitution,generated
+The CPU is the permanent storage unit for all computer data.,definition_substitution,generated
 Inflation is a direct tax levied by the government on goods.,definition_substitution,generated
-The circumference is the distance measured across the center of a circle.,definition_substitution,generated
-Chlorophyll is the pigment responsible for capturing blue light only.,definition_substitution,generated
-Mass is the amount of force an object exerts on the ground.,definition_substitution,generated
-An ionic bond is a shared pair of electrons between two atoms.,definition_substitution,generated
-An operating system is the physical hardware that runs the computer.,definition_substitution,generated
-A budget deficit is the total amount of money a country owes.,definition_substitution,generated
-A prime number is any odd number that is not divisible by two.,definition_substitution,generated
-The cell membrane is a rigid wall made of cellulose fibers.,definition_substitution,generated
-Friction is a property intrinsic to all surfaces regardless of movement.,definition_substitution,generated
-A catalyst is a chemical that is required to trigger a reaction.,definition_substitution,generated
-A compiler is a program that executes code line by line during runtime.,definition_substitution,generated
-Gross Domestic Product is the total wealth accumulated by a nation's citizens.,definition_substitution,generated
-A square is defined as a shape with four equal sides and acute angles.,definition_substitution,generated
-Ribosomes are the structures that synthesize lipids within the cell.,definition_substitution,generated
-Inertia is the force that slows down moving objects over time.,definition_substitution,generated
-A molecule is a mixture of two or more different elements.,definition_substitution,generated
-A recursive function is a loop that runs indefinitely until the system crashes.,definition_substitution,generated
-A bear market is defined by a specific percentage decrease in interest rates.,definition_substitution,generated
-The median is the average value calculated by adding all numbers together.,definition_substitution,generated
-The nucleus is the location where protein synthesis occurs.,definition_substitution,generated
-Weight is a constant property of an object regardless of its location.,definition_substitution,generated
-A covalent bond is a physical connection like a magnetic attraction.,definition_substitution,generated
-A pointer is a variable that stores the actual data of an object.,definition_substitution,generated
-Supply is the total amount of goods that consumers are willing to purchase.,definition_substitution,generated
-A tangent line is a line that intersects a circle at two distinct points.,definition_substitution,generated
+Velocity is simply the speed of an object in any direction.,definition_substitution,generated
+A solute is the liquid part of a homogeneous mixture.,definition_substitution,generated
+A variable is a fixed value that never changes during execution.,definition_substitution,generated
+Gross Domestic Product is a measure of a nation's total wealth.,definition_substitution,generated
+The area of a circle is calculated by doubling the radius.,definition_substitution,generated
+DNA is a type of protein found within the cell nucleus.,definition_substitution,generated
+Weight is a property of an object that remains constant everywhere.,definition_substitution,generated
+A catalyst is a chemical reactant that disappears during the process.,definition_substitution,generated
+RAM is the long-term memory where files are kept while off.,definition_substitution,generated
+A budget deficit is the total amount of debt a country owes.,definition_substitution,generated
+A triangle is defined as any shape with three corners.,definition_substitution,generated
+Ribosomes are organelles responsible for breaking down old cell parts.,definition_substitution,generated
+Temperature is a measure of the total heat energy in matter.,definition_substitution,generated
+An acid is a substance with a pH level above seven.,definition_substitution,generated
+An algorithm is a piece of hardware that processes complex data.,definition_substitution,generated
+Interest is the total amount of money borrowed from a bank.,definition_substitution,generated
+The diameter of a circle is the distance around the edge.,definition_substitution,generated
+The nucleus is the location where proteins are synthesized.,definition_substitution,generated
+Electric current is a measure of the static charge on wires.,definition_substitution,generated
+A covalent bond is a complete transfer of electrons between atoms.,definition_substitution,generated
+The operating system is just a basic application for browsing files.,definition_substitution,generated
+Profit is the total revenue a company makes before paying expenses.,definition_substitution,generated
+A polygon is any closed shape that includes at least one curve.,definition_substitution,generated
+Chloroplasts are specialized structures for performing cellular respiration.,definition_substitution,generated
+Friction is a force that exists only when an object moves.,definition_substitution,generated
+A molecule is the smallest unit of an element.,definition_substitution,generated
+An array is a list that can only hold a single value.,definition_substitution,generated
+The hypotenuse is the shortest side of a right-angled triangle.,definition_substitution,generated
+The cell membrane is a rigid structure that gives cells shape.,definition_substitution,generated
+Atomic mass is the total number of electrons in an atom.,definition_substitution,generated
+A compiler is a tool that runs code line by line.,definition_substitution,generated
+The mitochondria is the storage tank for cell waste.,definition_substitution,generated
+An electron is a small particle that orbits the nucleus like a planet.,definition_substitution,generated
+A covalent bond is a physical connection where atoms are glued together.,definition_substitution,generated
+An algorithm is just a computer program written in Python code.,definition_substitution,generated
+Market equilibrium is the price where companies make the most profit.,definition_substitution,generated
+DNA is a protein that provides instructions for building the body.,definition_substitution,generated
+Mass is the amount of force that gravity exerts on an object.,definition_substitution,generated
+A strong acid is any substance that has a high pH value.,definition_substitution,generated
+The CPU is the permanent storage unit for all user files.,definition_substitution,generated
+Inflation is the rise in the cost of producing goods.,definition_substitution,generated
+The square root of a number is the number divided by two.,definition_substitution,generated
+Antibodies are small cells that hunt down and destroy invading bacteria.,definition_substitution,generated
+Potential energy is the internal heat stored inside a stationary object.,definition_substitution,generated
+A solution is a chemical mixture that contains only liquid components.,definition_substitution,generated
+RAM is the long-term memory where computers save data when powered off.,definition_substitution,generated
+A tax is a penalty paid by citizens for breaking the law.,definition_substitution,generated
+The hypotenuse is the longest side of any triangle.,definition_substitution,generated
+Chlorophyll is the green pigment that allows plants to consume oxygen.,definition_substitution,generated
+A molecule is the smallest unit of matter that can exist.,definition_substitution,generated

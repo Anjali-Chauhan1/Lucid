@@ -228,10 +228,12 @@ export async function runAnalysis(
   const gaps: Gap[] = [];
   let coverageScore = 0;
   let nodeSimSum = 0;
+  const bestPerNode: number[] = [];
   concept.nodes.forEach((node, i) => {
     let best = 0;
     for (const sv of segVecs) best = Math.max(best, cosine(sv, nodeVecs[i]));
     nodeSimSum += best;
+    bestPerNode.push(best);
     if (best >= COVERAGE_THRESHOLD) {
       coverageScore += node.weight;
       covered.push({ nodeId: node.id, nodeText: node.text, similarity: best });
@@ -241,6 +243,25 @@ export async function runAnalysis(
   });
   const meanNodeSimilarity = nodeSimSum / Math.max(1, concept.nodes.length);
   t("coverage", s);
+
+  // 3b. Distribution-shape features over bestPerNode — see features.ts for why.
+  const nNodes = Math.max(1, bestPerNode.length);
+  const sortedSims = [...bestPerNode].sort((a, b) => a - b);
+  const gapsBetween: number[] = [];
+  for (let i = 1; i < sortedSims.length; i++) gapsBetween.push(sortedSims[i] - sortedSims[i - 1]);
+  const percentile = (arr: number[], p: number): number => {
+    if (arr.length === 0) return 0;
+    const idx = (p / 100) * (arr.length - 1);
+    const lo = Math.floor(idx);
+    const hi = Math.ceil(idx);
+    if (lo === hi) return arr[lo];
+    return arr[lo] + (arr[hi] - arr[lo]) * (idx - lo);
+  };
+  const median = percentile(sortedSims, 50);
+  const stdDev = Math.sqrt(
+    bestPerNode.reduce((s2, v) => s2 + (v - meanNodeSimilarity) ** 2, 0) / nNodes,
+  );
+  const coveredNodeFraction = bestPerNode.filter((v) => v >= COVERAGE_THRESHOLD).length / nNodes;
 
   // 4. Parrot Detector features
   s = performance.now();
@@ -366,6 +387,16 @@ export async function runAnalysis(
     contradiction_ratio: contradictionRatio,
     entailment_ratio: entailmentRatio,
     misconception_similarity: misconceptionSimilarity,
+    covered_node_fraction: coveredNodeFraction,
+    min_node_similarity: sortedSims[0] ?? 0,
+    weakest_two_mean:
+      sortedSims.slice(0, Math.min(2, sortedSims.length)).reduce((s2, v) => s2 + v, 0) /
+      Math.max(1, Math.min(2, sortedSims.length)),
+    median_node_similarity: median,
+    node_similarity_std: stdDev,
+    uncovered_node_count_norm: 1 - coveredNodeFraction,
+    max_similarity_gap: gapsBetween.length ? Math.max(...gapsBetween) : 0,
+    sim_p25: percentile(sortedSims, 25),
   };
   const cls = classify(features);
 

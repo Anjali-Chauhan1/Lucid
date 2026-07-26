@@ -9,10 +9,10 @@ export default async function SessionPage({
   searchParams,
 }: {
   params: Promise<{ conceptId: string }>;
-  searchParams: Promise<{ mode?: string }>;
+  searchParams: Promise<{ mode?: string; assignmentCode?: string; studentName?: string }>;
 }) {
   const { conceptId } = await params;
-  const { mode } = await searchParams;
+  const { mode, assignmentCode, studentName } = await searchParams;
 
   const concept = resolveConcept(conceptId);
 
@@ -37,5 +37,11 @@ export default async function SessionPage({
   const validMode: SessionMode =
     mode === "viva" || mode === "loop" ? mode : "explain";
 
-  return <SessionExperience concept={concept} mode={validMode} />;
+  return (
+    <SessionExperience
+      concept={concept}
+      mode={validMode}
+      assignment={assignmentCode && studentName ? { code: assignmentCode, studentName } : undefined}
+    />
+  );
 }
