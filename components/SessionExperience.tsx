@@ -333,6 +333,7 @@ export default function SessionExperience({
           samajhScore: finalReport.samajhScore,
           dimensions: finalReport.dimensions,
           misconceptionCategories: misconceptionCategories.length ? misconceptionCategories : undefined,
+          gaps: finalReport.gaps.length ? finalReport.gaps : undefined,
           confidenceRating: confidence ?? undefined,
         }),
       }).catch(() => {

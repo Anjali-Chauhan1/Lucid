@@ -21,6 +21,15 @@ const SubmitSchema = z.object({
     depth: z.number().nullable(),
   }),
   misconceptionCategories: z.array(MisconceptionCategorySchema).optional(),
+  gaps: z
+    .array(
+      z.object({
+        nodeId: z.string(),
+        nodeText: z.string(),
+        bestSimilarity: z.number(),
+      }),
+    )
+    .optional(),
   confidenceRating: z.number().min(1).max(5).optional(),
 });
 
@@ -51,6 +60,7 @@ export async function POST(
     samajhScore: parsed.data.samajhScore,
     dimensions: parsed.data.dimensions,
     misconceptionCategories: parsed.data.misconceptionCategories,
+    gaps: parsed.data.gaps,
     confidenceRating: parsed.data.confidenceRating,
   });
 

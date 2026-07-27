@@ -186,6 +186,8 @@ export interface AssignmentSubmission {
   samajhScore: number;
   dimensions: ScoreDimensions;
   misconceptionCategories?: MisconceptionCategory[];
+  /** concept ideas the student's explanation never covered — the actual weak points */
+  gaps?: Gap[];
   confidenceRating?: number;
   submittedAt: number;
 }

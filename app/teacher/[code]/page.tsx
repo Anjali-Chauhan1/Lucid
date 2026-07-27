@@ -3,6 +3,9 @@ import { BRAND } from "@/lib/brand";
 import { getAssignment } from "@/lib/assignments";
 import { categoryInfo } from "@/lib/ml/misconceptionTaxonomy";
 import type { MisconceptionCategory } from "@/lib/types";
+
+/** Top N weakest (lowest-similarity) gaps to show inline per student. */
+const TOP_GAPS_PER_STUDENT = 2;
 import RefreshButton from "@/components/RefreshButton";
 
 // Reads .cache/assignments/<code>.json at request time — must never be
@@ -54,6 +57,22 @@ export default async function TeacherResultsPage({
       info: categoryInfo(category),
       students: [...students],
     }))
+    .sort((a, b) => b.students.length - a.students.length);
+
+  // Class-wide weak points: concept ideas missed by TWO OR MORE DIFFERENT
+  // STUDENTS — same "re-teach this" signal as classPatterns above, but for
+  // plain coverage gaps, which fire far more often than a misconception match.
+  const byGapNode = new Map<string, { nodeText: string; students: Set<string> }>();
+  for (const s of submissions) {
+    for (const g of s.gaps ?? []) {
+      const entry = byGapNode.get(g.nodeId) ?? { nodeText: g.nodeText, students: new Set<string>() };
+      entry.students.add(s.studentName);
+      byGapNode.set(g.nodeId, entry);
+    }
+  }
+  const classGaps = [...byGapNode.entries()]
+    .filter(([, g]) => g.students.size >= 2)
+    .map(([nodeId, g]) => ({ nodeId, nodeText: g.nodeText, students: [...g.students] }))
     .sort((a, b) => b.students.length - a.students.length);
 
   const sortedSubmissions = [...submissions].sort((a, b) => a.samajhScore - b.samajhScore);
@@ -127,20 +146,57 @@ export default async function TeacherResultsPage({
             </div>
           )}
 
+          {classGaps.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-display text-xl text-chalk">Class-wide weak points</h2>
+              <p className="mt-1 text-sm text-chalk-dim">
+                Ideas multiple students never mentioned — the most common reason for a low
+                score, even without a specific misconception.
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {classGaps.map((g) => (
+                  <div
+                    key={g.nodeId}
+                    className="rounded-xl border border-amber/30 bg-amber/6 p-4"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm text-chalk">{g.nodeText}</p>
+                      <span className="rounded-full bg-amber/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber">
+                        {g.students.length} students
+                      </span>
+                    </div>
+                    <p className="mt-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                      {g.students.join(", ")}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="mt-8">
             <h2 className="font-display text-xl text-chalk">
               Students, lowest score first
             </h2>
             <ul className="mt-4 space-y-2">
-              {sortedSubmissions.map((s) => (
+              {sortedSubmissions.map((s) => {
+                const weakestGaps = [...(s.gaps ?? [])]
+                  .sort((a, b) => a.bestSimilarity - b.bestSimilarity)
+                  .slice(0, TOP_GAPS_PER_STUDENT);
+                return (
                 <li
                   key={s.submissionId}
                   className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-ink-600 bg-ink-850/50 px-4 py-3"
                 >
                   <div>
                     <p className="text-sm text-chalk">{s.studentName}</p>
-                    {(s.misconceptionCategories?.length ?? 0) > 0 && (
+                    {weakestGaps.length > 0 && (
                       <p className="mt-1 text-[11px] text-chalk-faint">
+                        Missed: {weakestGaps.map((g) => g.nodeText).join(" · ")}
+                      </p>
+                    )}
+                    {(s.misconceptionCategories?.length ?? 0) > 0 && (
+                      <p className="mt-1 text-[11px] text-rose">
                         {s.misconceptionCategories!.map((c) => categoryInfo(c).label).join(" · ")}
                       </p>
                     )}
@@ -164,7 +220,8 @@ export default async function TeacherResultsPage({
                     </span>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
         </>
