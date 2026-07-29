@@ -29,6 +29,71 @@
 
   --background: var(--ink-900);
   --foreground: var(--chalk);
+
+  /* ── Splash palette ──────────────────────────────────────
+     Marigold + warm ink. Scoped to SplashIntro's full-bleed
+     curtain; not part of the page palette below. */
+  --marigold: #fac365; /* primary surface */
+  --marigold-deep: #f0ae42; /* pressed / accents */
+  --marigold-soft: #fdd9a0; /* raised panels on marigold */
+  --cream: #fff7ea; /* light panels */
+  --ink-warm: #1e1a17; /* text + marks on marigold */
+  --ink-warm-dim: #5b5148; /* secondary text on marigold */
+
+  /* ═══ Light theme — "paper" ══════════════════════════════
+     Editorial/brutalist: off-white speckled paper, near-black
+     ink, and three flat poster accents. The landing page moves
+     onto these section by section; the ink/chalk tokens above
+     still serve the app pages.
+
+     One rule keeps this palette safe: the saturated accents
+     (`--grass`, `--cobalt`) are FILLS. Both are too light on
+     paper to carry body text, so each ships an `-ink` partner
+     that is. Fill for shapes, partner for text. */
+
+  /* surfaces */
+  --paper: #f2f1ec; /* page */
+  --paper-deep: #e8e7e1; /* recessed wells */
+  --paper-card: #ffffff; /* raised cards */
+  --rule: #d9d7cf; /* hairlines on paper */
+  --rule-strong: #bdbab0;
+
+  /* text on paper — all AA+ on --paper */
+  --graphite: #111111; /* primary — 17.4:1 */
+  --graphite-muted: #4a4a45; /* secondary — 8.3:1 */
+  --graphite-faint: #6f6e67; /* tertiary — 4.8:1 */
+
+  /* accents */
+  --grass: #2f9e4f; /* fill — 3.0:1 on paper, shapes only */
+  --grass-ink: #1e6b34; /* text partner — 5.8:1 on paper */
+
+  --highlighter: #f7e96b; /* marker wash; carries --graphite */
+  --cobalt: #2b6ee8; /* fill — 4.1:1 on paper, shapes only */
+  --cobalt-ink: #1f52b8; /* text partner — 6.3:1 on paper */
+
+  /* Two more accents, added so the sections converting from the dark theme
+     keep their real semantic distinctions instead of everything collapsing
+     onto grass/cobalt. `--gold` stands in for the dark theme's amber (its
+     primary accent, not just a status colour); `--rose-paper` stands in for
+     wrong/contradiction states, which is a meaningfully different signal
+     from "correct" and shouldn't quietly become the same green.
+     `-paper` suffix on the second one is load-bearing, not decorative: the
+     dark theme already owns the bare name `--rose` (above) — reusing it here
+     would silently overwrite that value for every dark-theme user of it,
+     custom properties being a single global namespace regardless of which
+     "theme" a comment says they belong to. */
+  --gold: #c98a1f; /* fill — 3.2:1 on paper, shapes only */
+  --gold-ink: #8a5c10; /* text partner — 6.5:1 on paper */
+  --rose-paper: #d1483f; /* fill — 3.8:1 on paper, shapes only */
+  --rose-paper-ink: #a3281f; /* text partner — 6.9:1 on paper */
+
+  /* The paper plane's smoke — shared by every trail on the site and by
+     page 2's background tint, so the plane's exhaust and the sheet it flies
+     into read as the same colour. Also read from JS as `CLOUD_BACK`/
+     `CLOUD_FRONT` in Primitives.tsx for the SVG cloud shape itself, which
+     can't reach a CSS variable — keep both in sync if either changes. */
+  --cloud-back: #93a8e0;
+  --cloud-front: #cfd9f6;
 }
 
 @theme inline {
@@ -55,12 +120,55 @@
   --color-violet: var(--violet);
   --color-sky: var(--sky);
 
+  --color-marigold: var(--marigold);
+  --color-marigold-deep: var(--marigold-deep);
+  --color-marigold-soft: var(--marigold-soft);
+  --color-cream: var(--cream);
+  --color-ink-warm: var(--ink-warm);
+  --color-ink-warm-dim: var(--ink-warm-dim);
+
+  /* ── light theme — paper ── */
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-paper-card: var(--paper-card);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  --color-graphite: var(--graphite);
+  --color-graphite-muted: var(--graphite-muted);
+  --color-graphite-faint: var(--graphite-faint);
+
+  --color-grass: var(--grass);
+  --color-grass-ink: var(--grass-ink);
+  --color-highlighter: var(--highlighter);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-ink: var(--cobalt-ink);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-rose-paper: var(--rose-paper);
+  --color-rose-paper-ink: var(--rose-paper-ink);
+
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
 }
 
-* {
-  border-color: var(--ink-600);
+/* Default border colour, per theme.
+   These live in `@layer base` on purpose. Unlayered rules beat *every*
+   layered one, so as plain CSS this would override `border-graphite`,
+   `border-transparent` and every other border utility used inside a
+   themed subtree. In `base`, Tailwind's `utilities` layer wins — which
+   is what a utility is for — while `.theme-paper *` (0,1,0) still beats
+   the bare `*` (0,0,0) for elements that set no colour of their own. */
+@layer base {
+  * {
+    border-color: var(--ink-600);
+  }
+
+  .theme-paper *,
+  .theme-paper *::before,
+  .theme-paper *::after {
+    border-color: var(--rule);
+  }
 }
 
 html {
@@ -80,6 +188,16 @@ body {
 
 h1, h2, h3, .font-display {
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+/* The rule above is unlayered, so it beats Tailwind's layered `font-sans`
+   utility no matter what a component sets. The paper theme is built on a
+   heavy grotesk, not the brand serif, so it needs an unlayered override
+   of its own — `.theme-paper h1` (0,1,1) outranks `h1` (0,0,1). */
+.theme-paper h1,
+.theme-paper h2,
+.theme-paper h3 {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Faint blackboard grid texture */
@@ -118,3 +236,327 @@ h1, h2, h3, .font-display {
   50%, 100% { opacity: 0; }
 }
 .cursor-blink { animation: cursor-blink 1s step-end infinite; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Landing page system — 3D stages, aurora light, glass surfaces.
+   Everything below is presentation-only and safe to remove.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ---------- 3D stages ----------
+   A "stage" establishes the perspective frustum; children marked
+   .layer-3d keep their own coordinate space so nested transforms
+   compose into real depth rather than flattening. */
+.stage-3d { perspective: 1200px; perspective-origin: 50% 50%; }
+.stage-3d-near { perspective: 700px; }
+.layer-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+
+/* ---------- glass surfaces ---------- */
+.glass {
+  background: linear-gradient(
+    145deg,
+    rgba(233, 238, 243, 0.055),
+    rgba(233, 238, 243, 0.012) 45%,
+    rgba(11, 15, 20, 0.2)
+  );
+  border: 1px solid rgba(233, 238, 243, 0.09);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+.glass-amber {
+  background: linear-gradient(
+    145deg,
+    rgba(244, 185, 66, 0.13),
+    rgba(244, 185, 66, 0.03) 55%,
+    rgba(11, 15, 20, 0.25)
+  );
+  border: 1px solid rgba(244, 185, 66, 0.22);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Hairline gradient ring — sharper than a flat border at any radius. */
+.ring-gradient {
+  position: relative;
+}
+.ring-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    rgba(244, 185, 66, 0.55),
+    rgba(183, 156, 255, 0.28) 40%,
+    rgba(109, 184, 255, 0.18) 65%,
+    transparent 85%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------- type treatments ---------- */
+.gradient-text {
+  background: linear-gradient(103deg, #ffd36e 4%, #f4b942 32%, #b79cff 72%, #6db8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Descenders get clipped by background-clip on tight line-heights. */
+  padding-bottom: 0.08em;
+}
+.text-balance-tight { text-wrap: balance; }
+
+/* ---------- ambient light ---------- */
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(4%, -3%, 0) scale(1.09); }
+  66%  { transform: translate3d(-3%, 4%, 0) scale(0.96); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.aurora {
+  animation: aurora-drift 26s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.float-y { animation: float-y 7s ease-in-out infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 34s linear infinite; }
+.spin-slow-rev { animation: spin-slow 46s linear infinite reverse; }
+
+/* Conic sweep used on the score ring and the "live" pills. */
+@keyframes sweep { to { transform: rotate(360deg); } }
+
+/* Pulsing halo behind active nodes in the concept graph. */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.82); opacity: 0.75; }
+  70%  { transform: scale(1.9);  opacity: 0; }
+  100% { transform: scale(1.9);  opacity: 0; }
+}
+.pulse-ring { animation: pulse-ring 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+
+/* Signal travelling along a connector path. */
+@keyframes dash-flow { to { stroke-dashoffset: -1000; } }
+.dash-flow { animation: dash-flow 14s linear infinite; }
+
+/* Marquee for the topic ticker. */
+@keyframes marquee-x { to { transform: translateX(-50%); } }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Specular sheen that crosses a surface on hover. */
+@keyframes sheen-x {
+  0%   { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(320%) skewX(-18deg); }
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+.sheen:hover::after { opacity: 1; animation: sheen-x 0.9s ease-out; }
+
+/* Fine film grain — kills banding on the large radial gradients. */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glow-violet {
+  box-shadow: 0 0 0 1px rgba(183, 156, 255, 0.35), 0 0 30px -8px rgba(183, 156, 255, 0.55);
+}
+.glow-sky {
+  box-shadow: 0 0 0 1px rgba(109, 184, 255, 0.32), 0 0 30px -8px rgba(109, 184, 255, 0.5);
+}
+
+/* Sections are tall; offset anchor jumps clear of the fixed nav. */
+.section-anchor { scroll-margin-top: 88px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Light theme surfaces — "paper".
+   `.theme-paper` scopes the light palette to a subtree, so sections
+   can migrate one at a time while the rest of the page stays dark.
+   ═══════════════════════════════════════════════════════════════ */
+
+.theme-paper {
+  color: var(--graphite);
+}
+
+/* The paper border default lives with the global one, up in `@layer base`. */
+
+.theme-paper ::selection {
+  background: var(--highlighter);
+  color: var(--graphite);
+}
+
+/* Rough stock. Three turbulence layers at different scales, because paper
+   is rough at more than one — one noise field alone reads as TV static laid
+   over a flat colour, however you tune it.
+
+     tooth   fine grit, the surface you'd feel under a pencil
+     fibre   stretched strands — anisotropic baseFrequency (low across,
+             high down) is what pulls the noise into fibres rather than dots
+     mottle  broad blotches of uneven pulp; the layer that actually sells
+             "sheet of paper" over "printed swatch"
+
+   Blend modes are doing real work here. The first two multiply, so they only
+   ever darken — that's grit sitting *on* the sheet. Mottle is soft-light, so
+   it lightens and darkens around the midpoint: it varies the stock without
+   dragging the whole field grey, which is what stacking three multiplies
+   would do.
+
+   `stitchTiles='stitch'` matches the noise across tile edges — without it
+   each repeat seams visibly at these sizes. */
+.paper-field {
+  background-color: var(--paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23t)' opacity='0.22'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05%200.28' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23f)' opacity='0.14'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='760'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='760' height='760' filter='url(%23m)' opacity='0.9'/%3E%3C/svg%3E");
+  background-blend-mode: multiply, multiply, soft-light;
+  background-size:
+    180px 180px,
+    420px 420px,
+    760px 760px;
+}
+
+/* Page 2's sheet: the same rough grain as `.paper-field`, but tinted with
+   `--cloud-back`/`--cloud-front` (defined on `:root`, above) instead of
+   plain paper — the plane's own smoke colour. Two soft radial blooms in the
+   deeper tone stand in for cloud lobes drifting behind the section, the way
+   the smoke trail itself is built from layered circles. */
+.cloud-field {
+  background-color: var(--cloud-front);
+  background-image:
+    radial-gradient(ellipse 60% 46% at 14% 18%, color-mix(in srgb, var(--cloud-back) 55%, transparent), transparent 65%),
+    radial-gradient(ellipse 52% 42% at 86% 76%, color-mix(in srgb, var(--cloud-back) 45%, transparent), transparent 65%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23t)' opacity='0.16'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05%200.28' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23f)' opacity='0.1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='760'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='760' height='760' filter='url(%23m)' opacity='0.6'/%3E%3C/svg%3E");
+  background-blend-mode: normal, normal, multiply, multiply, soft-light;
+  background-size:
+    100% 100%,
+    100% 100%,
+    180px 180px,
+    420px 420px,
+    760px 760px;
+  background-attachment: fixed, fixed, scroll, scroll, scroll;
+  background-repeat: no-repeat, no-repeat, repeat, repeat, repeat;
+}
+
+/* Highlighter swipe behind inline text. Drawn as a skewed block that
+   sits *behind* the glyphs, with ragged ends, like a real marker. */
+.marker {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.marker::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.22em;
+  right: -0.22em;
+  top: 0.14em;
+  bottom: 0.02em;
+  background: var(--highlighter);
+  transform: skewX(-4deg) rotate(-0.7deg);
+  border-radius: 0.55em 0.35em 0.6em 0.3em / 0.9em 0.7em 0.8em 1em;
+}
+
+/* Poster card — flat, hard-edged, no blur. The editorial look leans on
+   solid fills and a single crisp rule, not on glass. */
+.card-paper {
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  box-shadow: 0 18px 42px -22px rgba(17, 17, 17, 0.42);
+}
+
+/* Sticker: a white disc with a hand-cut, slightly irregular edge. */
+.sticker {
+  background: var(--paper-card);
+  border: 2px solid var(--graphite);
+  border-radius: 50%;
+  box-shadow: 0 10px 26px -14px rgba(17, 17, 17, 0.5);
+}
+
+/* Rotating ring for the round badge. Separate from `spin-slow` so the
+   badge keeps its own (slower) cadence. */
+@keyframes badge-spin { to { transform: rotate(360deg); } }
+.badge-spin { animation: badge-spin 18s linear infinite; }
+
+/* Green marker strokes drift a hair, so the composition breathes
+   without anything obviously "animating". */
+@keyframes stroke-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%      { transform: translate3d(0, -8px, 0) rotate(-1.2deg); }
+}
+.stroke-breathe {
+  animation: stroke-breathe 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── animated fog at the bottom of the Problem section ────────────────────
+   Three blobs drift independently so the fog reads as depth, not pattern.
+   `fog-drift-a` moves rightward and up, `fog-drift-b` leftward and up,
+   `fog-drift-c` a slow vertical pulse — together they create a convincingly
+   organic, never-looping appearance at any given moment. */
+
+@keyframes fog-drift-a {
+  0%   { transform: translate(0%, 0%)   scale(1);    opacity: 0.55; }
+  33%  { transform: translate(6%, -8%)  scale(1.07); opacity: 0.7;  }
+  66%  { transform: translate(3%, -14%) scale(1.12); opacity: 0.6;  }
+  100% { transform: translate(0%, 0%)   scale(1);    opacity: 0.55; }
+}
+@keyframes fog-drift-b {
+  0%   { transform: translate(0%, 0%)    scale(1.05); opacity: 0.5;  }
+  40%  { transform: translate(-8%, -6%)  scale(1);    opacity: 0.65; }
+  70%  { transform: translate(-4%, -12%) scale(1.1);  opacity: 0.55; }
+  100% { transform: translate(0%, 0%)    scale(1.05); opacity: 0.5;  }
+}
+@keyframes fog-drift-c {
+  0%, 100% { transform: translateY(0%)   scale(1);    opacity: 0.45; }
+  50%      { transform: translateY(-10%) scale(1.08); opacity: 0.62; }
+}
+
+.fog-blob-a { animation: fog-drift-a 18s ease-in-out infinite; will-change: transform, opacity; }
+.fog-blob-b { animation: fog-drift-b 24s ease-in-out infinite; will-change: transform, opacity; }
+.fog-blob-c { animation: fog-drift-c 15s ease-in-out infinite; will-change: transform, opacity; }
+
+/* ---------- reduced motion ----------
+   Kill every ambient loop. Scroll- and gesture-driven motion is
+   disabled in JS via framer-motion's useReducedMotion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+}
