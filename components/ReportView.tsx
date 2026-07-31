@@ -16,22 +16,22 @@ const LABEL_COPY: Record<string, { title: string; blurb: string; color: string }
   good: {
     title: "Understood",
     blurb: "You explained this in your own words and covered the ground.",
-    color: "var(--emerald)",
+    color: "var(--grass-ink)",
   },
   partial: {
     title: "Partly there",
     blurb: "Your own words — but pieces of the concept are still missing.",
-    color: "var(--amber)",
+    color: "var(--gold-ink)",
   },
   memorized: {
     title: "Recited, not understood",
     blurb: "This tracked the textbook wording too closely to show understanding.",
-    color: "var(--amber-deep)",
+    color: "var(--gold-ink)",
   },
   wrong: {
     title: "Contains errors",
     blurb: "Some of what you said contradicts the facts of this concept.",
-    color: "var(--rose)",
+    color: "var(--rose-paper-ink)",
   },
 };
 
@@ -60,26 +60,28 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
 
   if (loading) {
     return (
-      <main className="mx-auto flex min-h-screen max-w-2xl items-center justify-center px-6">
-        <p className="text-sm text-chalk-faint">Loading your report…</p>
+      <main className="theme-paper paper-field flex min-h-screen w-full items-center justify-center px-6">
+        <p className="text-sm text-graphite-faint">Loading your report…</p>
       </main>
     );
   }
 
   if (!stored) {
     return (
-      <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center px-6 text-center">
-        <h1 className="font-display text-3xl text-chalk">Report not found</h1>
-        <p className="mt-3 text-sm text-chalk-dim">
-          Reports are stored in this browser only. If you cleared site data or opened
-          this link elsewhere, it is gone.
-        </p>
-        <Link
-          href="/"
-          className="mt-6 rounded-full bg-amber px-5 py-2.5 text-sm font-semibold text-ink-900"
-        >
-          Start a new session
-        </Link>
+      <main className="theme-paper paper-field flex min-h-screen w-full flex-col items-center justify-center px-6 text-center">
+        <div className="mx-auto w-full max-w-2xl">
+          <h1 className="font-display text-3xl text-graphite">Report not found</h1>
+          <p className="mt-3 text-sm text-graphite-muted">
+            Reports are stored in this browser only. If you cleared site data or opened
+            this link elsewhere, it is gone.
+          </p>
+          <Link
+            href="/"
+            className="mt-6 inline-block rounded-full bg-graphite px-5 py-2.5 text-sm font-semibold text-paper"
+          >
+            Start a new session
+          </Link>
+        </div>
       </main>
     );
   }
@@ -89,16 +91,17 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
   const improved = typeof priorScore === "number";
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6 py-12">
-      <Link href="/" className="text-xs text-chalk-faint hover:text-amber">
+    <main className="theme-paper paper-field min-h-screen w-full">
+      <div className="mx-auto w-full max-w-5xl px-6 py-12">
+      <Link href="/" className="text-xs text-graphite-faint hover:text-gold-ink">
         ← {BRAND.name}
       </Link>
 
-      <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-chalk-faint">
+      <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-graphite-faint">
         {concept} · {mode} mode
       </p>
-      <h1 className="mt-1 font-display text-4xl text-chalk">{BRAND.score.name}</h1>
-      <p className="mt-2 max-w-xl text-sm text-chalk-dim">{BRAND.score.tagline}</p>
+      <h1 className="mt-1 font-display text-4xl text-graphite">{BRAND.score.name}</h1>
+      <p className="mt-2 max-w-xl text-sm text-graphite-muted">{BRAND.score.tagline}</p>
 
       {/* ---------- Loop Mode money shot ---------- */}
       {improved && (
@@ -123,8 +126,8 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
             <p className="font-display text-xl" style={{ color: label.color }}>
               {label.title}
             </p>
-            <p className="mt-1 text-sm text-chalk-dim">{label.blurb}</p>
-            <p className="mt-2 text-[11px] text-chalk-faint">
+            <p className="mt-1 text-sm text-graphite-muted">{label.blurb}</p>
+            <p className="mt-2 text-[11px] text-graphite-faint">
               classifier: {report.classifierLabel} ·{" "}
               {(report.confidence * 100).toFixed(0)}% confidence ·{" "}
               {report.usedTrainedModel ? "trained model" : "heuristic fallback"}
@@ -140,8 +143,8 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
       )}
 
       {/* ---------- Parrot Detector ---------- */}
-      <section className="mt-12 rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
-        <h2 className="font-display text-2xl text-chalk">{BRAND.parrot.name}</h2>
+      <section className="mt-12 rounded-2xl border border-rule bg-paper-card p-6">
+        <h2 className="font-display text-2xl text-graphite">{BRAND.parrot.name}</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           <Metric
             label="Verdict"
@@ -157,7 +160,7 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
             value={`${(report.ratta.ngramOverlap * 100).toFixed(0)}%`}
           />
         </div>
-        <p className="mt-4 text-xs leading-relaxed text-chalk-faint">
+        <p className="mt-4 text-xs leading-relaxed text-graphite-faint">
           Both signals matter: high semantic similarity alone just means you were
           correct. It only counts as recitation when the exact phrasing overlaps too.
         </p>
@@ -165,7 +168,7 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
 
       {/* ---------- gaps ---------- */}
       <section className="mt-12">
-        <h2 className="font-display text-2xl text-chalk">
+        <h2 className="font-display text-2xl text-graphite">
           {report.gaps.length ? "What you didn't reach" : "You covered everything"}
         </h2>
         {report.gaps.length > 0 ? (
@@ -176,10 +179,10 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.06 }}
-                className="rounded-xl border border-ink-600 bg-ink-850/60 p-4"
+                className="rounded-xl border border-rule bg-paper-card p-4"
               >
-                <p className="text-sm text-chalk">{g.nodeText}</p>
-                <p className="mt-2 text-[11px] text-chalk-faint">
+                <p className="text-sm text-graphite">{g.nodeText}</p>
+                <p className="mt-2 text-[11px] text-graphite-faint">
                   closest match in your explanation:{" "}
                   {(g.bestSimilarity * 100).toFixed(0)}%
                 </p>
@@ -187,7 +190,7 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
             ))}
           </div>
         ) : (
-          <p className="mt-3 text-sm text-chalk-dim">
+          <p className="mt-3 text-sm text-graphite-muted">
             Every idea in the concept map showed up in your explanation.
           </p>
         )}
@@ -196,7 +199,7 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
       {/* ---------- wrong statements ---------- */}
       {report.wrongStatements.length > 0 && (
         <section className="mt-12">
-          <h2 className="font-display text-2xl text-chalk">Where you went wrong</h2>
+          <h2 className="font-display text-2xl text-graphite">Where you went wrong</h2>
           <div className="mt-4 space-y-3">
             {report.wrongStatements.map((w, i) => (
               <motion.div
@@ -204,16 +207,16 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.06 }}
-                className="rounded-xl border border-rose/40 bg-rose/[0.07] p-4"
+                className="rounded-xl border border-rose-paper/40 bg-rose-paper/[0.07] p-4"
               >
-                <p className="text-sm text-chalk">
-                  <span className="text-rose">You said:</span> “{w.said}”
+                <p className="text-sm text-graphite">
+                  <span className="text-rose-paper-ink">You said:</span> “{w.said}”
                 </p>
-                <p className="mt-2 text-sm text-chalk-dim">
-                  <span className="text-emerald">But actually:</span> {w.contradicts}
+                <p className="mt-2 text-sm text-graphite-muted">
+                  <span className="text-grass-ink">But actually:</span> {w.contradicts}
                 </p>
                 {w.misconceptionCategory && (
-                  <p className="mt-2 text-[11px] uppercase tracking-wider text-rose/70">
+                  <p className="mt-2 text-[11px] uppercase tracking-wider text-rose-paper-ink/70">
                     Pattern: {categoryInfo(w.misconceptionCategory).label}
                   </p>
                 )}
@@ -224,9 +227,9 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
       )}
 
       {microLesson && (
-        <section className="mt-12 rounded-2xl border border-violet/40 bg-violet/[0.07] p-6">
-          <h2 className="font-display text-xl text-violet">Your micro-lesson</h2>
-          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-chalk-dim">
+        <section className="mt-12 rounded-2xl border border-cobalt/40 bg-cobalt/[0.07] p-6">
+          <h2 className="font-display text-xl text-cobalt-ink">Your micro-lesson</h2>
+          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-graphite-muted">
             {microLesson}
           </p>
         </section>
@@ -236,28 +239,29 @@ export default function ReportView({ sessionId }: { sessionId: string }) {
       <div className="mt-14 flex flex-wrap gap-3">
         <Link
           href={`/session/${conceptId}?mode=loop`}
-          className="rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink-900 hover:bg-amber-bright"
+          className="rounded-full bg-graphite px-6 py-3 text-sm font-semibold text-paper hover:bg-black"
         >
           Close the gaps (Loop Mode) →
         </Link>
         <Link
           href={`/session/${conceptId}?mode=viva`}
-          className="rounded-full border border-ink-600 px-6 py-3 text-sm text-chalk-dim hover:border-ink-500 hover:text-chalk"
+          className="rounded-full border border-rule px-6 py-3 text-sm text-graphite-muted hover:border-rule-strong hover:text-graphite"
         >
           Try a viva
         </Link>
         <Link
           href="/progress"
-          className="rounded-full border border-ink-600 px-6 py-3 text-sm text-chalk-dim hover:border-ink-500 hover:text-chalk"
+          className="rounded-full border border-rule px-6 py-3 text-sm text-graphite-muted hover:border-rule-strong hover:text-graphite"
         >
           My progress
         </Link>
       </div>
 
-      <p className="mt-10 text-[11px] leading-relaxed text-chalk-faint">
+      <p className="mt-10 text-[11px] leading-relaxed text-graphite-faint">
         Timings: {Object.entries(report.timings).map(([k, v]) => `${k} ${v}ms`).join(" · ")}
         {report.degraded.length > 0 && ` · degraded: ${report.degraded.join(", ")}`}
       </p>
+      </div>
     </main>
   );
 }
@@ -270,17 +274,17 @@ const CALIBRATION_COPY: Record<
     title: "You were overconfident",
     blurb:
       "You expected more than you actually delivered — the exact gap a re-read or a passive review session never catches.",
-    color: "var(--rose)",
+    color: "var(--rose-paper-ink)",
   },
   underconfident: {
     title: "You were underconfident",
     blurb: "You knew more than you gave yourself credit for. Trust this more next time.",
-    color: "var(--sky)",
+    color: "var(--cobalt-ink)",
   },
   calibrated: {
     title: "Well calibrated",
     blurb: "Your gut sense of your own understanding matched what you actually demonstrated.",
-    color: "var(--emerald)",
+    color: "var(--grass-ink)",
   },
 };
 
@@ -294,8 +298,8 @@ function ConfidenceCheck({
   const { verdict, confidencePercent } = calibrate(confidenceRating, actualScore);
   const copy = CALIBRATION_COPY[verdict];
   return (
-    <section className="mt-12 rounded-2xl border border-ink-600 bg-ink-800/50 p-6">
-      <h2 className="font-display text-2xl text-chalk">Confidence check</h2>
+    <section className="mt-12 rounded-2xl border border-rule bg-paper-card p-6">
+      <h2 className="font-display text-2xl text-graphite">Confidence check</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
         <Metric label="You said" value={`${confidenceRating}/5 confident`} />
         <Metric label="You actually scored" value={`${actualScore}/100`} />
@@ -307,8 +311,8 @@ function ConfidenceCheck({
           }
         />
       </div>
-      <p className="mt-4 text-xs leading-relaxed text-chalk-faint">{copy.blurb}</p>
-      <p className="mt-1 text-[11px] text-chalk-faint">
+      <p className="mt-4 text-xs leading-relaxed text-graphite-faint">{copy.blurb}</p>
+      <p className="mt-1 text-[11px] text-graphite-faint">
         (self-rating scaled to {confidencePercent.toFixed(0)}/100 for comparison)
       </p>
     </section>
@@ -325,10 +329,10 @@ function Metric({
   tone?: "good" | "warn";
 }) {
   const color =
-    tone === "warn" ? "var(--amber)" : tone === "good" ? "var(--emerald)" : "var(--chalk)";
+    tone === "warn" ? "var(--gold-ink)" : tone === "good" ? "var(--grass-ink)" : "var(--graphite)";
   return (
-    <div className="rounded-xl border border-ink-600 bg-ink-850/60 p-4">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-chalk-faint">{label}</p>
+    <div className="rounded-xl border border-rule bg-paper-card p-4">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-graphite-faint">{label}</p>
       <p className="mt-1 font-display text-xl tabular-nums" style={{ color }}>
         {value}
       </p>

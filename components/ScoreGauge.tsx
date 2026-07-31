@@ -12,10 +12,10 @@ interface Props {
 }
 
 function bandColor(score: number): string {
-  if (score >= 80) return "var(--emerald)";
-  if (score >= 60) return "var(--amber)";
-  if (score >= 40) return "var(--amber-deep)";
-  return "var(--rose)";
+  if (score >= 80) return "var(--grass-ink)";
+  if (score >= 60) return "var(--gold-ink)";
+  if (score >= 40) return "var(--gold)";
+  return "var(--rose-paper-ink)";
 }
 
 /**
@@ -60,7 +60,7 @@ export default function ScoreGauge({ score, size = 240, label, delay = 0.2 }: Pr
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--ink-700)"
+          stroke="var(--rule)"
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={`${arcLength} ${circumference}`}
@@ -86,7 +86,7 @@ export default function ScoreGauge({ score, size = 240, label, delay = 0.2 }: Pr
           {display}
         </span>
         {label && (
-          <span className="mt-2 text-[11px] uppercase tracking-[0.18em] text-chalk-faint">
+          <span className="mt-2 text-[11px] uppercase tracking-[0.18em] text-graphite-faint">
             {label}
           </span>
         )}

@@ -356,24 +356,25 @@ export default function SessionExperience({
   const busy = phase === "analyzing" || phase === "finishing";
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 py-10">
+    <main className="theme-paper paper-field min-h-screen w-full">
+      <div className="mx-auto w-full max-w-7xl px-6 py-10">
       <header className="flex flex-wrap items-baseline justify-between gap-3">
         <div>
-          <Link href="/" className="text-xs text-chalk-faint hover:text-amber">
+          <Link href="/" className="text-xs text-graphite-faint hover:text-gold-ink">
             ← {BRAND.name}
           </Link>
-          <h1 className="mt-1 font-display text-3xl text-chalk">{concept.concept}</h1>
-          <p className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
+          <h1 className="mt-1 font-display text-3xl text-graphite">{concept.concept}</h1>
+          <p className="text-xs uppercase tracking-[0.16em] text-graphite-faint">
             {concept.subject} · {mode} mode
           </p>
           {assignment && (
-            <p className="mt-1 text-[11px] text-violet">
+            <p className="mt-1 text-[11px] text-cobalt-ink">
               Assignment {assignment.code} · submitting as {assignment.studentName}
             </p>
           )}
         </div>
         {!warm && (
-          <span className="rounded-full border border-ink-600 px-3 py-1.5 text-xs text-amber">
+          <span className="rounded-full border border-rule px-3 py-1.5 text-xs text-gold-ink">
             Warming up the brain…
           </span>
         )}
@@ -384,14 +385,14 @@ export default function SessionExperience({
       </div>
 
       {notice && (
-        <p className="mt-4 rounded-xl border border-sky/40 bg-sky/[0.08] p-3 text-sm text-chalk-dim">
+        <p className="mt-4 rounded-xl border border-cobalt/40 bg-cobalt/[0.08] p-3 text-sm text-graphite-muted">
           {notice}
         </p>
       )}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         {/* ---------------- left: conversation ---------------- */}
-        <section className="rounded-2xl border border-ink-600 bg-ink-800/40 p-5">
+        <section className="rounded-2xl border border-rule bg-paper-card p-5">
           <div className="max-h-[46vh] space-y-4 overflow-y-auto pr-1">
             <AnimatePresence initial={false}>
               {transcript.map((turn, i) => (
@@ -404,8 +405,8 @@ export default function SessionExperience({
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                       turn.role === "student"
-                        ? "bg-amber/15 text-chalk"
-                        : "border border-ink-600 bg-ink-850 text-chalk-dim"
+                        ? "bg-gold/15 text-graphite"
+                        : "border border-rule bg-paper-deep text-graphite-muted"
                     }`}
                   >
                     {turn.content}
@@ -416,11 +417,11 @@ export default function SessionExperience({
 
             {personaThinking && (
               <div className="flex justify-start">
-                <div className="flex gap-1.5 rounded-2xl border border-ink-600 bg-ink-850 px-4 py-3">
+                <div className="flex gap-1.5 rounded-2xl border border-rule bg-paper-deep px-4 py-3">
                   {[0, 1, 2].map((d) => (
                     <motion.span
                       key={d}
-                      className="h-1.5 w-1.5 rounded-full bg-chalk-faint"
+                      className="h-1.5 w-1.5 rounded-full bg-graphite-faint"
                       animate={{ opacity: [0.3, 1, 0.3] }}
                       transition={{ duration: 1.1, repeat: Infinity, delay: d * 0.18 }}
                     />
@@ -433,12 +434,12 @@ export default function SessionExperience({
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl border border-violet/40 bg-violet/[0.08] p-4"
+                className="rounded-2xl border border-cobalt/40 bg-cobalt/[0.08] p-4"
               >
-                <p className="text-[11px] uppercase tracking-[0.16em] text-violet">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-cobalt-ink">
                   Targeted micro-lesson
                 </p>
-                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-chalk">
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-graphite">
                   {microLesson}
                 </p>
               </motion.div>
@@ -448,12 +449,12 @@ export default function SessionExperience({
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl border border-violet/40 bg-violet/[0.08] p-4"
+                className="rounded-2xl border border-cobalt/40 bg-cobalt/[0.08] p-4"
               >
-                <p className="text-[11px] uppercase tracking-[0.16em] text-violet">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-cobalt-ink">
                   Depth check {depthIndex + 1}/{whyQuestions.length}
                 </p>
-                <p className="mt-2 text-sm text-chalk">{whyQuestions[depthIndex]?.q}</p>
+                <p className="mt-2 text-sm text-graphite">{whyQuestions[depthIndex]?.q}</p>
               </motion.div>
             )}
 
@@ -461,7 +462,7 @@ export default function SessionExperience({
           </div>
 
           {/* ---------------- composer ---------------- */}
-          <div className="mt-4 border-t border-ink-700 pt-4">
+          <div className="mt-4 border-t border-rule pt-4">
             {phase === "explaining" && (
               <ConfidenceSelector value={confidence} onChange={setConfidence} disabled={busy} />
             )}
@@ -494,13 +495,13 @@ export default function SessionExperience({
             )}
             {phase === "lesson" && (
               <div className="flex flex-col gap-3">
-                <p className="text-sm text-chalk-dim">
+                <p className="text-sm text-graphite-muted">
                   Read the micro-lesson, then explain it back — this is where the
                   before→after jump comes from.
                 </p>
                 <button
                   onClick={() => setPhase("reexplaining")}
-                  className="self-start rounded-xl bg-amber px-5 py-2.5 text-sm font-semibold text-ink-900 hover:bg-amber-bright"
+                  className="self-start rounded-xl bg-graphite px-5 py-2.5 text-sm font-semibold text-paper hover:bg-black"
                 >
                   Explain it back →
                 </button>
@@ -533,13 +534,13 @@ export default function SessionExperience({
               />
             )}
             {(phase === "analyzing" || phase === "finishing") && (
-              <p className="py-4 text-center text-sm text-amber">
+              <p className="py-4 text-center text-sm text-gold-ink">
                 {phase === "finishing"
                   ? "Scoring your understanding…"
                   : "Measuring your explanation…"}
               </p>
             )}
-            {error && <p className="mt-2 text-sm text-rose">{error}</p>}
+            {error && <p className="mt-2 text-sm text-rose-paper-ink">{error}</p>}
           </div>
         </section>
 
@@ -551,22 +552,23 @@ export default function SessionExperience({
             analyzing={phase === "analyzing"}
           />
           {report && (
-            <div className="rounded-2xl border border-ink-600 bg-ink-800/60 p-5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-chalk-faint">
+            <div className="rounded-2xl border border-rule bg-paper-card p-5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-graphite-faint">
                 Live {BRAND.score.name}
               </p>
-              <p className="mt-1 font-display text-4xl tabular-nums text-amber">
+              <p className="mt-1 font-display text-4xl tabular-nums text-gold-ink">
                 {report.samajhScore}
-                <span className="text-lg text-chalk-faint">/100</span>
+                <span className="text-lg text-graphite-faint">/100</span>
               </p>
-              <p className="mt-2 text-xs text-chalk-faint">
+              <p className="mt-2 text-xs text-graphite-faint">
                 Engine label:{" "}
-                <b className="text-chalk-dim">{report.classifierLabel}</b>
+                <b className="text-graphite-muted">{report.classifierLabel}</b>
                 {report.usedTrainedModel ? " (trained model)" : " (heuristic)"}
               </p>
             </div>
           )}
         </aside>
+      </div>
       </div>
     </main>
   );
@@ -591,7 +593,7 @@ function ConfidenceSelector({
 }) {
   return (
     <div className="mb-4">
-      <label className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
+      <label className="text-xs uppercase tracking-[0.16em] text-graphite-faint">
         Before you explain — how confident are you in this topic?
       </label>
       <div className="mt-2 flex items-center gap-2">
@@ -604,14 +606,14 @@ function ConfidenceSelector({
             aria-pressed={value === n}
             className={`h-9 w-9 rounded-full border text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-40 ${
               value === n
-                ? "border-sky bg-sky/20 text-sky"
-                : "border-ink-600 text-chalk-faint hover:border-ink-500 hover:text-chalk"
+                ? "border-cobalt bg-cobalt/20 text-cobalt-ink"
+                : "border-rule text-graphite-faint hover:border-rule-strong hover:text-graphite"
             }`}
           >
             {n}
           </button>
         ))}
-        <span className="ml-2 text-[11px] text-chalk-faint">
+        <span className="ml-2 text-[11px] text-graphite-faint">
           1 = not sure at all · 5 = very confident
         </span>
       </div>
@@ -660,7 +662,7 @@ function Composer({
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
-        <label className="text-xs uppercase tracking-[0.16em] text-chalk-faint">
+        <label className="text-xs uppercase tracking-[0.16em] text-graphite-faint">
           {label}
         </label>
         {speech.supported && (
@@ -672,14 +674,14 @@ function Composer({
             aria-label={speech.listening ? "Stop dictating" : "Explain out loud"}
             className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition disabled:opacity-40 ${
               speech.listening
-                ? "border-rose bg-rose/15 text-rose"
-                : "border-ink-600 text-chalk-faint hover:border-amber hover:text-amber"
+                ? "border-rose-paper bg-rose-paper/15 text-rose-paper-ink"
+                : "border-rule text-graphite-faint hover:border-gold hover:text-gold-ink"
             }`}
           >
             {speech.listening ? (
               <motion.span
                 aria-hidden
-                className="block h-2 w-2 rounded-full bg-rose"
+                className="block h-2 w-2 rounded-full bg-rose-paper"
                 animate={{ opacity: [1, 0.25, 1] }}
                 transition={{ duration: 1.2, repeat: Infinity }}
               />
@@ -699,34 +701,34 @@ function Composer({
           onKeyDown={(e) => onKeyDown(e, onSubmit)}
           placeholder={placeholder}
           disabled={busy}
-          className="mt-2 w-full resize-none rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm leading-relaxed text-chalk placeholder:text-chalk-faint focus:border-amber focus:outline-none disabled:opacity-50"
+          className="mt-2 w-full resize-none rounded-xl border border-rule bg-paper-card px-4 py-3 text-sm leading-relaxed text-graphite placeholder:text-graphite-faint focus:border-gold focus:outline-none disabled:opacity-50"
         />
         {speech.interim && (
-          <p className="pointer-events-none absolute inset-x-4 bottom-3 truncate text-sm italic text-chalk-faint">
+          <p className="pointer-events-none absolute inset-x-4 bottom-3 truncate text-sm italic text-graphite-faint">
             {speech.interim}
           </p>
         )}
       </div>
 
-      {speech.error && <p className="mt-1 text-xs text-rose">{speech.error}</p>}
+      {speech.error && <p className="mt-1 text-xs text-rose-paper-ink">{speech.error}</p>}
 
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <button
           onClick={onSubmit}
           disabled={busy || !value.trim()}
-          className="rounded-xl bg-amber px-5 py-2.5 text-sm font-semibold text-ink-900 transition hover:bg-amber-bright disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-xl bg-graphite px-5 py-2.5 text-sm font-semibold text-paper transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-40"
         >
           {cta}
         </button>
         {secondary && (
           <button
             onClick={secondary.onClick}
-            className="text-sm text-chalk-faint underline-offset-4 hover:text-chalk hover:underline"
+            className="text-sm text-graphite-faint underline-offset-4 hover:text-graphite hover:underline"
           >
             {secondary.label}
           </button>
         )}
-        <span className="ml-auto text-[11px] text-chalk-faint">⌘/Ctrl + Enter</span>
+        <span className="ml-auto text-[11px] text-graphite-faint">⌘/Ctrl + Enter</span>
       </div>
     </div>
   );

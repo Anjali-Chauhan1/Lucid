@@ -145,6 +145,25 @@ npx next dev -p 3210 -H 127.0.0.1
 
 ---
 
+## Pages
+
+One light "paper" theme (off-white stock, near-black ink, flat poster accents,
+Fraunces display serif) runs across the whole app now — landing and every page
+below it.
+
+| Route | Who it's for | What happens |
+|---|---|---|
+| `/` | Everyone | The landing page — problem, product, and the "Hazardous Waste" battery-waste aside. |
+| `/learn` | A student teaching solo | The actual self-serve entry point: pick a prepared concept or type any topic, pick a mode, land straight in `/session`. Landing's "Start learning" goes here, not `/teacher`. |
+| `/teacher` | A teacher | Assign a topic + mode, get a join code to hand to a class. |
+| `/teacher/[code]` | A teacher | Results dashboard for that assignment — class average, class-wide misconception patterns, per-student scores. |
+| `/join/[code]` | A student joining an assignment | Enter your name, land in the same `/session` a solo learner would use. |
+| `/session/[conceptId]` | Whoever's teaching | The actual teach-it moment: explain, get cross-questioned, get scored. |
+| `/report/[sessionId]` | Whoever just finished | Grasp Score, dimension breakdown, Parrot Detector verdict, gaps, wrong statements. |
+| `/progress` | Anyone with history | Score-over-time per concept, recurring misconception "blind spots", spaced-repetition due list. |
+
+---
+
 ## Training the classifier
 
 ```bash
@@ -298,8 +317,9 @@ delta — is original to this project.
 ## Repo layout
 
 ```
-app/            landing, session, report, progress + API routes
+app/            landing, learn, teacher, join, session, report, progress + API routes
 components/     UI (understanding panel, gauge, delta reveal, parrot banner)
+components/landing/  the landing page sections (Hero, Problem, FeatureReveal, ...)
 lib/ml/         the scoring engine (embeddings, scoring, classifier, features)
 lib/concepts/   6 hand-authored concept maps + runtime generation
 lib/personas/   the three persona prompt builders

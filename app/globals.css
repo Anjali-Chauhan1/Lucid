@@ -67,7 +67,7 @@
   --grass: #2f9e4f; /* fill — 3.0:1 on paper, shapes only */
   --grass-ink: #1e6b34; /* text partner — 5.8:1 on paper */
 
-  --highlighter: #f7e96b; /* marker wash; carries --graphite */
+  --highlighter: #f2d024; /* marker wash; carries --graphite */
   --cobalt: #2b6ee8; /* fill — 4.1:1 on paper, shapes only */
   --cobalt-ink: #1f52b8; /* text partner — 6.3:1 on paper */
 
@@ -518,33 +518,6 @@ h1, h2, h3, .font-display {
   animation: stroke-breathe 11s ease-in-out infinite;
   will-change: transform;
 }
-
-/* ── animated fog at the bottom of the Problem section ────────────────────
-   Three blobs drift independently so the fog reads as depth, not pattern.
-   `fog-drift-a` moves rightward and up, `fog-drift-b` leftward and up,
-   `fog-drift-c` a slow vertical pulse — together they create a convincingly
-   organic, never-looping appearance at any given moment. */
-
-@keyframes fog-drift-a {
-  0%   { transform: translate(0%, 0%)   scale(1);    opacity: 0.55; }
-  33%  { transform: translate(6%, -8%)  scale(1.07); opacity: 0.7;  }
-  66%  { transform: translate(3%, -14%) scale(1.12); opacity: 0.6;  }
-  100% { transform: translate(0%, 0%)   scale(1);    opacity: 0.55; }
-}
-@keyframes fog-drift-b {
-  0%   { transform: translate(0%, 0%)    scale(1.05); opacity: 0.5;  }
-  40%  { transform: translate(-8%, -6%)  scale(1);    opacity: 0.65; }
-  70%  { transform: translate(-4%, -12%) scale(1.1);  opacity: 0.55; }
-  100% { transform: translate(0%, 0%)    scale(1.05); opacity: 0.5;  }
-}
-@keyframes fog-drift-c {
-  0%, 100% { transform: translateY(0%)   scale(1);    opacity: 0.45; }
-  50%      { transform: translateY(-10%) scale(1.08); opacity: 0.62; }
-}
-
-.fog-blob-a { animation: fog-drift-a 18s ease-in-out infinite; will-change: transform, opacity; }
-.fog-blob-b { animation: fog-drift-b 24s ease-in-out infinite; will-change: transform, opacity; }
-.fog-blob-c { animation: fog-drift-c 15s ease-in-out infinite; will-change: transform, opacity; }
 
 /* ---------- reduced motion ----------
    Kill every ambient loop. Scroll- and gesture-driven motion is

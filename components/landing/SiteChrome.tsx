@@ -83,22 +83,12 @@ export default function SiteChrome() {
       {/* ── top bar ──────────────────────────────────────── */}
       <motion.header
         initial={{ y: -70, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-        className="theme-paper fixed inset-x-0 top-0 z-40"
+        animate={{ y: lifted ? -100 : 0, opacity: lifted ? 0 : 1 }}
+        transition={{ duration: 0.5, ease: EASE, delay: lifted ? 0 : 0.15 }}
+        className="theme-paper fixed inset-x-0 top-0 z-40 pointer-events-none"
       >
-        {/*
-          Over the hero the bar sits flush on the paper with no container, as
-          in the reference. Once scrolled it picks up a paper plate: the
-          sections below are still the dark theme, and black-on-transparent
-          would vanish over them.
-        */}
         <div
-          className={`mx-auto flex w-[min(1180px,94vw)] items-center justify-between transition-all duration-500 ${
-            lifted
-              ? "mt-3 rounded-2xl border border-rule bg-paper/95 px-5 py-3 shadow-[0_18px_44px_-26px_rgba(17,17,17,0.55)] backdrop-blur-sm"
-              : "mt-0 border border-transparent px-1 py-7"
-          }`}
+          className="pointer-events-auto mx-auto flex w-[min(1180px,94vw)] items-center justify-between border border-transparent px-1 py-7"
         >
           <Link href="#hero" className="flex items-center gap-2.5">
             <LogoMark />
@@ -135,10 +125,10 @@ export default function SiteChrome() {
               My progress
             </Link>
             <Link
-              href="/teacher"
+              href="/learn"
               className="whitespace-nowrap rounded-full border-2 border-graphite px-5 py-2.5 text-[15px] font-semibold text-graphite transition hover:bg-graphite hover:text-paper"
             >
-              Start teaching
+              Start learning
             </Link>
           </div>
         </div>

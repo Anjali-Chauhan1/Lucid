@@ -67,15 +67,15 @@ export default function TopicLauncher({ concepts }: { concepts: ConceptSummary[]
             onClick={() => setMode(m.id)}
             className={`rounded-full border px-4 py-2 text-sm transition ${
               mode === m.id
-                ? "border-amber bg-amber/15 text-amber-bright"
-                : "border-ink-600 text-chalk-dim hover:border-ink-500 hover:text-chalk"
+                ? "border-gold bg-gold/15 text-gold-ink"
+                : "border-rule text-graphite-muted hover:border-rule-strong hover:text-graphite"
             }`}
           >
             {m.label}
           </button>
         ))}
       </div>
-      <p className="mt-2 text-xs text-chalk-faint">
+      <p className="mt-2 text-xs text-graphite-faint">
         {MODES.find((m) => m.id === mode)?.blurb}
       </p>
 
@@ -85,18 +85,18 @@ export default function TopicLauncher({ concepts }: { concepts: ConceptSummary[]
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
           placeholder="Type any topic — “Ohm's Law”, “Supply and Demand”, “Recursion”…"
-          className="flex-1 rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm text-chalk placeholder:text-chalk-faint focus:border-amber focus:outline-none"
+          className="flex-1 rounded-xl border border-rule bg-paper-card px-4 py-3 text-sm text-graphite placeholder:text-graphite-faint focus:border-gold focus:outline-none"
           aria-label="Custom topic"
         />
         <button
           type="submit"
           disabled={busy || topic.trim().length < 2}
-          className="rounded-xl bg-amber px-6 py-3 text-sm font-semibold text-ink-900 transition hover:bg-amber-bright disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-xl bg-graphite px-6 py-3 text-sm font-semibold text-paper transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-40"
         >
           {busy ? "Building map…" : "Teach this"}
         </button>
       </form>
-      {error && <p className="mt-2 text-sm text-rose">{error}</p>}
+      {error && <p className="mt-2 text-sm text-rose-paper-ink">{error}</p>}
 
       {/* curated concepts */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -108,15 +108,15 @@ export default function TopicLauncher({ concepts }: { concepts: ConceptSummary[]
             transition={{ delay: i * 0.06, duration: 0.4 }}
             whileHover={{ y: -4 }}
             onClick={() => go(c.id)}
-            className="group rounded-2xl border border-ink-600 bg-ink-800/50 p-5 text-left transition hover:border-amber/60"
+            className="group rounded-2xl border border-rule bg-paper-deep p-5 text-left transition hover:border-gold/60"
           >
-            <p className="text-[11px] uppercase tracking-[0.16em] text-chalk-faint">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-graphite-faint">
               {c.subject}
             </p>
-            <h3 className="mt-1.5 font-display text-xl text-chalk group-hover:text-amber-bright">
+            <h3 className="mt-1.5 font-display text-xl text-graphite group-hover:text-gold-ink">
               {c.concept}
             </h3>
-            <p className="mt-2 text-xs text-chalk-faint">{c.nodeCount} key ideas to cover</p>
+            <p className="mt-2 text-xs text-graphite-faint">{c.nodeCount} key ideas to cover</p>
           </motion.button>
         ))}
       </div>

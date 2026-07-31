@@ -17,7 +17,7 @@ export default function RefreshButton() {
   return (
     <button
       onClick={refresh}
-      className="rounded-full border border-ink-600 px-4 py-2 text-xs text-chalk-dim transition hover:border-ink-500 hover:text-chalk"
+      className="rounded-full border border-rule px-4 py-2 text-xs text-graphite-muted transition hover:border-rule-strong hover:text-graphite"
     >
       {spinning ? "Refreshing…" : "Refresh ↻"}
     </button>

@@ -19,12 +19,12 @@ import { calibrate } from "@/lib/calibration";
 import { daysSince, isDueForReview } from "@/lib/spacedRepetition";
 
 const SERIES_COLORS = [
-  "var(--amber)",
-  "var(--emerald)",
-  "var(--sky)",
-  "var(--violet)",
-  "var(--rose)",
-  "var(--amber-bright)",
+  "var(--gold-ink)",
+  "var(--grass-ink)",
+  "var(--cobalt-ink)",
+  "var(--rose-paper-ink)",
+  "var(--gold)",
+  "var(--grass)",
 ];
 
 export default function ProgressPage() {
@@ -135,28 +135,29 @@ export default function ProgressPage() {
   }, [history]);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6 py-12">
-      <Link href="/" className="text-xs text-chalk-faint hover:text-amber">
+    <main className="theme-paper paper-field min-h-screen w-full">
+      <div className="mx-auto w-full max-w-5xl px-6 py-12">
+      <Link href="/" className="text-xs text-graphite-faint hover:text-gold-ink">
         ← {BRAND.name}
       </Link>
-      <h1 className="mt-3 font-display text-4xl text-chalk">Your progress</h1>
-      <p className="mt-2 text-sm text-chalk-dim">
+      <h1 className="mt-3 font-display text-4xl text-graphite">Your progress</h1>
+      <p className="mt-2 text-sm text-graphite-muted">
         {BRAND.score.name} per concept, across every session. Stored in this browser
         only.
       </p>
 
       {!ready ? (
-        <p className="mt-10 text-sm text-chalk-faint">Loading…</p>
+        <p className="mt-10 text-sm text-graphite-faint">Loading…</p>
       ) : history.length === 0 ? (
-        <div className="mt-10 rounded-2xl border border-ink-600 bg-ink-800/50 p-10 text-center">
-          <p className="font-display text-2xl text-chalk">Nothing here yet</p>
-          <p className="mx-auto mt-2 max-w-md text-sm text-chalk-dim">
+        <div className="mt-10 rounded-2xl border border-rule bg-paper-card p-10 text-center">
+          <p className="font-display text-2xl text-graphite">Nothing here yet</p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-graphite-muted">
             Teach a concept and your score will start plotting here. The interesting
             line is the one that climbs after Loop Mode.
           </p>
           <Link
             href="/"
-            className="mt-6 inline-block rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink-900"
+            className="mt-6 inline-block rounded-full bg-graphite px-6 py-3 text-sm font-semibold text-paper"
           >
             Teach something →
           </Link>
@@ -165,19 +166,19 @@ export default function ProgressPage() {
         <>
           <div className="mt-8 grid gap-4 sm:grid-cols-4">
             <Stat label="Sessions" value={String(history.length)} />
-            <Stat label="Best score" value={String(best)} color="var(--emerald)" />
-            <Stat label="Average" value={String(avg)} color="var(--amber)" />
+            <Stat label="Best score" value={String(best)} color="var(--grass-ink)" />
+            <Stat label="Average" value={String(avg)} color="var(--gold-ink)" />
             <Stat
               label="Biggest jump"
               value={biggestJump > 0 ? `+${biggestJump}` : "—"}
-              color="var(--violet)"
+              color="var(--cobalt-ink)"
             />
           </div>
 
           {dueForReview.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-chalk">Time to review</h2>
-              <p className="mt-1 text-sm text-chalk-dim">
+              <h2 className="font-display text-xl text-graphite">Time to review</h2>
+              <p className="mt-1 text-sm text-graphite-muted">
                 Understanding fades on a schedule, not randomly — these are due before
                 you forget them, not after.
               </p>
@@ -186,15 +187,15 @@ export default function ProgressPage() {
                   <Link
                     key={h.conceptId}
                     href={`/session/${h.conceptId}?mode=explain`}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-amber/30 bg-amber/6 p-4 transition hover:border-amber/60"
+                    className="flex items-center justify-between gap-3 rounded-xl border border-gold/30 bg-gold/6 p-4 transition hover:border-gold/60"
                   >
                     <div>
-                      <p className="font-display text-base text-chalk">{h.concept}</p>
-                      <p className="mt-1 text-xs text-chalk-faint">
+                      <p className="font-display text-base text-graphite">{h.concept}</p>
+                      <p className="mt-1 text-xs text-graphite-faint">
                         Scored {h.samajhScore} · {h.daysAgo === 0 ? "today" : `${h.daysAgo}d ago`}
                       </p>
                     </div>
-                    <span className="text-sm text-amber">Review →</span>
+                    <span className="text-sm text-gold-ink">Review →</span>
                   </Link>
                 ))}
               </div>
@@ -203,8 +204,8 @@ export default function ProgressPage() {
 
           {blindSpots.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-chalk">Recurring blind spots</h2>
-              <p className="mt-1 text-sm text-chalk-dim">
+              <h2 className="font-display text-xl text-graphite">Recurring blind spots</h2>
+              <p className="mt-1 text-sm text-graphite-muted">
                 The same kind of wrong reasoning, caught across unrelated topics — not
                 what you got wrong, but the pattern behind it.
               </p>
@@ -212,16 +213,16 @@ export default function ProgressPage() {
                 {blindSpots.map((b) => (
                   <div
                     key={b.category}
-                    className="rounded-xl border border-rose/30 bg-rose/6 p-4"
+                    className="rounded-xl border border-rose-paper/30 bg-rose-paper/6 p-4"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <p className="font-display text-base text-chalk">{b.info.label}</p>
-                      <span className="rounded-full bg-rose/15 px-2.5 py-0.5 text-[11px] font-semibold text-rose">
+                      <p className="font-display text-base text-graphite">{b.info.label}</p>
+                      <span className="rounded-full bg-rose-paper/15 px-2.5 py-0.5 text-[11px] font-semibold text-rose-paper-ink">
                         {b.concepts.length} subjects
                       </span>
                     </div>
-                    <p className="mt-1.5 text-xs text-chalk-dim">{b.info.description}</p>
-                    <p className="mt-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                    <p className="mt-1.5 text-xs text-graphite-muted">{b.info.description}</p>
+                    <p className="mt-2 text-[11px] uppercase tracking-wider text-graphite-faint">
                       Seen in: {b.concepts.join(", ")}
                     </p>
                   </div>
@@ -232,8 +233,8 @@ export default function ProgressPage() {
 
           {calibration.points.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-chalk">How well do you know what you know?</h2>
-              <p className="mt-1 text-sm text-chalk-dim">
+              <h2 className="font-display text-xl text-graphite">How well do you know what you know?</h2>
+              <p className="mt-1 text-sm text-graphite-muted">
                 Self-rated confidence, captured before scoring, compared against what
                 you actually demonstrated.
               </p>
@@ -242,48 +243,48 @@ export default function ProgressPage() {
                   label="Overconfident"
                   count={calibration.counts.overconfident}
                   total={calibration.points.length}
-                  color="var(--rose)"
+                  color="var(--rose-paper-ink)"
                 />
                 <CalibrationStat
                   label="Well calibrated"
                   count={calibration.counts.calibrated}
                   total={calibration.points.length}
-                  color="var(--emerald)"
+                  color="var(--grass-ink)"
                 />
                 <CalibrationStat
                   label="Underconfident"
                   count={calibration.counts.underconfident}
                   total={calibration.points.length}
-                  color="var(--sky)"
+                  color="var(--cobalt-ink)"
                 />
               </div>
             </div>
           )}
 
-          <div className="mt-8 h-[380px] rounded-2xl border border-ink-600 bg-ink-800/50 p-5">
+          <div className="mt-8 h-[380px] rounded-2xl border border-rule bg-paper-card p-5">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={rows} margin={{ top: 8, right: 16, bottom: 4, left: -18 }}>
-                <CartesianGrid stroke="var(--ink-700)" vertical={false} />
+                <CartesianGrid stroke="var(--rule)" vertical={false} />
                 <XAxis
                   dataKey="attempt"
-                  stroke="var(--chalk-faint)"
+                  stroke="var(--graphite-faint)"
                   tick={{ fontSize: 12 }}
                   tickLine={false}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  stroke="var(--chalk-faint)"
+                  stroke="var(--graphite-faint)"
                   tick={{ fontSize: 12 }}
                   tickLine={false}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: "var(--ink-800)",
-                    border: "1px solid var(--ink-600)",
+                    background: "var(--paper-card)",
+                    border: "1px solid var(--rule)",
                     borderRadius: 12,
                     fontSize: 13,
                   }}
-                  labelStyle={{ color: "var(--chalk-faint)" }}
+                  labelStyle={{ color: "var(--graphite-faint)" }}
                 />
                 {concepts.map((name, i) => (
                   <Line
@@ -304,27 +305,27 @@ export default function ProgressPage() {
             {[...history].reverse().map((h) => (
               <li
                 key={h.sessionId}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-ink-600 bg-ink-850/50 px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-rule bg-paper-card px-4 py-3"
               >
                 <div>
                   <Link
                     href={`/report/${h.sessionId}`}
-                    className="text-sm text-chalk hover:text-amber"
+                    className="text-sm text-graphite hover:text-gold-ink"
                   >
                     {h.concept}
                   </Link>
-                  <span className="ml-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                  <span className="ml-2 text-[11px] uppercase tracking-wider text-graphite-faint">
                     {h.mode}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm tabular-nums">
                   {typeof h.priorScore === "number" && (
-                    <span className="text-chalk-faint">
+                    <span className="text-graphite-faint">
                       {h.priorScore} →{" "}
-                      <span className="text-emerald">+{h.samajhScore - h.priorScore}</span>
+                      <span className="text-grass-ink">+{h.samajhScore - h.priorScore}</span>
                     </span>
                   )}
-                  <span className="font-display text-lg text-amber">{h.samajhScore}</span>
+                  <span className="font-display text-lg text-gold-ink">{h.samajhScore}</span>
                 </div>
               </li>
             ))}
@@ -335,12 +336,13 @@ export default function ProgressPage() {
               clearHistory();
               setHistory([]);
             }}
-            className="mt-8 text-xs text-chalk-faint underline-offset-4 hover:text-rose hover:underline"
+            className="mt-8 text-xs text-graphite-faint underline-offset-4 hover:text-rose-paper-ink hover:underline"
           >
             Clear history
           </button>
         </>
       )}
+      </div>
     </main>
   );
 }
@@ -348,15 +350,15 @@ export default function ProgressPage() {
 function Stat({
   label,
   value,
-  color = "var(--chalk)",
+  color = "var(--graphite)",
 }: {
   label: string;
   value: string;
   color?: string;
 }) {
   return (
-    <div className="rounded-xl border border-ink-600 bg-ink-800/50 p-4">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-chalk-faint">{label}</p>
+    <div className="rounded-xl border border-rule bg-paper-card p-4">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-graphite-faint">{label}</p>
       <p className="mt-1 font-display text-2xl tabular-nums" style={{ color }}>
         {value}
       </p>
@@ -377,12 +379,12 @@ function CalibrationStat({
 }) {
   const pct = total > 0 ? Math.round((count / total) * 100) : 0;
   return (
-    <div className="rounded-xl border border-ink-600 bg-ink-800/50 p-4">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-chalk-faint">{label}</p>
+    <div className="rounded-xl border border-rule bg-paper-card p-4">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-graphite-faint">{label}</p>
       <p className="mt-1 font-display text-2xl tabular-nums" style={{ color }}>
         {count}/{total}
       </p>
-      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-700">
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-paper-deep">
         <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
       </div>
     </div>

@@ -80,27 +80,27 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
   if (created) {
     const joinUrl = typeof window !== "undefined" ? `${window.location.origin}/join/${created.code}` : "";
     return (
-      <div className="mt-8 rounded-2xl border border-violet/40 bg-violet/[0.07] p-6">
-        <p className="text-[11px] uppercase tracking-wider text-violet">Assignment created</p>
-        <p className="mt-2 font-display text-5xl tracking-[0.08em] text-chalk">{created.code}</p>
-        <p className="mt-2 text-sm text-chalk-dim">
+      <div className="mt-8 rounded-2xl border border-cobalt/40 bg-cobalt/[0.07] p-6">
+        <p className="text-[11px] uppercase tracking-wider text-cobalt-ink">Assignment created</p>
+        <p className="mt-2 font-display text-5xl tracking-[0.08em] text-graphite">{created.code}</p>
+        <p className="mt-2 text-sm text-graphite-muted">
           {created.concept} · {created.mode} mode
           {created.teacherLabel ? ` · ${created.teacherLabel}` : ""}
         </p>
-        <p className="mt-4 text-xs text-chalk-faint">Share this join link with students:</p>
-        <p className="mt-1 break-all rounded-lg border border-ink-600 bg-ink-850 px-3 py-2 text-sm text-chalk">
+        <p className="mt-4 text-xs text-graphite-faint">Share this join link with students:</p>
+        <p className="mt-1 break-all rounded-lg border border-rule bg-paper-deep px-3 py-2 text-sm text-graphite">
           {joinUrl}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
             href={`/teacher/${created.code}`}
-            className="rounded-full bg-violet px-6 py-3 text-sm font-semibold text-ink-900 hover:opacity-90"
+            className="rounded-full bg-graphite px-6 py-3 text-sm font-semibold text-paper hover:bg-black"
           >
             Open results dashboard →
           </Link>
           <button
             onClick={() => setCreated(null)}
-            className="rounded-full border border-ink-600 px-6 py-3 text-sm text-chalk-dim hover:border-ink-500 hover:text-chalk"
+            className="rounded-full border border-rule px-6 py-3 text-sm text-graphite-muted hover:border-rule-strong hover:text-graphite"
           >
             Create another
           </button>
@@ -111,7 +111,7 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
 
   return (
     <div className="mt-8">
-      <p className="text-[11px] uppercase tracking-wider text-chalk-faint">Mode</p>
+      <p className="text-[11px] uppercase tracking-wider text-graphite-faint">Mode</p>
       <div className="mt-2 flex flex-wrap gap-2" role="tablist" aria-label="Session mode">
         {MODES.map((m) => (
           <button
@@ -121,8 +121,8 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
             onClick={() => setMode(m.id)}
             className={`rounded-full border px-4 py-2 text-sm transition ${
               mode === m.id
-                ? "border-violet bg-violet/15 text-violet"
-                : "border-ink-600 text-chalk-dim hover:border-ink-500 hover:text-chalk"
+                ? "border-cobalt bg-cobalt/10 text-cobalt-ink"
+                : "border-rule text-graphite-muted hover:border-rule-strong hover:text-graphite"
             }`}
           >
             {m.label}
@@ -130,7 +130,7 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
         ))}
       </div>
 
-      <p className="mt-6 text-[11px] uppercase tracking-wider text-chalk-faint">
+      <p className="mt-6 text-[11px] uppercase tracking-wider text-graphite-faint">
         Topic — type any topic, or pick one below
       </p>
       <input
@@ -140,10 +140,10 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
           if (e.target.value.trim()) setConceptId(null);
         }}
         placeholder="Type any topic — “Animal Kingdom”, “Ohm's Law”, “Supply and Demand”…"
-        className="mt-2 w-full rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm text-chalk placeholder:text-chalk-faint focus:border-violet focus:outline-none"
+        className="mt-2 w-full rounded-xl border border-rule bg-paper-card px-4 py-3 text-sm text-graphite placeholder:text-graphite-faint focus:border-cobalt focus:outline-none"
       />
       {hasCustomTopic && (
-        <p className="mt-1.5 text-[11px] text-violet">
+        <p className="mt-1.5 text-[11px] text-cobalt-ink">
           Will build a fresh concept map for “{customTopic.trim()}” when you create the
           assignment.
         </p>
@@ -160,36 +160,36 @@ export default function TeacherCreateForm({ concepts }: { concepts: ConceptSumma
             aria-pressed={conceptId === c.id}
             className={`rounded-xl border p-4 text-left transition ${
               conceptId === c.id
-                ? "border-violet bg-violet/10"
-                : "border-ink-600 bg-ink-800/50 hover:border-ink-500"
+                ? "border-cobalt bg-cobalt/10"
+                : "border-rule bg-paper-card hover:border-rule-strong"
             }`}
           >
-            <p className="text-[11px] uppercase tracking-[0.16em] text-chalk-faint">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-graphite-faint">
               {c.subject}
             </p>
-            <p className="mt-1 font-display text-lg text-chalk">{c.concept}</p>
+            <p className="mt-1 font-display text-lg text-graphite">{c.concept}</p>
           </button>
         ))}
       </div>
 
-      <p className="mt-6 text-[11px] uppercase tracking-wider text-chalk-faint">
+      <p className="mt-6 text-[11px] uppercase tracking-wider text-graphite-faint">
         Label (optional — e.g. &quot;Period 3&quot;)
       </p>
       <input
         value={label}
         onChange={(e) => setLabel(e.target.value)}
         placeholder="Period 3 Biology"
-        className="mt-2 w-full max-w-sm rounded-xl border border-ink-600 bg-ink-850 px-4 py-3 text-sm text-chalk placeholder:text-chalk-faint focus:border-violet focus:outline-none"
+        className="mt-2 w-full max-w-sm rounded-xl border border-rule bg-paper-card px-4 py-3 text-sm text-graphite placeholder:text-graphite-faint focus:border-cobalt focus:outline-none"
       />
 
       <button
         onClick={create}
         disabled={busy || !canCreate}
-        className="mt-6 rounded-full bg-violet px-6 py-3 text-sm font-semibold text-ink-900 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-6 rounded-full bg-graphite px-6 py-3 text-sm font-semibold text-paper transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-40"
       >
         {busy ? (hasCustomTopic ? "Building concept map…" : "Creating…") : "Create assignment →"}
       </button>
-      {error && <p className="mt-2 text-sm text-rose">{error}</p>}
+      {error && <p className="mt-2 text-sm text-rose-paper-ink">{error}</p>}
     </div>
   );
 }

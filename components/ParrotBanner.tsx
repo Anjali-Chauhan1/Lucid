@@ -20,25 +20,25 @@ export default function ParrotBanner({ ratta }: { ratta: RattaSignal | null }) {
           transition={{ type: "spring", stiffness: 220, damping: 24 }}
           className="overflow-hidden"
         >
-          <div className="flex items-start gap-4 rounded-2xl border border-amber/50 bg-gradient-to-r from-amber/[0.14] to-transparent p-5 glow-amber">
+          <div className="flex items-start gap-4 rounded-2xl border border-gold/50 bg-gradient-to-r from-gold/[0.14] to-transparent p-5">
             <span aria-hidden className="text-3xl leading-none">
               🦜
             </span>
             <div className="min-w-0">
-              <p className="font-display text-lg text-amber-bright">
+              <p className="font-display text-lg text-gold-ink">
                 {BRAND.parrot.name} triggered
               </p>
-              <p className="mt-1 text-sm text-chalk">{BRAND.parrot.challenge}</p>
-              <div className="mt-3 flex flex-wrap gap-4 text-[11px] uppercase tracking-wider text-chalk-faint">
+              <p className="mt-1 text-sm text-graphite">{BRAND.parrot.challenge}</p>
+              <div className="mt-3 flex flex-wrap gap-4 text-[11px] uppercase tracking-wider text-graphite-faint">
                 <span>
                   textbook similarity{" "}
-                  <b className="text-amber tabular-nums">
+                  <b className="text-gold-ink tabular-nums">
                     {(ratta.similarity * 100).toFixed(0)}%
                   </b>
                 </span>
                 <span>
                   phrase overlap{" "}
-                  <b className="text-amber tabular-nums">
+                  <b className="text-gold-ink tabular-nums">
                     {(ratta.ngramOverlap * 100).toFixed(0)}%
                   </b>
                 </span>

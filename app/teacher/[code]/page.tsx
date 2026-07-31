@@ -22,11 +22,11 @@ export default async function TeacherResultsPage({
 
   if (!data) {
     return (
-      <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center justify-center px-6 text-center">
-        <h1 className="font-display text-3xl text-chalk">Code not found</h1>
+      <main className="theme-paper paper-field flex min-h-screen w-full flex-col items-center justify-center px-6 text-center">
+        <h1 className="font-display text-3xl text-graphite">Code not found</h1>
         <Link
           href="/teacher"
-          className="mt-6 rounded-full bg-amber px-5 py-2.5 text-sm font-semibold text-ink-900"
+          className="mt-6 rounded-full bg-graphite px-5 py-2.5 text-sm font-semibold text-paper"
         >
           Create a new assignment
         </Link>
@@ -78,30 +78,31 @@ export default async function TeacherResultsPage({
   const sortedSubmissions = [...submissions].sort((a, b) => a.samajhScore - b.samajhScore);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6 py-12">
-      <Link href="/teacher" className="text-xs text-chalk-faint hover:text-amber">
+    <main className="theme-paper paper-field min-h-screen w-full">
+      <div className="mx-auto w-full max-w-5xl px-6 py-12">
+      <Link href="/teacher" className="text-xs text-graphite-faint hover:text-gold-ink">
         ← New assignment
       </Link>
       <div className="mt-3 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-violet">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-cobalt-ink">
             Assignment {assignment.code}
           </p>
-          <h1 className="mt-1 font-display text-4xl text-chalk">{assignment.concept}</h1>
-          <p className="mt-1 text-sm text-chalk-dim">
+          <h1 className="mt-1 font-display text-4xl text-graphite">{assignment.concept}</h1>
+          <p className="mt-1 text-sm text-graphite-muted">
             {assignment.mode} mode
             {assignment.teacherLabel ? ` · ${assignment.teacherLabel}` : ""} · join at{" "}
-            <span className="text-chalk">lucid/join/{assignment.code}</span>
+            <span className="text-graphite">lucid/join/{assignment.code}</span>
           </p>
         </div>
         <RefreshButton />
       </div>
 
       {submissions.length === 0 ? (
-        <div className="mt-10 rounded-2xl border border-ink-600 bg-ink-800/50 p-10 text-center">
-          <p className="font-display text-2xl text-chalk">No submissions yet</p>
-          <p className="mx-auto mt-2 max-w-md text-sm text-chalk-dim">
-            Share the code <b className="text-chalk">{assignment.code}</b> with students.
+        <div className="mt-10 rounded-2xl border border-rule bg-paper-card p-10 text-center">
+          <p className="font-display text-2xl text-graphite">No submissions yet</p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-graphite-muted">
+            Share the code <b className="text-graphite">{assignment.code}</b> with students.
             Results appear here as they finish — hit refresh.
           </p>
         </div>
@@ -109,18 +110,18 @@ export default async function TeacherResultsPage({
         <>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <Stat label="Submissions" value={String(submissions.length)} />
-            <Stat label="Class average" value={String(avg)} color="var(--amber)" />
+            <Stat label="Class average" value={String(avg)} color="var(--gold-ink)" />
             <Stat
               label="Lowest score"
               value={String(sortedSubmissions[0].samajhScore)}
-              color="var(--rose)"
+              color="var(--rose-paper-ink)"
             />
           </div>
 
           {classPatterns.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-chalk">Class-wide misconceptions</h2>
-              <p className="mt-1 text-sm text-chalk-dim">
+              <h2 className="font-display text-xl text-graphite">Class-wide misconceptions</h2>
+              <p className="mt-1 text-sm text-graphite-muted">
                 The same wrong-reasoning pattern, shared by multiple students — a signal to
                 re-teach, not just a per-student gap.
               </p>
@@ -128,16 +129,16 @@ export default async function TeacherResultsPage({
                 {classPatterns.map((p) => (
                   <div
                     key={p.category}
-                    className="rounded-xl border border-rose/30 bg-rose/6 p-4"
+                    className="rounded-xl border border-rose-paper/30 bg-rose-paper/6 p-4"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <p className="font-display text-base text-chalk">{p.info.label}</p>
-                      <span className="rounded-full bg-rose/15 px-2.5 py-0.5 text-[11px] font-semibold text-rose">
+                      <p className="font-display text-base text-graphite">{p.info.label}</p>
+                      <span className="rounded-full bg-rose-paper/15 px-2.5 py-0.5 text-[11px] font-semibold text-rose-paper-ink">
                         {p.students.length} students
                       </span>
                     </div>
-                    <p className="mt-1.5 text-xs text-chalk-dim">{p.info.description}</p>
-                    <p className="mt-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                    <p className="mt-1.5 text-xs text-graphite-muted">{p.info.description}</p>
+                    <p className="mt-2 text-[11px] uppercase tracking-wider text-graphite-faint">
                       {p.students.join(", ")}
                     </p>
                   </div>
@@ -148,8 +149,8 @@ export default async function TeacherResultsPage({
 
           {classGaps.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-chalk">Class-wide weak points</h2>
-              <p className="mt-1 text-sm text-chalk-dim">
+              <h2 className="font-display text-xl text-graphite">Class-wide weak points</h2>
+              <p className="mt-1 text-sm text-graphite-muted">
                 Ideas multiple students never mentioned — the most common reason for a low
                 score, even without a specific misconception.
               </p>
@@ -157,15 +158,15 @@ export default async function TeacherResultsPage({
                 {classGaps.map((g) => (
                   <div
                     key={g.nodeId}
-                    className="rounded-xl border border-amber/30 bg-amber/6 p-4"
+                    className="rounded-xl border border-gold/30 bg-gold/6 p-4"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm text-chalk">{g.nodeText}</p>
-                      <span className="rounded-full bg-amber/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber">
+                      <p className="text-sm text-graphite">{g.nodeText}</p>
+                      <span className="rounded-full bg-gold/15 px-2.5 py-0.5 text-[11px] font-semibold text-gold-ink">
                         {g.students.length} students
                       </span>
                     </div>
-                    <p className="mt-2 text-[11px] uppercase tracking-wider text-chalk-faint">
+                    <p className="mt-2 text-[11px] uppercase tracking-wider text-graphite-faint">
                       {g.students.join(", ")}
                     </p>
                   </div>
@@ -175,7 +176,7 @@ export default async function TeacherResultsPage({
           )}
 
           <div className="mt-8">
-            <h2 className="font-display text-xl text-chalk">
+            <h2 className="font-display text-xl text-graphite">
               Students, lowest score first
             </h2>
             <ul className="mt-4 space-y-2">
@@ -186,34 +187,34 @@ export default async function TeacherResultsPage({
                 return (
                 <li
                   key={s.submissionId}
-                  className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-ink-600 bg-ink-850/50 px-4 py-3"
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-rule bg-paper-card px-4 py-3"
                 >
                   <div>
-                    <p className="text-sm text-chalk">{s.studentName}</p>
+                    <p className="text-sm text-graphite">{s.studentName}</p>
                     {weakestGaps.length > 0 && (
-                      <p className="mt-1 text-[11px] text-chalk-faint">
+                      <p className="mt-1 text-[11px] text-graphite-faint">
                         Missed: {weakestGaps.map((g) => g.nodeText).join(" · ")}
                       </p>
                     )}
                     {(s.misconceptionCategories?.length ?? 0) > 0 && (
-                      <p className="mt-1 text-[11px] text-rose">
+                      <p className="mt-1 text-[11px] text-rose-paper-ink">
                         {s.misconceptionCategories!.map((c) => categoryInfo(c).label).join(" · ")}
                       </p>
                     )}
                   </div>
                   <div className="flex items-center gap-3 text-sm tabular-nums">
                     {typeof s.confidenceRating === "number" && (
-                      <span className="text-chalk-faint">{s.confidenceRating}/5 conf.</span>
+                      <span className="text-graphite-faint">{s.confidenceRating}/5 conf.</span>
                     )}
                     <span
                       className="font-display text-lg"
                       style={{
                         color:
                           s.samajhScore >= 80
-                            ? "var(--emerald)"
+                            ? "var(--grass-ink)"
                             : s.samajhScore >= 50
-                              ? "var(--amber)"
-                              : "var(--rose)",
+                              ? "var(--gold-ink)"
+                              : "var(--rose-paper-ink)",
                       }}
                     >
                       {s.samajhScore}
@@ -227,10 +228,11 @@ export default async function TeacherResultsPage({
         </>
       )}
 
-      <p className="mt-10 text-[11px] text-chalk-faint">
-        {BRAND.name} — results are stored server-side against this code only, no accounts
-        involved. Anyone with the code can view this page.
-      </p>
+        <p className="mt-10 text-[11px] text-graphite-faint">
+          {BRAND.name} — results are stored server-side against this code only, no accounts
+          involved. Anyone with the code can view this page.
+        </p>
+      </div>
     </main>
   );
 }
@@ -238,15 +240,15 @@ export default async function TeacherResultsPage({
 function Stat({
   label,
   value,
-  color = "var(--chalk)",
+  color = "var(--graphite)",
 }: {
   label: string;
   value: string;
   color?: string;
 }) {
   return (
-    <div className="rounded-xl border border-ink-600 bg-ink-800/50 p-4">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-chalk-faint">{label}</p>
+    <div className="rounded-xl border border-rule bg-paper-card p-4">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-graphite-faint">{label}</p>
       <p className="mt-1 font-display text-2xl tabular-nums" style={{ color }}>
         {value}
       </p>

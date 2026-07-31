@@ -21,17 +21,17 @@ export default function UnderstandingPanel({ concept, report, analyzing }: Props
   const pct = total ? Math.round((covered / total) * 100) : 0;
 
   return (
-    <div className="rounded-2xl border border-ink-600 bg-ink-800/60 backdrop-blur p-5">
+    <div className="rounded-2xl border border-rule bg-paper-card p-5">
       <div className="flex items-baseline justify-between gap-3">
-        <h3 className="font-display text-lg text-chalk">Understanding map</h3>
-        <span className="text-xs tabular-nums text-chalk-faint">
+        <h3 className="font-display text-lg text-graphite">Understanding map</h3>
+        <span className="text-xs tabular-nums text-graphite-faint">
           {covered}/{total} ideas
         </span>
       </div>
 
-      <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-ink-700">
+      <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-paper-deep">
         <motion.div
-          className="h-full rounded-full bg-amber"
+          className="h-full rounded-full bg-gold"
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -49,8 +49,8 @@ export default function UnderstandingPanel({ concept, report, analyzing }: Props
               transition={{ delay: i * 0.05 }}
               className={`flex items-start gap-3 rounded-xl border p-3 transition-colors duration-500 ${
                 isCovered
-                  ? "border-emerald/40 bg-emerald/[0.07]"
-                  : "border-ink-600 bg-ink-850/40"
+                  ? "border-grass/40 bg-grass/[0.07]"
+                  : "border-rule bg-paper-deep/60"
               }`}
             >
               <motion.span
@@ -59,17 +59,17 @@ export default function UnderstandingPanel({ concept, report, analyzing }: Props
                 animate={
                   isCovered
                     ? {
-                        backgroundColor: "var(--emerald)",
-                        boxShadow: "0 0 12px 2px rgba(90,209,154,0.55)",
+                        backgroundColor: "var(--grass)",
+                        boxShadow: "0 0 12px 2px rgba(47,158,79,0.35)",
                         scale: [1, 1.5, 1],
                       }
-                    : { backgroundColor: "var(--ink-500)", boxShadow: "none", scale: 1 }
+                    : { backgroundColor: "var(--rule-strong)", boxShadow: "none", scale: 1 }
                 }
                 transition={{ duration: 0.5 }}
               />
               <span
                 className={`text-sm leading-snug ${
-                  isCovered ? "text-chalk" : "text-chalk-faint"
+                  isCovered ? "text-graphite" : "text-graphite-faint"
                 }`}
               >
                 {node.text}
@@ -85,7 +85,7 @@ export default function UnderstandingPanel({ concept, report, analyzing }: Props
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="mt-4 text-center text-xs text-amber"
+            className="mt-4 text-center text-xs text-gold-ink"
           >
             Measuring your explanation…
           </motion.p>

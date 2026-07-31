@@ -147,10 +147,10 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Magnetic>
               <Link
-                href="/teacher"
+                href="/learn"
                 className="group flex items-center gap-2 rounded-full bg-graphite px-8 py-4 text-sm font-semibold text-paper transition hover:bg-black"
               >
-                Start teaching
+                Start learning
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
@@ -245,31 +245,30 @@ function PaperPlane({
   progress: MotionValue<number>;
   reduced: boolean;
 }) {
-  // t drives the flight: 0 = parked at bottom-centre, 1 = exited top-right.
+  // Launch early and finish before the hero is gone, so the flight plays while
+  // there's still sheet behind it.
   const t = useTransform(progress, [0.02, 0.46], [0, 1], { clamp: true });
-  // smokeT keeps expanding after the plane is gone, so the flood fills the
-  // whole bottom of the hero before page 2 arrives.
-  const smokeT = useTransform(progress, [0.02, 0.72], [0, 1], { clamp: true });
 
   const { x0, y0 } = FLIGHT;
   const x = useTransform(t, (v) => x0 + v * FLIGHT_DX);
   const y = useTransform(t, (v) => y0 + v * FLIGHT_DY);
+
+  // The plane itself grows through the flight — already bigger at launch than
+  // the old design, growing further as it climbs.
   const scale = useTransform(t, [0, 1], [1.5, 2.3]);
+
+  // Visible from the moment the hero lands — it's parked centre-bottom waiting
+  // to launch, not fading in once you've already started scrolling. Only the
+  // tail of the flight fades, as it leaves frame.
   const opacity = useTransform(t, [0, 0.86, 1], [1, 1, 0]);
 
-  // Tight trailing puff — same as before.
-  const cloudScale = useTransform(smokeT, [0, 0.12, 0.6], [0.2, 1, 1.8]);
-  const cloudOpacity = useTransform(smokeT, [0, 0.1, 0.85, 1], [0, 0.9, 0.9, 0]);
-
-  // Medium expansion — grows 3× larger, stays behind the plane's path.
-  const midScale = useTransform(smokeT, [0, 0.08, 1], [0.1, 1, 3.8]);
-  const midOpacity = useTransform(smokeT, [0, 0.08, 0.7, 1], [0, 0.7, 0.7, 0]);
-
-  // Giant screen-flood bloom: expands from bottom-centre of the SVG and
-  // bleeds page-2's blue across the whole lower half of the hero.
-  // Its scale goes from nothing to covering the full 900×260 viewport.
-  const floodScale = useTransform(smokeT, [0, 0.05, 1], [0, 1, 14]);
-  const floodOpacity = useTransform(smokeT, [0, 0.04, 0.55, 1], [0, 0.88, 0.88, 0]);
+  // The cloud has its own scale, independent of the plane's — sized as a
+  // sibling under the same position/rotation wrapper rather than nested
+  // inside the plane's own scaled group, so its growth doesn't compound with
+  // the plane's. Growth finishes at 0.6, not 1, so this trailing puff doesn't
+  // keep swelling over the CTA row for the whole rest of the flight.
+  const cloudScale = useTransform(t, [0, 0.12, 0.6], [0.2, 1, 1.8]);
+  const cloudOpacity = useTransform(t, [0, 0.1, 1], [0, 0.9, 0.95]);
 
   if (reduced) return null;
 
@@ -279,46 +278,10 @@ function PaperPlane({
       className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden h-80 w-[min(1000px,94vw)] -translate-x-1/2 md:block"
     >
       <svg viewBox="0 0 900 260" className="h-full w-full overflow-visible" fill="none">
-
-        {/* ── Layer 1: giant page-2-coloured flood bloom ────────────────
-            Anchored at the plane's launch point (x0, y0 = 450, 238),
-            centred at the very bottom of the hero. Grows to 14× its
-            natural size — enough to cover the full SVG viewport and bleed
-            into page 2. Uses the exact same colours as page 2's background. */}
-        <motion.g
-          style={{
-            x: x0,
-            y: y0,
-            scale: floodScale,
-            opacity: floodOpacity,
-            transformOrigin: "0px 0px",
-          }}
-        >
-          <g style={{ filter: "blur(28px)" }}>
-            <ellipse cx={0} cy={0} rx={90} ry={70} fill="#cfd9f6" />
-            <ellipse cx={-60} cy={20} rx={70} ry={55} fill="#93a8e0" opacity={0.75} />
-            <ellipse cx={50} cy={-10} rx={65} ry={50} fill="#cfd9f6" opacity={0.8} />
-            <ellipse cx={0} cy={-30} rx={55} ry={44} fill="#b8c8f2" opacity={0.7} />
-          </g>
-        </motion.g>
-
-        {/* ── Layer 2: medium expanding trail ───────────────────────────
-            Follows the plane's exit point, grows to 3.8× and lingers
-            across the upper smoke path even after the plane is gone. */}
-        <motion.g style={{ x, y, rotate: FLIGHT_ANGLE, transformOrigin: "0px 0px" }}>
-          <g transform="translate(-80 6)">
-            <motion.g style={{ scale: midScale, opacity: midOpacity, transformOrigin: "0px 0px" }}>
-              <g style={{ filter: "blur(18px)" }}>
-                <ellipse cx={-20} cy={0} rx={60} ry={44} fill="#cfd9f6" opacity={0.9} />
-                <ellipse cx={10} cy={-18} rx={52} ry={38} fill="#93a8e0" opacity={0.75} />
-                <ellipse cx={-40} cy={16} rx={48} ry={36} fill="#cfd9f6" opacity={0.7} />
-              </g>
-            </motion.g>
-          </g>
-        </motion.g>
-
-        {/* ── Layer 3: tight trailing puff — attached to the plane ──── */}
         <motion.g style={{ x, y, rotate: FLIGHT_ANGLE, opacity, transformOrigin: "0px 0px" }}>
+          {/* Smoke, fixed behind the tail in the plane's own local space — a
+              straight, unchanging heading means this offset trails correctly
+              at every point in the flight, not just an approximation. */}
           <g transform="translate(-70 4)">
             <motion.g style={{ scale: cloudScale, opacity: cloudOpacity, transformOrigin: "0px 0px" }}>
               <SmokeCloud />
@@ -326,6 +289,8 @@ function PaperPlane({
           </g>
 
           <motion.g style={{ scale, transformOrigin: "0px 0px" }}>
+            {/* Two folds, light over dark — the same flat poster logic as the
+                rest of the sheet, so it reads as folded paper without shading. */}
             <path
               d="M-17 -11 L19 0 L-9 1 Z"
               fill="var(--paper-card)"
