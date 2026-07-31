@@ -13,11 +13,7 @@ import SiteFooter from "@/components/landing/SiteFooter";
  * Four sections + footer, in scroll order — the ids here are what
  * SiteChrome's nav and section rail track. The self-serve student launcher
  * lives at its own route, /learn (see app/learn/page.tsx), not embedded
- * here — "Start learning" links straight there. Everything else past "How
- * it works" (Grasp Score, the parrot detector, the three modes, the
- * concept universe, Classroom) stays pulled from the page; those
- * components are still on disk in components/landing/, just no longer
- * imported here.
+ * here — "Start learning" links straight there.
  */
 export default function Home() {
   return (

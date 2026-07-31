@@ -10,9 +10,9 @@ import { EASE } from "./Primitives";
  * The landing sections, in scroll order. Drives both the nav and the rail.
  *
  * Was eight; Grasp Score, the parrot detector, three modes, the concept
- * universe, and Classroom were pulled off the page (their components are
- * still on disk, just no longer rendered), so this list — and the section
- * rail it draws — shrank to match what's actually on the page.
+ * universe, and Classroom were pulled off the page and deleted, so this
+ * list — and the section rail it draws — shrank to match what's actually
+ * on the page.
  */
 export const SECTIONS = [
   { id: "hero", label: "Lucid", short: "01" },
