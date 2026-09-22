@@ -406,21 +406,29 @@ export async function runAnalysis(
   // misconception, or near-verbatim similarity to one. The tree ensemble can
   // otherwise predict "wrong" from shape alone (short, low-coverage, single
   // segment) — which is what "wrong" samples look like in training — and on
-  // an unseen topic that is a confident, unexplainable false positive. With
-  // no evidence, fall back to the model's next-best class.
+  // an unseen topic that is a confident, unexplainable false positive.
+  //
+  // When that happens the model's other probabilities are not trustworthy
+  // either (its next-best class was "memorized" at 20% for a one-line answer
+  // in the learner's own words), so the fallback is decided from the same
+  // evidence the heuristic classifier uses: recitation signals → memorized,
+  // otherwise good vs partial on coverage.
   if (
     cls.label === "wrong" &&
     wrongStatements.length === 0 &&
     contradictionRatio === 0 &&
     misconceptionSimilarity < 0.78
   ) {
-    const fallback = (["good", "partial", "memorized"] as const).reduce((best, k) =>
-      cls.probabilities[k] > cls.probabilities[best] ? k : best,
-    );
+    const fallback =
+      textbookSimilarity > 0.72 && ngramOverlap > 0.28
+        ? "memorized"
+        : coverageScore >= 0.7 && meanNodeSimilarity >= 0.45
+          ? "good"
+          : "partial";
     cls = {
       ...cls,
       label: fallback,
-      confidence: cls.probabilities[fallback],
+      confidence: Math.max(cls.probabilities[fallback], 0.5),
     };
   }
 
