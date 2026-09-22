@@ -15,8 +15,15 @@ import {
   type PreTrainedModel,
 } from "@xenova/transformers";
 
-// Download models from the HF hub and cache to disk (default cache dir).
+// Download models from the HF hub and cache to disk.
 env.allowLocalModels = false;
+// The default cache dir lives inside node_modules, which is read-only on
+// Vercel/Lambda. /tmp is the only writable location there, and it survives
+// between warm invocations of the same instance, so models are only
+// re-downloaded on a genuine cold start.
+if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  env.cacheDir = "/tmp/transformers-cache";
+}
 
 const EMBED_MODEL = "Xenova/all-MiniLM-L6-v2";
 const NLI_MODEL = "Xenova/nli-deberta-v3-xsmall";
