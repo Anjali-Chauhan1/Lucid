@@ -398,7 +398,31 @@ export async function runAnalysis(
     max_similarity_gap: gapsBetween.length ? Math.max(...gapsBetween) : 0,
     sim_p25: percentile(sortedSims, 25),
   };
-  const cls = classify(features);
+  let cls = classify(features);
+
+  // Evidence gate. The report tells the learner "some of what you said
+  // contradicts the facts" for a "wrong" label, so that label must be backed
+  // by an actual error the engine can show: a contradicted fact, an entailed
+  // misconception, or near-verbatim similarity to one. The tree ensemble can
+  // otherwise predict "wrong" from shape alone (short, low-coverage, single
+  // segment) — which is what "wrong" samples look like in training — and on
+  // an unseen topic that is a confident, unexplainable false positive. With
+  // no evidence, fall back to the model's next-best class.
+  if (
+    cls.label === "wrong" &&
+    wrongStatements.length === 0 &&
+    contradictionRatio === 0 &&
+    misconceptionSimilarity < 0.78
+  ) {
+    const fallback = (["good", "partial", "memorized"] as const).reduce((best, k) =>
+      cls.probabilities[k] > cls.probabilities[best] ? k : best,
+    );
+    cls = {
+      ...cls,
+      label: fallback,
+      confidence: cls.probabilities[fallback],
+    };
+  }
 
   // 8. Depth (optional, from why-answers)
   let depth: number | null = null;
