@@ -12,7 +12,7 @@ export async function GET(
   { params }: { params: Promise<{ code: string }> },
 ) {
   const { code } = await params;
-  const data = getAssignment(code);
+  const data = await getAssignment(code);
   if (!data) {
     return NextResponse.json({ error: "not_found" }, { status: 404 });
   }

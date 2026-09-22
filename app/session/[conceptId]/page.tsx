@@ -14,7 +14,7 @@ export default async function SessionPage({
   const { conceptId } = await params;
   const { mode, assignmentCode, studentName } = await searchParams;
 
-  const concept = resolveConcept(conceptId);
+  const concept = await resolveConcept(conceptId);
 
   if (!concept) {
     return (

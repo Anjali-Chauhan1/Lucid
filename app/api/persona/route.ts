@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const { mode, conceptId, gaps, wrongStatements, rattaFlag, conversationHistory } =
     parsed.data;
 
-  const concept = resolveConcept(conceptId);
+  const concept = await resolveConcept(conceptId);
   if (!concept) {
     return NextResponse.json({ error: "unknown_concept" }, { status: 404 });
   }

@@ -18,7 +18,7 @@ export default async function TeacherResultsPage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const data = getAssignment(code);
+  const data = await getAssignment(code);
 
   if (!data) {
     return (

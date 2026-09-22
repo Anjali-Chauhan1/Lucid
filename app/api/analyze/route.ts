@@ -53,7 +53,7 @@ export async function POST(req: Request) {
 
   // Curated maps first, then any map previously generated for a custom topic.
   // Scoring never triggers generation — the client calls /api/concept first.
-  const concept = resolveConcept(parsed.data.conceptId);
+  const concept = await resolveConcept(parsed.data.conceptId);
   if (!concept) {
     return NextResponse.json(
       {

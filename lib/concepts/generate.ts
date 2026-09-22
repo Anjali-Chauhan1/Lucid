@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ConceptMap } from "@/lib/types";
 import { complete } from "@/lib/llm";
+import { query } from "@/lib/db";
 import { ConceptMapSchema, normalizeWeights, slugify } from "./schema";
 import { getConcept } from "./index";
 
@@ -13,8 +14,13 @@ import { getConcept } from "./index";
  * not topic text), so the only thing standing between it and an arbitrary
  * subject is a concept map. We generate one, validate it, and cache it.
  *
- * Generated maps are cached on disk so the same topic is only ever paid for
- * once, and so a demo can be rehearsed deterministically.
+ * Generated maps are persisted in Postgres (same database as assignments)
+ * so the same topic is only ever paid for once. They used to live only in
+ * an on-disk cache, but a serverless function's disk is ephemeral and not
+ * shared between invocations: a teacher could create an assignment for a
+ * custom topic, the assignment row would land in the DB, and the student's
+ * /session/<id> render on another instance would find no map and 404. The
+ * disk cache is kept as a local-dev fallback (fast, works offline).
  */
 
 const CACHE_DIR = path.join(process.cwd(), ".cache", "concepts");
@@ -68,6 +74,31 @@ function writeCache(map: ConceptMap): void {
   }
 }
 
+async function readDb(id: string): Promise<ConceptMap | null> {
+  try {
+    const rows = await query<{ map: ConceptMap }>(
+      "SELECT map FROM concept_maps WHERE id = $1",
+      [id],
+    );
+    return rows[0]?.map ?? null;
+  } catch (err) {
+    console.warn("[concepts] db read failed:", (err as Error).message);
+    return null;
+  }
+}
+
+async function writeDb(map: ConceptMap): Promise<void> {
+  try {
+    await query(
+      `INSERT INTO concept_maps (id, map, created_at) VALUES ($1, $2, $3)
+       ON CONFLICT (id) DO UPDATE SET map = EXCLUDED.map`,
+      [map.id, JSON.stringify(map), Date.now()],
+    );
+  } catch (err) {
+    console.warn("[concepts] db write failed:", (err as Error).message);
+  }
+}
+
 function stripFence(raw: string): string {
   return raw
     .replace(/^\s*```(?:json)?/i, "")
@@ -81,12 +112,17 @@ export interface GeneratedConcept {
 }
 
 /**
- * Look up a concept WITHOUT calling the LLM: curated maps first, then any
- * previously generated map on disk. Used by /api/analyze, which must never
- * trigger generation as a side effect of scoring.
+ * Look up a concept WITHOUT calling the LLM: curated maps first, then the
+ * local disk cache, then the database. Used by /api/analyze, which must
+ * never trigger generation as a side effect of scoring.
  */
-export function resolveConcept(id: string): ConceptMap | null {
-  return getConcept(id) ?? readCache(id);
+export async function resolveConcept(id: string): Promise<ConceptMap | null> {
+  const local = getConcept(id) ?? readCache(id);
+  if (local) return local;
+  const fromDb = await readDb(id);
+  // Warm the local cache so subsequent lookups on this instance skip the DB.
+  if (fromDb) writeCache(fromDb);
+  return fromDb;
 }
 
 export async function getOrCreateConcept(topic: string): Promise<GeneratedConcept> {
@@ -97,8 +133,8 @@ export async function getOrCreateConcept(topic: string): Promise<GeneratedConcep
   const curated = getConcept(id);
   if (curated) return { map: curated, source: "curated" };
 
-  // 2. Previously generated?
-  const cached = readCache(id);
+  // 2. Previously generated (on this instance, or anywhere else)?
+  const cached = readCache(id) ?? (await readDb(id));
   if (cached) return { map: cached, source: "cache" };
 
   // 3. Generate.
@@ -134,5 +170,6 @@ export async function getOrCreateConcept(topic: string): Promise<GeneratedConcep
 
   const map = normalizeWeights(result.data as ConceptMap);
   writeCache(map);
+  await writeDb(map);
   return { map, source: "generated" };
 }

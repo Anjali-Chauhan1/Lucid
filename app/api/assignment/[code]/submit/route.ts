@@ -55,7 +55,7 @@ export async function POST(
     );
   }
 
-  const ok = addSubmission(code, {
+  const ok = await addSubmission(code, {
     studentName: parsed.data.studentName,
     samajhScore: parsed.data.samajhScore,
     dimensions: parsed.data.dimensions,

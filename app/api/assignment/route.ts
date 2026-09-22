@@ -28,12 +28,12 @@ export async function POST(req: Request) {
     );
   }
 
-  const concept = resolveConcept(parsed.data.conceptId);
+  const concept = await resolveConcept(parsed.data.conceptId);
   if (!concept) {
     return NextResponse.json({ error: "unknown_concept" }, { status: 404 });
   }
 
-  const assignment = createAssignment(
+  const assignment = await createAssignment(
     concept.id,
     concept.concept,
     parsed.data.mode,
